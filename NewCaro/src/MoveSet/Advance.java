@@ -144,15 +144,21 @@ public class Advance {
         }
         else{
             if(rowright >= 2 || rowleft >= 2){
-                if(rowright >= 2){
+                if(rowright == 2){
                     if((blockright == 0 || (blright == 1 && spaceright == 1)) && spaceright <= 2){
                         pushATK_3++;
                     }
                 }
-                if(rowleft >= 2){
+                if(rowleft == 2){
                     if((blockleft == 0 || (blleft == 1 && spaceleft == 1)) && spaceleft <= 2){
                         pushATK_3++;
                     }
+                }
+                if(rowleft == 3 && blockleft == 1 && spaceleft == 1){
+                    pushATK_4++;
+                }
+                if(rowright == 3 && blockright == 1 && spaceright == 1){
+                    pushATK_4++;
                 }
             }
         }
@@ -270,15 +276,21 @@ public class Advance {
         }
         else{
             if(rowright >= 2 || rowleft >= 2){
-                if(rowright >= 2){
+                if(rowright == 2){
                     if((blockright == 0 || (blright == 1 && spaceright == 1)) && spaceright <= 2){
                         pushATK_3++;
                     }
                 }
-                if(rowleft >= 2){
+                if(rowleft == 2){
                     if((blockleft == 0 || (blleft == 1 && spaceleft == 1)) && spaceleft <= 2){
                         pushATK_3++;
                     }
+                }
+                if(rowleft == 3 && blockleft == 1 && spaceleft == 1){
+                    pushATK_4++;
+                }
+                if(rowright == 3 && blockright == 1 && spaceright == 1){
+                    pushATK_4++;
                 }
             }
         }
@@ -394,15 +406,21 @@ public class Advance {
         }
         else{
             if(rowright >= 2 || rowleft >= 2){
-                if(rowright >= 2){
+                if(rowright == 2){
                     if((blockright == 0 || (blright == 1 && spaceright == 1)) && spaceright <= 2){
                         pushATK_3++;
                     }
                 }
-                if(rowleft >= 2){
+                if(rowleft == 2){
                     if((blockleft == 0 || (blleft == 1 && spaceleft == 1)) && spaceleft <= 2){
                         pushATK_3++;
                     }
+                }
+                if(rowleft == 3 && blockleft == 1 && spaceleft == 1){
+                    pushATK_4++;
+                }
+                if(rowright == 3 && blockright == 1 && spaceright == 1){
+                    pushATK_4++;
                 }
             }
         }
@@ -520,15 +538,21 @@ public class Advance {
         }
         else{
             if(rowright >= 2 || rowleft >= 2){
-                if(rowright >= 2){
+                if(rowright == 2){
                     if((blockright == 0 || (blright == 1 && spaceright == 1)) && spaceright <= 2){
                         pushATK_3++;
                     }
                 }
-                if(rowleft >= 2){
+                if(rowleft == 2){
                     if((blockleft == 0 || (blleft == 1 && spaceleft == 1)) && spaceleft <= 2){
                         pushATK_3++;
                     }
+                }
+                if(rowleft == 3 && blockleft == 1 && spaceleft == 1){
+                    pushATK_4++;
+                }
+                if(rowright == 3 && blockright == 1 && spaceright == 1){
+                    pushATK_4++;
                 }
             }
         }
