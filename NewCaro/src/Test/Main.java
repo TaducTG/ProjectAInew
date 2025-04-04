@@ -37,18 +37,8 @@ public class Main {
                 }
             }
         }
-        if(startMove == 1){
-            startMove += 1;
-            double rd = Math.random();
-            rd = rd*100 + 1;
-            int nrd =(int)rd % 7;
-            E[A.get(nrd).getX()][A.get(nrd).getY()] = 2;
-            locx = A.get(nrd).getX();
-            locy = A.get(nrd).getY();
-            System.out.println(A.get(nrd).getX() + " " + A.get(nrd).getY());
-            A.clear();
-        }
-        else {
+        Point tmp = Begin.BeginMove();
+        if(tmp.getX() == 0 && tmp.getY() == 0){
             double max = 0;
             for (Point point : A) {
                 point.setScore(cal(point, E, 2));
@@ -57,13 +47,13 @@ public class Main {
                 }
             }
             List<Point> B = new ArrayList<>();  // Lưu các vị trí tốt nhất ở thời điểm 1 của O
-                                                // => max(B) = vị trí đánh tốt nhất trong 1 nước của bản thân
+            // => max(B) = vị trí đánh tốt nhất trong 1 nước của bản thân
             List<Point> C = new ArrayList<>();  // Lưu các vị trí tốt nhất ở thời điểm 1 của X
-                                                // => max(B) * min(C) => vị trí đánh tốt nhất trong 1 nước của bản thân
-                                                //                      để đối thủ không đánh được điểm cao nhất
+            // => max(B) * min(C) => vị trí đánh tốt nhất trong 1 nước của bản thân
+            //                      để đối thủ không đánh được điểm cao nhất
             List<Point> D = new ArrayList<>();  // Lưu các vị trí tốt nhất ở thời điểm 2 của O
-                                                // => max(B) * (min(C) < x) * max(D) => vị trí đánh tốt nhất trong 2 nước của bản thân
-                                                //                                      với điều kiện đối thủ không có khả năng tấn công lượt sau
+            // => max(B) * (min(C) < x) * max(D) => vị trí đánh tốt nhất trong 2 nước của bản thân
+            //                                      với điều kiện đối thủ không có khả năng tấn công lượt sau
 
 
             // Chưa dùng
@@ -193,7 +183,6 @@ public class Main {
 //                }
 //                System.out.println();
 //            }
-
 //            if(C_min >= 4000){
 //                E[B.get(location).getX()][B.get(location).getY()] = 2; // Chọn điểm có điểm số tốt nhất
 //                locx = B.get(location).getX();
@@ -236,6 +225,15 @@ public class Main {
             long endTime = System.nanoTime();
             long duration = endTime - startTime;
             System.out.println("Thời gian chạy: " + duration/1e6 + "ms");
+        }
+        else{
+            int bg_x = tmp.getX();
+            int bg_y = tmp.getY();
+            E[bg_x][bg_y] = 2;
+            locx = tmp.getX();
+            locy = tmp.getY();
+            System.out.println(locx + " " + locy);
+            A.clear();
         }
     }
 }
