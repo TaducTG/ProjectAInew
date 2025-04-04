@@ -105,7 +105,7 @@ public class View extends JFrame implements ActionListener {
                 }
             }
             Main.startMove = 0;
-            Main.turn += 1;
+
             new View("GAME DEMO");
             this.dispose();
         } else if (e.getActionCommand() == "Exit") {
