@@ -4,8 +4,8 @@ import java.util.*;
 
 public class Move {
     public static int check = 0;
-    static int[] ATK = {0, 10, 100, 501, 99999,99999};
-    static int[] DEF = {0, 3, 50, 200, 20000,20000};
+    static int[] ATK = {0, 10, 100, 501, 99999,99999,99999,99999,99999};
+    static int[] DEF = {0, 3, 50, 200, 20000,20000,20000,20000,20000};
 
     // Kiểm tra theo hướng ngang
     public static int checkHangNgang(Point tmp, int[][] E, int a) {
@@ -35,7 +35,6 @@ public class Move {
                     line += 1;
                     if (E[x + 4][y] == a) {
                         line += 1;
-                        System.out.println("check");
                     }
                 }
             }
@@ -103,7 +102,6 @@ public class Move {
                     col += 1;
                     if (E[x][y + 4] == a) {
                         col += 1;
-                        System.out.println("check");
                     }
                 }
             }

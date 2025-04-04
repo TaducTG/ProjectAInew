@@ -57,21 +57,6 @@ public class calculateDistance {
         }
         if (a == 1) {
             if (score < 20000) {
-//                int beta = Push_ATKp2(tmp, E);
-//                if (beta == 1 || beta == 2) {
-//                    score += 8000;
-//                    return score; // Sử dụng return để dừng hàm ngay khi thêm vào X
-//                }
-//                if (beta == 3 || beta == 4) {
-//                    score += 8000;
-//                    return score; // Sử dụng return để dừng hàm ngay khi thêm vào X
-//                }
-//
-//                if (Prep_ATKp2(tmp, E) == 1) {
-//                    score += 3000;
-//                    return score; // Dừng hàm khi điều kiện thỏa mãn
-//                }
-
                 if(alpha != 0){
                     score += 12000;
                     return score;
@@ -98,8 +83,8 @@ public class calculateDistance {
                     return score; // Dừng hàm ngay khi có chiến thắng tuyệt đối
                 }
                 if(gamma == 1 || gamma == 2 || gamma == 3){
+//                    System.out.println(gamma);
                     score += 8000;
-//                    System.out.println("***");
                     if(beta == 5){
                         score += 4000;
                     }
@@ -123,6 +108,7 @@ public class calculateDistance {
 //                }
                 if(gamma == 4){
                     score += 6000;
+                    return score;
                 }
                 // Cần tối ưu lại 2 hàm này
 
@@ -192,8 +178,8 @@ public class calculateDistance {
         }
 
         // Kiểm tra vùng xung quanh mở rộng (các ô từ (i-6, j-6) đến (i+6, j+6))
-        for (int a = i - 6; a < i + 6; a++) {
-            for (int b = j - 6; b < j + 6; b++) {
+        for (int a = i - 5; a < i + 5; a++) {
+            for (int b = j - 5; b < j + 5; b++) {
                 if (a >= 0 && b >= 0 && a <= 14 && b <= 14 && E[a][b] == 0 && D[a][b] == 0) {
                     Point tmp = new Point(a, b,0,0);
                     A.add(tmp);

@@ -10,6 +10,9 @@ public class Main {
     public static int locy; //VỊ trí máy đánh
     public static int[][] E = new int[20][20];
     public static int choosemove;
+    public static int choosemove2;
+    public static int choosemove3;
+
     public static void main(String[] args) {
         new View("GAME CARO"); // gọi chương trình
         // Khởi tạo mảng E
@@ -66,6 +69,9 @@ public class Main {
             // Chưa dùng
             List<Point> F = new ArrayList<>();  // Lưu các vị trí tốt nhất ở thời điểm 2 của X
             List<Point> G = new ArrayList<>();
+
+            List<Point> H = new ArrayList<>();
+            List<Point> I = new ArrayList<>();
             for (Point item : A) {
                 if (item.getScore() >= max * 0.85) {
                     B.add(item);
@@ -107,25 +113,73 @@ public class Main {
                         secondLayer(C.get(l).getX(), C.get(l).getY(), E);
                         for (Point value : A) {
                             value.setScore(cal(value, E, 2));
-                            if (value.getScore() >= 3000) {
+                            if (value.getScore() >= 4000) {
                                 D.add(value);
                                 choosemove = C.get(l).getRank();
                             }
-                            if(value.getScore() >= 150){
-                                F.add(value);
-                            }
                         }
-
+                        for(int m = 0;m<D.size();m++){ // depth = 4
+                            A.clear();
+                            E[D.get(m).getX()][D.get(m).getY()] = 2;
+                            secondLayer(D.get(m).getX(), D.get(m).getY(), E);
+                            double maxF = 0;
+                            for (Point value : A) {
+                                value.setScore(cal(value, E, 1));
+                                if (value.getScore() > maxF) {
+                                    maxF = value.getScore();
+                                }
+                            }
+                            for (Point value : A) {
+                                if (value.getScore() > maxF*0.9) {
+                                    F.add(value);
+                                }
+                            }
+                            double minF = 99999;
+                            for (Point value : F) {
+                                if(value.getScore() < minF){
+                                    minF = value.getScore();
+                                    choosemove2 = D.get(m).getRank();
+                                }
+                            }
+                            if(minF <= 2000 && m == D.size() - 1){ // depth = 5
+                                for(int n = 0;n<F.size();n++){
+                                    A.clear();
+                                    E[F.get(n).getX()][F.get(n).getY()] = 1;
+                                    firstLayer(F.get(n).getX(), F.get(n).getY(), E);
+                                    for (Point value : A) {
+                                        value.setScore(cal(value, E, 2));
+                                        if (value.getScore() >= 6000) {
+                                            G.add(value);
+                                            choosemove3 = F.get(n).getRank();
+                                        }
+                                    }
+                                    E[F.get(n).getX()][F.get(n).getY()] = 0;
+                                }
+                            }
+                            E[D.get(m).getX()][D.get(m).getY()] = 0;
+                        }
                         E[C.get(l).getX()][C.get(l).getY()] = 0;
                     }
                 }
                 E[B.get(k).getX()][B.get(k).getY()] = 0; // Xóa giả định
             }
-            if(!D.isEmpty()){
+            if(!G.isEmpty()){
+                E[B.get(choosemove3).getX()][B.get(choosemove3).getY()] = 2;
+                locx = B.get(choosemove3).getX();
+                locy = B.get(choosemove3).getY();
+                System.out.println(B.get(choosemove3).getX() + " " + B.get(choosemove3).getY() + " " + B.get(choosemove3).getScore() +"***");
+            }
+            else if(!F.isEmpty()){
+                E[B.get(choosemove2).getX()][B.get(choosemove2).getY()] = 2;
+                locx = B.get(choosemove2).getX();
+                locy = B.get(choosemove2).getY();
+                System.out.println(B.get(choosemove2).getX() + " " + B.get(choosemove2).getY() + " " + B.get(choosemove2).getScore() +"**");
+            }
+            else if(!D.isEmpty()){
                 E[B.get(choosemove).getX()][B.get(choosemove).getY()] = 2;
                 locx = B.get(choosemove).getX();
                 locy = B.get(choosemove).getY();
-                System.out.println(B.get(location).getX() + " " + B.get(location).getY() + " " + B.get(location).getScore() +"*");
+                System.out.println(B.get(choosemove).getX() + " " + B.get(choosemove).getY() + " " + B.get(choosemove).getScore() +"*");
             }
             else {
                 E[B.get(location).getX()][B.get(location).getY()] = 2; // Chọn điểm có điểm số tốt nhất
@@ -139,10 +193,46 @@ public class Main {
 //                }
 //                System.out.println();
 //            }
+
+//            if(C_min >= 4000){
+//                E[B.get(location).getX()][B.get(location).getY()] = 2; // Chọn điểm có điểm số tốt nhất
+//                locx = B.get(location).getX();
+//                locy = B.get(location).getY();
+//                System.out.println(B.get(location).getX() + " " + B.get(location).getY() + " " + B.get(location).getScore());
+//            }
+//            else if(!D.isEmpty()){
+//                E[B.get(choosemove).getX()][B.get(choosemove).getY()] = 2;
+//                locx = B.get(choosemove).getX();
+//                locy = B.get(choosemove).getY();
+//                System.out.println(B.get(choosemove).getX() + " " + B.get(choosemove).getY() + " " + B.get(choosemove).getScore() +"*");
+//            }
+//            else if(!G.isEmpty()){
+//                E[B.get(choosemove2).getX()][B.get(choosemove2).getY()] = 2;
+//                locx = B.get(choosemove2).getX();
+//                locy = B.get(choosemove2).getY();
+//                System.out.println(B.get(choosemove2).getX() + " " + B.get(choosemove2).getY() + " " + B.get(choosemove2).getScore() +"**");
+//            }
+//            else if(!I.isEmpty()){
+//                E[B.get(choosemove3).getX()][B.get(choosemove3).getY()] = 2;
+//                locx = B.get(choosemove3).getX();
+//                locy = B.get(choosemove3).getY();
+//                System.out.println(B.get(choosemove3).getX() + " " + B.get(choosemove3).getY() + " " + B.get(choosemove3).getScore() +"***");
+//            }
+//            else{
+//                E[B.get(location).getX()][B.get(location).getY()] = 2; // Chọn điểm có điểm số tốt nhất
+//                locx = B.get(location).getX();
+//                locy = B.get(location).getY();
+//                System.out.println(B.get(location).getX() + " " + B.get(location).getY() + " " + B.get(location).getScore());
+//            }
+//
             A.clear();
             B.clear();
             C.clear();
             D.clear();
+            F.clear();
+            G.clear();
+            H.clear();
+            I.clear();
             long endTime = System.nanoTime();
             long duration = endTime - startTime;
             System.out.println("Thời gian chạy: " + duration/1e6 + "ms");
