@@ -57,7 +57,7 @@ public class View extends JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         undo_bt.setEnabled(false);
-        if(Main.turn %2 == 1){
+        if(Main.turn %1 == 0){
             b[7][7].setText("O");
             b[7][7].setForeground(y_cl);
             tick[7][7] = false;
