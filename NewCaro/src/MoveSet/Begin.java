@@ -39,7 +39,6 @@ public class Begin {
                 Point a = new Point(5,9);
                 return a;
             }
-
         }
         if(Main.startMove == 2 && branch == 1.11){
             if(Main.E[7][6] == 1){
@@ -58,17 +57,11 @@ public class Begin {
                 branch = 2.22;
                 return new Point(7,8);
             }
-
-            
-
-
-
-            
-
-
-
- 
         }
+
+
+
+
         if(Main.startMove == 3 && branch == 2.11){
             if(Main.E[9][5] == 1){
                 branch = 3.11;

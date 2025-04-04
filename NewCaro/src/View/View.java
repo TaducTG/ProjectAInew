@@ -6,16 +6,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Test.*;
 
-import static Test.Main.locx;
-import static Test.Main.locy;
+import static Test.Main.*;
 
 public class View extends JFrame implements ActionListener {
     Color background_cl = Color.white;
     Color x_cl = Color.red;
     Color y_cl = Color.blue;
     int column = 15, row = 15, count = 0;
-    int xUndo[] = new int[column * row];
-    int yUndo[] = new int[column * row];
+    int  Undo[][] = new int[column+2][row+2];
     boolean tick[][] = new boolean[column + 2][row + 2];
     int Size = 0;
     Container cn;
@@ -59,7 +57,7 @@ public class View extends JFrame implements ActionListener {
         this.setSize(1400, 1000);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        undo_bt.setEnabled(false);
+        undo_bt.setEnabled(true);
 
         if(Main.turn %1 == 0){
             b[7][7].setText("O");
@@ -70,12 +68,15 @@ public class View extends JFrame implements ActionListener {
         }
     }
     public void addPoint(int i, int j) {
+
         b[locx][locy].setBackground(background_cl);
         if(Main.E[i][j] != 0){ // chống đánh vào ô dã đánh
             return;
         }
         Main.E[i][j] = 1;
+        Undo[i][j] = Main.startMove;
         b[i][j].setText("X");
+
         b[i][j].setForeground(x_cl);
         b[i][j].setFont(new Font("Arial", Font.BOLD, 24));
         tick[i][j] = false;
@@ -83,6 +84,7 @@ public class View extends JFrame implements ActionListener {
         lb.setFont(new Font("Arial", Font.BOLD, 24));
         Main.machineTurn();
         Main.E[locx][locy] = 2;
+        Undo[locx][locy] = Main.startMove;
         b[locx][locy].setText("O");
         b[locx][locy].setForeground(y_cl);
         b[locx][locy].setFont(new Font("Arial", Font.BOLD, 24));
@@ -90,7 +92,6 @@ public class View extends JFrame implements ActionListener {
         tick[locx][locy] = false;
         lb.setText("Lượt Của X");
     }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand() == "New Game") {
@@ -100,13 +101,34 @@ public class View extends JFrame implements ActionListener {
                 }
             }
             Main.startMove = 0;
-
             new View("GAME DEMO");
             this.dispose();
         } else if (e.getActionCommand() == "Exit") {
             System.exit(0);
-            ;
-        } else {
+        }
+        else if(e.getActionCommand() == "Undo") {
+
+            if(Main.startMove == 0){
+                return;
+            }
+            for (int i = 0; i < column+2; i++) {
+                for (int j = 0; j < row +2; j++) {
+                    if(Undo[i][j] == Main.startMove || (Undo[i][j] == Main.startMove - 1 && Main.E[i][j] == 1)){
+                        Undo[i][j] = 0;
+                        Main.E[i][j] = 0;
+                        b[i][j].setText(i + " " + j);
+                        b[i][j].setBackground(background_cl);
+                        b[i][j].setForeground(Color.lightGray);
+                        b[i][j].setFont(new Font("Arial", Font.BOLD, 18));
+                        tick[i][j] = true;
+
+                    }
+                }
+            }
+            Main.startMove -= 1;
+
+        }
+        else {
             String s = e.getActionCommand();
             int k = s.indexOf(32); // lấy vị trí ký tự cách
             int i = Integer.parseInt(s.substring(0, k)); // lấy số đầu tiên trước cách
