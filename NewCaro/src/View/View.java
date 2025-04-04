@@ -34,6 +34,8 @@ public class View extends JFrame implements ActionListener {
                 b[i][j] = new JButton(i +" " + j);
                 b[i][j].setActionCommand(i + " " + j);
                 b[i][j].setBackground(background_cl);
+                b[i][j].setFont(new Font("Arial", Font.BOLD, 18));
+                b[i][j].setForeground(Color.lightGray);
                 b[i][j].addActionListener(this);
                 tick[i][j] = true;
             }
@@ -41,6 +43,7 @@ public class View extends JFrame implements ActionListener {
             for (int j = 0; j <= row; j++)
                 pn.add(b[i][j]);
         lb = new JLabel("X Đánh Trước");
+        lb.setFont(new Font("Arial", Font.BOLD, 24));
         newGame_bt = new JButton("New Game");
         undo_bt = new JButton("Undo");
         newGame_bt.addActionListener(this);
@@ -57,10 +60,11 @@ public class View extends JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         undo_bt.setEnabled(false);
-        Main.turn += 1;
+
         if(Main.turn %1 == 0){
             b[7][7].setText("O");
             b[7][7].setForeground(y_cl);
+            b[7][7].setFont(new Font("Arial", Font.BOLD, 24));
             tick[7][7] = false;
             Main.E[7][7] = 2;
         }
@@ -73,26 +77,17 @@ public class View extends JFrame implements ActionListener {
         Main.E[i][j] = 1;
         b[i][j].setText("X");
         b[i][j].setForeground(x_cl);
+        b[i][j].setFont(new Font("Arial", Font.BOLD, 24));
         tick[i][j] = false;
         lb.setText("Lượt Của O");
+        lb.setFont(new Font("Arial", Font.BOLD, 24));
         Main.machineTurn();
         Main.E[locx][locy] = 2;
         b[locx][locy].setText("O");
         b[locx][locy].setForeground(y_cl);
+        b[locx][locy].setFont(new Font("Arial", Font.BOLD, 24));
         b[locx][locy].setBackground(null);
         tick[locx][locy] = false;
-
-
-//        Main.Mark(locx, locy,2);
-//        for(int i1 = 0; i1 <= column; i1++) {
-//            for (int j1 = 0; j1 <= row; j1++) {
-//                if (Main.E[i1][j1] == 2) {
-//                    b[i1][j1].setText("O");
-//                    b[i1][j1].setForeground(y_cl);
-//                    tick[i1][j1] = false;
-//                }
-//            }
-//        }
         lb.setText("Lượt Của X");
     }
 
