@@ -404,6 +404,12 @@ public class Advance {
                         pushATK_3++;
                     }
                 }
+                if(rowleft == 3 && blockleft == 1 && spaceleft == 1){
+                    pushATK_4++;
+                }
+                if(rowright == 3 && blockright == 1 && spaceright == 1){
+                    pushATK_4++;
+                }
             }
         }
         rowright = 0;
