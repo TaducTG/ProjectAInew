@@ -1,4 +1,7 @@
 package MoveSet;
+
+import Test.Main;
+
 public class Advance {
     public static int CheckSurround(Point tmp, int[][] E, int a){
         int b = 0;
@@ -14,11 +17,6 @@ public class Advance {
             b = 2;
             c = 3;
         }
-        else if(a == 4){
-            a = 2;
-            b = 1;
-            c = 4;
-        }
         int x = tmp.x;
         int y = tmp.y;
         int row;
@@ -31,16 +29,11 @@ public class Advance {
         int blleft = 0;
         int blright = 0;
 
-        int nearO = 0;
-        int nearX = 0;
-
-
-
-
         int absoluteWin = 0;
         int nearWin = 0;
         int pushATK_3 = 0;
         int pushATK_4 = 0;
+        int close = 0;
         //hang ngang
 
         for (int i = x - 1; i > x - 6; i--) {
@@ -85,27 +78,15 @@ public class Advance {
                 }
             }
         }
-        if(blockleft == 1){
-            nearX +=1;
-        }
-        if(blockright == 1){
-            nearX +=1;
-        }
-        if(rowleft >= 1){
-            if(blockleft == 0 || blright <= 1){
-                nearO += 1;
-            }
-        }
-        if(rowright >= 1){
-            if(blockright == 0 || blleft <= 1){
-                nearO += 1;
-            }
-        }
         if(x-1>=0 && E[x-1][y] != 0 || E[x+1][y] != 0) {
             row = rowleft + rowright;
             if(row == 4){
                 absoluteWin++;
                 //9999
+            }
+            if(row == 3 && blockleft == 0 && blockright == 0 && spaceleft + spaceright == 3){
+                close++;
+                //9999*
             }
             if(row == 3 && blockleft == 0 && blockright == 0 && spaceleft + spaceright <= 2){
                 nearWin++;
@@ -213,22 +194,6 @@ public class Advance {
                 }
             }
         }
-        if(blockleft == 1){
-            nearX +=1;
-        }
-        if(blockright == 1){
-            nearX +=1;
-        }
-        if(rowleft >= 1){
-            if(blockleft == 0 || blright <= 1){
-                nearO += 1;
-            }
-        }
-        if(rowright >= 1){
-            if(blockright == 0 || blleft <= 1){
-                nearO += 1;
-            }
-        }
         if (y-1>=0 &&E[x][y-1] != 0 || E[x][y+1] != 0) {
             row = rowleft + rowright;
             if(row == 4){
@@ -237,6 +202,10 @@ public class Advance {
             }
             if(row == 3 && blockleft == 0 && blockright == 0 && spaceleft + spaceright <= 2){
                 nearWin++;
+                //9999*
+            }
+            if(row == 3 && blockleft == 0 && blockright == 0 && spaceleft + spaceright == 3){
+                close++;
                 //9999*
             }
             if(row == 3 && blleft + blright == 2 && spaceleft + spaceright == 0){
@@ -343,22 +312,6 @@ public class Advance {
                 break;
             }
         }
-        if(blockleft == 1){
-            nearX +=1;
-        }
-        if(blockright == 1){
-            nearX +=1;
-        }
-        if(rowleft >= 1){
-            if(blockleft == 0 || blright <= 1){
-                nearO += 1;
-            }
-        }
-        if(rowright >= 1){
-            if(blockright == 0 || blleft <= 1){
-                nearO += 1;
-            }
-        }
         if (x-1>=0 &&y-1>=0 &&(E[x-1][y-1] != 0 || E[x+1][y+1] != 0)) {
             row = rowleft + rowright;
             if(row == 4){
@@ -367,6 +320,10 @@ public class Advance {
             }
             if(row == 3 && blockleft == 0 && blockright == 0 && spaceleft + spaceright <= 2){
                 nearWin++;
+                //9999*
+            }
+            if(row == 3 && blockleft == 0 && blockright == 0 && spaceleft + spaceright == 3){
+                close++;
                 //9999*
             }
             if(row == 3 && blleft + blright == 2 && spaceleft + spaceright == 0){
@@ -475,22 +432,6 @@ public class Advance {
                 }
             }
         }
-        if(blockleft == 1){
-            nearX +=1;
-        }
-        if(blockright == 1){
-            nearX +=1;
-        }
-        if(rowleft >= 1){
-            if(blockleft == 0 || blright <= 1){
-                nearO += 1;
-            }
-        }
-        if(rowright >= 1){
-            if(blockright == 0 || blleft <= 1){
-                nearO += 1;
-            }
-        }
         if (x-1>=0 && y-1>=0 && (E[x+1][y-1] != 0 || E[x-1][y+1] != 0)) {
             row = rowleft + rowright;
             if(row == 4){
@@ -499,6 +440,10 @@ public class Advance {
             }
             if(row == 3 && blockleft == 0 && blockright == 0 && spaceleft + spaceright <= 2){
                 nearWin++;
+                //9999*
+            }
+            if(row == 3 && blockleft == 0 && blockright == 0 && spaceleft + spaceright == 3){
+                close++;
                 //9999*
             }
             if(row == 3 && blleft + blright == 2 && spaceleft + spaceright == 0){
@@ -559,14 +504,6 @@ public class Advance {
 
 
         // xét các TH
-        if(c == 4){
-            if(nearO >= 3 && nearX <= 1){
-                return 1;
-            }
-            if(nearX >= 4){
-                return 2;
-            }
-        }
         if(c == 3){
             if(nearWin == 1){
                 return 1;
@@ -579,6 +516,9 @@ public class Advance {
             }
             if(pushATK_3 == 2){
                 return 4;
+            }
+            if(close >= 1){
+                return 5;
             }
 
         }
@@ -597,10 +537,398 @@ public class Advance {
             }
             if(a == 2){
                 if (pushATK_4 == 1 || pushATK_3 == 1) {
+                    if(pushATK_3 == 0){
+                        return 6;
+                    }
                     return 5;
                 }
             }
         }
+        return 0;
+    }
+
+    public static int FindBestloc(Point tmp, int[][] E,int a){
+        int x = tmp.x;
+        int y = tmp.y;
+        int range = 3;
+        if(Main.startMove > 5){
+            range = 5;
+        }
+        int nearX = 0;
+        int count_space = 0;
+        int count_ally = 0;
+        int count_enemy = 0;
+        int lv1 = 0;
+        int lv2 = 0;
+        int lv3 = 0;
+        int lv0 = 0;
+        int b = 1;
+
+        // ngang
+        for (int i = 1; i < 4; i++) {
+            if (x - i >= 0 && E[x - i][y] == b) {
+                count_enemy += 1;
+            }
+            if (x - i >= 0 && E[x - i][y] == a) {
+                break;
+            }
+        }
+        if(count_enemy >= 2){
+            nearX +=1;
+        }
+        for (int i = 0; i < 4; i++) {
+            if (E[x + i][y] == b) {
+                count_enemy += 1;
+            }
+            if (E[x + i][y] == a) {
+                break;
+            }
+        }
+        if(count_enemy >= 2){
+            nearX +=1;
+        }
+        for(int i = 1; i < range; i++){
+            if(x-i < 0){
+                break;
+            }
+            if(E[x-i][y] == 0){
+                count_space +=1;
+            }
+            if(E[x-i][y] == a){
+                count_ally +=1;
+            }
+            if(E[x-i][y] == b){
+                count_enemy +=1;
+                if(i<4){
+                    lv0 +=1;
+                }
+                break;
+            }
+        }
+        if(lv0 == 0){
+            if(count_ally == 1){
+                lv1 +=1;
+            }
+            if(count_ally == 2){
+                lv2 +=1;
+            }
+            if(count_ally == 3 && count_enemy == 0){
+                lv3 +=1;
+            }
+        }
+        count_enemy = 0;
+        count_space = 0;
+        count_ally = 0;
+        for(int i = 1; i < range; i++){
+            if(E[x+i][y] == 0){
+                count_space +=1;
+            }
+            if(E[x+i][y] == a){
+                count_ally +=1;
+            }
+            if(E[x+i][y] == b){
+                count_enemy +=1;
+                if(i<4){
+                    lv0 +=1;
+                }
+                break;
+            }
+        }
+        if(lv0 == 0){
+            if(count_ally == 1){
+                lv1 +=1;
+            }
+            if(count_ally == 2){
+                lv2 +=1;
+            }
+            if(count_ally == 3 && count_enemy == 0){
+                lv3 +=1;
+            }
+        }
+        count_enemy = 0;
+        count_space = 0;
+        count_ally = 0;
+
+
+        // doc
+        for (int i = 1; i < 4; i++) {
+            if (y - i >= 0 && E[x ][y - i] == b) {
+                count_enemy += 1;
+            }
+            if (y - i >= 0 && E[x ][y - i] == a) {
+                break;
+            }
+        }
+        if(count_enemy >= 2){
+            nearX +=1;
+        }
+        for (int i = 0; i < 4; i++) {
+            if (E[x][y + i] == b) {
+                count_enemy += 1;
+            }
+            if (E[x][y + i] == a) {
+                break;
+            }
+        }
+        if(count_enemy >= 2){
+            nearX +=1;
+        }
+        for(int i = 1; i < range; i++){
+            if(y-i < 0){
+                break;
+            }
+            if(E[x][y-i] == 0){
+                count_space +=1;
+            }
+            if(E[x][y-i] == a){
+                count_ally +=1;
+            }
+            if(E[x][y-i] == b){
+                count_enemy +=1;
+                if(i<4){
+                    lv0 +=1;
+                }
+                break;
+            }
+        }
+        if(lv0 == 0){
+            if(count_ally == 1){
+                lv1 +=1;
+            }
+            if(count_ally == 2){
+                lv2 +=1;
+            }
+            if(count_ally == 3 && count_enemy == 0){
+                lv3 +=1;
+            }
+        }
+        count_enemy = 0;
+        count_space = 0;
+        count_ally = 0;
+        for(int i = 1; i < range; i++){
+            if(E[x][y+i] == 0){
+                count_space +=1;
+            }
+            if(E[x][y+i] == a){
+                count_ally +=1;
+            }
+            if(E[x][y+i] == b){
+                count_enemy +=1;
+                if(i<4){
+                    lv0 +=1;
+                }
+                break;
+            }
+        }
+        if(lv0 == 0){
+            if(count_ally == 1){
+                lv1 +=1;
+            }
+            if(count_ally == 2){
+                lv2 +=1;
+            }
+            if(count_ally == 3 && count_enemy == 0){
+                lv3 +=1;
+            }
+        }
+        count_enemy = 0;
+        count_space = 0;
+        count_ally = 0;
+
+        // cheo chinh
+
+        for (int i = 1; i < 4; i++) {
+            if (x - i >= 0 && y - i >= 0 && E[x - i][y - i] == b) {
+                count_enemy += 1;
+            }
+            if (x - i >= 0 && y - i >= 0 && E[x - i][y - i] == a) {
+                break;
+            }
+        }
+        if(count_enemy >= 2){
+            nearX +=1;
+        }
+        for (int i = 0; i < 4; i++) {
+            if (E[x + i][y+i] == b) {
+                count_enemy += 1;
+            }
+            if (E[x + i][y+i] == a) {
+                break;
+            }
+        }
+        if(count_enemy >= 2){
+            nearX +=1;
+        }
+        for(int i = 1; i < range; i++){
+            if(x - i < 0 || y - i  < 0){
+                break;
+            }
+            if(E[x-i][y-i] == 0){
+                count_space +=1;
+            }
+            if(E[x-i][y-i] == a){
+                count_ally +=1;
+            }
+            if(E[x-i][y-i] == b){
+                count_enemy +=1;
+                if(i<4){
+                    lv0 +=1;
+                }
+                break;
+            }
+        }
+        if(lv0 == 0){
+            if(count_ally == 1){
+                lv1 +=1;
+            }
+            if(count_ally == 2){
+                lv2 +=1;
+            }
+            if(count_ally == 3 && count_enemy == 0){
+                lv3 +=1;
+            }
+        }
+        count_enemy = 0;
+        count_space = 0;
+        count_ally = 0;
+        for(int i = 1; i < range; i++){
+            if(E[x+i][y+i] == 0){
+                count_space +=1;
+            }
+            if(E[x+i][y+i] == a){
+                count_ally +=1;
+            }
+            if(E[x+i][y+i] == b){
+                count_enemy +=1;
+                if(i<4){
+                    lv0 +=1;
+                }
+                break;
+            }
+        }
+        if(lv0 == 0){
+            if(count_ally == 1){
+                lv1 +=1;
+            }
+            if(count_ally == 2){
+                lv2 +=1;
+            }
+            if(count_ally == 3 && count_enemy == 0){
+                lv3 +=1;
+            }
+        }
+        count_enemy = 0;
+        count_space = 0;
+        count_ally = 0;
+
+        // cheo phu
+
+        for (int i = 1; i < 4; i++) {
+            if (x - i >= 0 && E[x - i][y + i] == b) {
+                count_enemy += 1;
+            }
+            if (x - i >= 0 && E[x - i][y + i] == a) {
+                break;
+            }
+        }
+        if(count_enemy >= 2){
+            nearX +=1;
+        }
+        for (int i = 0; i < 4; i++) {
+            if (y - i >= 0 && E[x + i][y-i] == b) {
+                count_enemy += 1;
+            }
+            if (y - i >= 0 && E[x + i][y-i] == a) {
+                break;
+            }
+        }
+        if(count_enemy >= 2){
+            nearX +=1;
+        }
+        for(int i = 1; i < range; i++){
+            if(x - i < 0){
+                break;
+            }
+            if(E[x-i][y+i] == 0){
+                count_space +=1;
+            }
+            if(E[x-i][y+i] == a){
+                count_ally +=1;
+            }
+            if(E[x-i][y+i] == b){
+                count_enemy +=1;
+                if(i<4){
+                    lv0 +=1;
+                }
+                break;
+            }
+        }
+        if(lv0 == 0){
+            if(count_ally == 1){
+                lv1 +=1;
+            }
+            if(count_ally == 2){
+                lv2 +=1;
+            }
+            if(count_ally == 3 && count_enemy == 0){
+                lv3 +=1;
+            }
+        }
+        count_enemy = 0;
+        count_space = 0;
+        count_ally = 0;
+        for(int i = 1; i < range; i++){
+            if(y - i < 0){
+                break;
+            }
+            if(E[x+i][y-i] == 0){
+                count_space +=1;
+            }
+            if(E[x+i][y-i] == a){
+                count_ally +=1;
+            }
+            if(E[x+i][y-i] == b){
+                count_enemy +=1;
+                if(i<4){
+                    lv0 +=1;
+                }
+                break;
+            }
+        }
+        if(lv0 == 0){
+            if(count_ally == 1){
+                lv1 +=1;
+            }
+            if(count_ally == 2){
+                lv2 +=1;
+            }
+            if(count_ally == 3 && count_enemy == 0){
+                lv3 +=1;
+            }
+        }
+        count_enemy = 0;
+        count_space = 0;
+        count_ally = 0;
+        int score = 0;
+        if(nearX == 2){
+            score +=100;
+        }
+        if(nearX == 3){
+            score +=200;
+        }
+        if(nearX == 4){
+            score +=400;
+        }
+        if(lv1 >= 2){
+            return 80*lv1 + score;
+        }
+        if(lv2 >= 2){
+            return 200*lv2 + score;
+        }
+        if(lv3 >= 1 && (lv1 == 1 || lv2 == 1)){
+            return 400*lv3 + 80*lv1 + 200*lv2 + score;
+        }
+
         return 0;
     }
 }

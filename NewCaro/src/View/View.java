@@ -19,7 +19,7 @@ public class View extends JFrame implements ActionListener {
     Container cn;
     JPanel pn, pn2;
     JLabel lb;
-    JButton newGame_bt, undo_bt;
+    JButton newGame_bt, undo_bt,show_bt;
     private JButton b[][] = new JButton[column + 2][row + 2];
 
     public View(String gameDemo) {
@@ -44,14 +44,17 @@ public class View extends JFrame implements ActionListener {
         lb.setFont(new Font("Arial", Font.BOLD, 24));
         newGame_bt = new JButton("New Game");
         undo_bt = new JButton("Undo");
+        show_bt = new JButton("Show");
         newGame_bt.addActionListener(this);
         undo_bt.addActionListener(this);
+        show_bt.addActionListener(this);
         cn.add(pn);
         pn2 = new JPanel();
         pn2.setLayout(new FlowLayout());
         pn2.add(lb);
         pn2.add(newGame_bt);
         pn2.add(undo_bt);
+        pn2.add(show_bt);
         cn.add(pn2, "North");
         this.setVisible(true);
         this.setSize(1400, 1000);
@@ -127,6 +130,14 @@ public class View extends JFrame implements ActionListener {
             }
             Main.startMove -= 1;
 
+        }
+        else if(e.getActionCommand() == "Show") {
+            for (int i = 0; i < column+2; i++) {
+                for (int j = 0; j < row +2; j++) {
+                    System.out.printf("%6.0f ",Main.map[i][j]);
+                }
+                System.out.println();
+            }
         }
         else {
             String s = e.getActionCommand();
