@@ -4,8 +4,8 @@ import java.util.*;
 
 public class Move {
     public static int check = 0;
-    static int[] ATK = {0, 10, 100, 501, 99999,99999,99999,99999,99999};
-    static int[] DEF = {0, 3, 50, 200, 20000,20000,20000,20000,20000};
+    static int[] ATK = {0, 55, 150, 501, 99999,99999,99999,99999,99999};
+    static int[] DEF = {0, 50, 100, 200, 50000,50000,50000,50000,50000};
 
     // Kiểm tra theo hướng ngang
     public static int checkHangNgang(Point tmp, int[][] E, int a) {
@@ -13,7 +13,14 @@ public class Move {
         int line2 = 0;
         int x = tmp.x;
         int y = tmp.y;
-
+        int mark = 0;
+        int b;
+        if(a == 1){
+            b = 2;
+        }
+        else{
+            b = 1;
+        }
         if (x >= 1 && E[x - 1][y] == a) {
             line += 1;
             if (x >= 2 && E[x - 2][y] == a) {
@@ -22,6 +29,9 @@ public class Move {
                     line += 1;
                     if (x >= 4 && E[x - 4][y] == a) {
                         line += 1;
+                    }
+                    if(E[x - 4][y] == b){
+                        mark = 1;
                     }
                 }
             }
@@ -35,6 +45,9 @@ public class Move {
                     line += 1;
                     if (E[x + 4][y] == a) {
                         line += 1;
+                    }
+                    if (E[x + 4][y] == b) {
+                        mark = 1;
                     }
                 }
             }
@@ -63,7 +76,9 @@ public class Move {
                 }
             }
         }
-
+        if(mark == 1 && line != 4){
+            line -=1;
+        }
         if (line == 4) {
             check = 1;
         }
@@ -81,6 +96,14 @@ public class Move {
         int col2 = 0;
         int x = tmp.x;
         int y = tmp.y;
+        int mark = 0;
+        int b;
+        if(a == 1){
+            b = 2;
+        }
+        else{
+            b = 1;
+        }
         if (y >= 1 && E[x][y - 1] == a) {
             col += 1;
             if (y >= 2 && E[x][y - 2] == a) {
@@ -90,6 +113,10 @@ public class Move {
                     if (y >= 4 && E[x][y - 4] == a) {
                         col += 1;
                     }
+                    if (y >= 4 && E[x][y - 4] == b) {
+                        mark = 1;
+                    }
+
                 }
             }
         }
@@ -102,6 +129,9 @@ public class Move {
                     col += 1;
                     if (E[x][y + 4] == a) {
                         col += 1;
+                    }
+                    if (E[x][y + 4] == b) {
+                        mark = 1;
                     }
                 }
             }
@@ -130,7 +160,9 @@ public class Move {
                 }
             }
         }
-
+        if(mark == 1 && col != 4){
+            col -=1;
+        }
         if (col == 4) {
             check = 1;
         }
@@ -148,6 +180,14 @@ public class Move {
         int cheo1 = 0;
         int x = tmp.x;
         int y = tmp.y;
+        int mark = 0;
+        int b;
+        if(a == 1){
+            b = 2;
+        }
+        else{
+            b = 1;
+        }
         if (E[x + 1][y + 1] == a) {
             cheo1 += 1;
             if (E[x + 2][y + 2] == a) {
@@ -156,6 +196,9 @@ public class Move {
                     cheo1 += 1;
                     if (E[x + 4][y + 4] == a) {
                         cheo1 += 1;
+                    }
+                    if (E[x + 4][y + 4] == b) {
+                        mark = 1;
                     }
                 }
             }
@@ -170,10 +213,15 @@ public class Move {
                     if (x >= 4 && y >= 4 && E[x - 4][y - 4] == a) {
                         cheo1 += 1;
                     }
+                    if (x >= 4 && y >= 4 && E[x - 4][y - 4] == b) {
+                        mark = 1;
+                    }
                 }
             }
         }
-
+        if(mark == 1 && cheo1 != 4){
+            cheo1 -=1;
+        }
         if (cheo1 == 4) {
             check = 1;
         }
@@ -188,6 +236,14 @@ public class Move {
         int cheo2 = 0;
         int x = tmp.x;
         int y = tmp.y;
+        int mark = 0;
+        int b;
+        if(a == 1){
+            b = 2;
+        }
+        else{
+            b = 1;
+        }
         if (x >= 1 && E[x - 1][y + 1] == a) {
             cheo2 += 1;
             if (x >= 2 && E[x - 2][y + 2] == a) {
@@ -196,6 +252,9 @@ public class Move {
                     cheo2 += 1;
                     if (x >= 4 && E[x - 4][y + 4] == a) {
                         cheo2 += 1;
+                    }
+                    if (x >= 4 && E[x - 4][y + 4] == b) {
+                        mark = 1;
                     }
                 }
             }
@@ -210,10 +269,15 @@ public class Move {
                     if (y >= 4 && E[x + 4][y - 4] == a) {
                         cheo2 += 1;
                     }
+                    if (y >= 4 && E[x + 4][y - 4] == b) {
+                        mark = 1;
+                    }
                 }
             }
         }
-
+        if(mark == 1 && cheo2 != 4){
+            cheo2 -=1;
+        }
         if (cheo2 == 4) {
             check = 1;
         }
