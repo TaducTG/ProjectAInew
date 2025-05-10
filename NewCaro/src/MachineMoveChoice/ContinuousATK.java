@@ -1,12 +1,10 @@
 package MachineMoveChoice;
 
-import Main.java.moveSet.*;
+import MoveSet.*;
 
 
-import java.util.ArrayList;
-import java.util.Vector;
 
-import static Main.java.moveSet.Advance.CheckSurround;
+import static MoveSet.Advance.CheckSurround;
 
 public class ContinuousATK {
     public static void FinalATK(Point tmp, int[][] E, int a) {
