@@ -60,8 +60,6 @@ public class Begin {
         }
 
 
-
-
         if(Main.startMove == 3 && branch == 2.11){
             if(Main.E[9][5] == 1){
                 branch = 3.11;
