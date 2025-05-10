@@ -4,9 +4,12 @@ import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import Cal_Dis.Check;
+import MachineMoveChoice.SelectMove;
 import Test.*;
 
-import static Test.Main.*;
+import static MachineMoveChoice.SelectMove.*;
 
 public class View extends JFrame implements ActionListener {
     Color background_cl = Color.white;
@@ -20,6 +23,7 @@ public class View extends JFrame implements ActionListener {
     JPanel pn, pn2;
     JLabel lb;
     JButton newGame_bt, undo_bt,show_bt;
+    JFrame frame;
     private JButton b[][] = new JButton[column + 2][row + 2];
 
     public View(String gameDemo) {
@@ -62,63 +66,124 @@ public class View extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         undo_bt.setEnabled(true);
 
-        if(Main.turn %1 == 0){
+        if(SelectMove.turn %2 == 1){
             b[7][7].setText("O");
             b[7][7].setForeground(y_cl);
             b[7][7].setFont(new Font("Arial", Font.BOLD, 24));
             tick[7][7] = false;
-            Main.E[7][7] = 2;
+            SelectMove.E[7][7] = 2;
         }
     }
     public void addPoint(int i, int j) {
 
         b[locx][locy].setBackground(background_cl);
-        if(Main.E[i][j] != 0){ // chống đánh vào ô dã đánh
+        if(SelectMove.E[i][j] != 0){ // chống đánh vào ô dã đánh
             return;
         }
-        Main.E[i][j] = 1;
-        Undo[i][j] = Main.startMove;
+        SelectMove.E[i][j] = 1;
+        Undo[i][j] = SelectMove.startMove;
         b[i][j].setText("X");
 
         b[i][j].setForeground(x_cl);
         b[i][j].setFont(new Font("Arial", Font.BOLD, 24));
         tick[i][j] = false;
+
+        if(Check.CheckWin(i,j,E,1)){
+            System.out.println("check");
+            JFrame frame = new JFrame();
+            frame.setSize(300, 150);
+            frame.setLayout(new BorderLayout());
+            frame.setLocationRelativeTo(null); // Hiển thị giữa màn hình
+            frame.setVisible(true);
+            // Thêm nhãn thông báo
+            JLabel label = new JLabel("You Have Win!", SwingConstants.CENTER);
+            label.setFont(new Font("Arial", Font.BOLD, 24));
+            frame.add(label, BorderLayout.CENTER);
+
+            // Tạo panel chứa 2 nút
+            JPanel buttonPanel = new JPanel();
+            JButton restartButton = new JButton("Restart");
+            JButton quitButton = new JButton("Quit");
+            restartButton.addActionListener(this);
+            quitButton.addActionListener(this);
+            buttonPanel.add(restartButton);
+            buttonPanel.add(quitButton);
+            frame.add(buttonPanel, BorderLayout.SOUTH);
+            for (int k = 0; k < 20; k++) {
+                for (int l = 0; l < 20; l++) {
+                    SelectMove.E[k][l] = 1;
+                }
+            }
+        }
+
         lb.setText("Lượt Của O");
         lb.setFont(new Font("Arial", Font.BOLD, 24));
-        Main.machineTurn();
-        Main.E[locx][locy] = 2;
-        Undo[locx][locy] = Main.startMove;
+        SelectMove.machineTurn();
+        SelectMove.E[locx][locy] = 2;
+        Undo[locx][locy] = SelectMove.startMove;
         b[locx][locy].setText("O");
         b[locx][locy].setForeground(y_cl);
         b[locx][locy].setFont(new Font("Arial", Font.BOLD, 24));
         b[locx][locy].setBackground(null);
         tick[locx][locy] = false;
         lb.setText("Lượt Của X");
+        if(Check.CheckWin(locx,locy,E,2)){
+            System.out.println("check");
+            frame = new JFrame();
+            frame.setSize(300, 150);
+            frame.setLayout(new BorderLayout());
+            frame.setLocationRelativeTo(null); // Hiển thị giữa màn hình
+            frame.setVisible(true);
+            // Thêm nhãn thông báo
+            JLabel label = new JLabel("You Have Lose!", SwingConstants.CENTER);
+            label.setFont(new Font("Arial", Font.BOLD, 24));
+            frame.add(label, BorderLayout.CENTER);
+
+            // Tạo panel chứa 2 nút
+            JPanel buttonPanel = new JPanel();
+            JButton restartButton = new JButton("Restart");
+            restartButton.addActionListener(this);
+            JButton quitButton = new JButton("Quit");
+            quitButton.addActionListener(this);
+            buttonPanel.add(restartButton);
+
+            buttonPanel.add(quitButton);
+            frame.add(buttonPanel, BorderLayout.SOUTH);
+            for (int k = 0; k < 20; k++) {
+                for (int l = 0; l < 20; l++) {
+                    SelectMove.E[k][l] = 1;
+                }
+            }
+        }
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand() == "New Game") {
+        if (e.getActionCommand() == "New Game"||   e.getActionCommand() == "Restart") {
             for (int i = 0; i < 20; i++) {
                 for (int j = 0; j < 20; j++) {
-                    Main.E[i][j] = 0;
+                    SelectMove.E[i][j] = 0;
                 }
             }
-            Main.startMove = 0;
+            turn +=1;
+            startMove = 0;
+            if(frame != null){
+                frame.setVisible(false);
+            }
             new View("GAME DEMO");
             this.dispose();
-        } else if (e.getActionCommand() == "Exit") {
+        }  else if (e.getActionCommand() == "Exit" || e.getActionCommand() == "Quit") {
             System.exit(0);
         }
         else if(e.getActionCommand() == "Undo") {
 
-            if(Main.startMove == 0){
+            if(SelectMove.startMove == 0){
                 return;
             }
             for (int i = 0; i < column+2; i++) {
                 for (int j = 0; j < row +2; j++) {
-                    if(Undo[i][j] == Main.startMove || (Undo[i][j] == Main.startMove - 1 && Main.E[i][j] == 1)){
+                    if(Undo[i][j] == SelectMove.startMove || (Undo[i][j] == SelectMove.startMove - 1 && SelectMove.E[i][j] == 1)){
                         Undo[i][j] = 0;
-                        Main.E[i][j] = 0;
+                        SelectMove.E[i][j] = 0;
                         b[i][j].setText(i + " " + j);
                         b[i][j].setBackground(background_cl);
                         b[i][j].setForeground(Color.lightGray);
@@ -128,13 +193,13 @@ public class View extends JFrame implements ActionListener {
                     }
                 }
             }
-            Main.startMove -= 1;
+            SelectMove.startMove -= 1;
 
         }
         else if(e.getActionCommand() == "Show") {
             for (int i = 0; i < column+2; i++) {
                 for (int j = 0; j < row +2; j++) {
-                    System.out.printf("%6.0f ",Main.map[i][j]);
+                    System.out.printf("%6.0f ",SelectMove.map[i][j]);
                 }
                 System.out.println();
             }

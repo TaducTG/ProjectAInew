@@ -1,6 +1,6 @@
 package MoveSet;
 
-import Test.Main;
+import MachineMoveChoice.SelectMove;
 
 public class Advance {
     public static int CheckSurround(Point tmp, int[][] E, int a){
@@ -551,7 +551,7 @@ public class Advance {
         int x = tmp.x;
         int y = tmp.y;
         int range = 3;
-        if(Main.startMove > 5){
+        if(SelectMove.startMove > 5){
             range = 5;
         }
         int nearX = 0;
