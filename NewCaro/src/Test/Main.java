@@ -15,6 +15,7 @@ public class Main {
     public static int choosemove3;
 
     public static void main(String[] args) {
+        turn +=1;
         new View("GAME CARO"); // gọi chương trình
         // Khởi tạo mảng E
         for (int i = 0; i < 20; i++) {
