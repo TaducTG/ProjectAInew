@@ -1,6 +1,4 @@
-package MoveSet;
-
-import java.util.*;
+package moveSet;
 
 public class Move {
     public static int check = 0;

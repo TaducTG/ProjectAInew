@@ -1,4 +1,4 @@
-package MoveSet;
+package moveSet;
 
 public class DEFMove {
     public static int checkSurround(Point tmp, int[][] E){

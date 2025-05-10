@@ -1,6 +1,6 @@
-package MoveSet;
+package moveSet;
 
-import Test.Main;
+import application.Main;
 
 public class Begin {
     public static int firstLoc_x = 0;

@@ -1,12 +1,13 @@
-package View;
+package view;
 import javax.swing.*;
-import javax.swing.text.*;
+
+import application.Main;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import Test.*;
 
-import static Test.Main.*;
+import static application.Main.*;
 
 public class View extends JFrame implements ActionListener {
     Color background_cl = Color.white;
