@@ -1,13 +1,13 @@
 package view;
 import javax.swing.*;
 
-import application.Main;
+import application.SelectMove;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static application.Main.*;
+import static application.SelectMove.*;
 
 public class View extends JFrame implements ActionListener {
     Color background_cl = Color.white;
@@ -63,22 +63,22 @@ public class View extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         undo_bt.setEnabled(true);
 
-        if(Main.turn %1 == 0){
+        if(SelectMove.turn %1 == 0){
             b[7][7].setText("O");
             b[7][7].setForeground(y_cl);
             b[7][7].setFont(new Font("Arial", Font.BOLD, 24));
             tick[7][7] = false;
-            Main.E[7][7] = 2;
+            SelectMove.E[7][7] = 2;
         }
     }
     public void addPoint(int i, int j) {
 
         b[locx][locy].setBackground(background_cl);
-        if(Main.E[i][j] != 0){ // chống đánh vào ô dã đánh
+        if(SelectMove.E[i][j] != 0){ // chống đánh vào ô dã đánh
             return;
         }
-        Main.E[i][j] = 1;
-        Undo[i][j] = Main.startMove;
+        SelectMove.E[i][j] = 1;
+        Undo[i][j] = SelectMove.startMove;
         b[i][j].setText("X");
 
         b[i][j].setForeground(x_cl);
@@ -86,9 +86,9 @@ public class View extends JFrame implements ActionListener {
         tick[i][j] = false;
         lb.setText("Lượt Của O");
         lb.setFont(new Font("Arial", Font.BOLD, 24));
-        Main.machineTurn();
-        Main.E[locx][locy] = 2;
-        Undo[locx][locy] = Main.startMove;
+        SelectMove.machineTurn();
+        SelectMove.E[locx][locy] = 2;
+        Undo[locx][locy] = SelectMove.startMove;
         b[locx][locy].setText("O");
         b[locx][locy].setForeground(y_cl);
         b[locx][locy].setFont(new Font("Arial", Font.BOLD, 24));
@@ -101,10 +101,10 @@ public class View extends JFrame implements ActionListener {
         if (e.getActionCommand() == "New Game") {
             for (int i = 0; i < 20; i++) {
                 for (int j = 0; j < 20; j++) {
-                    Main.E[i][j] = 0;
+                    SelectMove.E[i][j] = 0;
                 }
             }
-            Main.startMove = 0;
+            SelectMove.startMove = 0;
             new View("GAME DEMO");
             this.dispose();
         } else if (e.getActionCommand() == "Exit") {
@@ -112,14 +112,14 @@ public class View extends JFrame implements ActionListener {
         }
         else if(e.getActionCommand() == "Undo") {
 
-            if(Main.startMove == 0){
+            if(SelectMove.startMove == 0){
                 return;
             }
             for (int i = 0; i < column+2; i++) {
                 for (int j = 0; j < row +2; j++) {
-                    if(Undo[i][j] == Main.startMove || (Undo[i][j] == Main.startMove - 1 && Main.E[i][j] == 1)){
+                    if(Undo[i][j] == SelectMove.startMove || (Undo[i][j] == SelectMove.startMove - 1 && SelectMove.E[i][j] == 1)){
                         Undo[i][j] = 0;
-                        Main.E[i][j] = 0;
+                        SelectMove.E[i][j] = 0;
                         b[i][j].setText(i + " " + j);
                         b[i][j].setBackground(background_cl);
                         b[i][j].setForeground(Color.lightGray);
@@ -129,13 +129,13 @@ public class View extends JFrame implements ActionListener {
                     }
                 }
             }
-            Main.startMove -= 1;
+            SelectMove.startMove -= 1;
 
         }
         else if(e.getActionCommand() == "Show") {
             for (int i = 0; i < column+2; i++) {
                 for (int j = 0; j < row +2; j++) {
-                    System.out.printf("%6.0f ",Main.map[i][j]);
+                    System.out.printf("%6.0f ",SelectMove.map[i][j]);
                 }
                 System.out.println();
             }
