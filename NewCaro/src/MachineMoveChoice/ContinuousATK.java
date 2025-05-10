@@ -1,12 +1,12 @@
 package MachineMoveChoice;
 
-import MoveSet.Advance;
-import MoveSet.Point;
+import Main.java.moveSet.*;
+
 
 import java.util.ArrayList;
 import java.util.Vector;
 
-import static MoveSet.Advance.CheckSurround;
+import static Main.java.moveSet.Advance.CheckSurround;
 
 public class ContinuousATK {
     public static void FinalATK(Point tmp, int[][] E, int a) {
@@ -19,7 +19,7 @@ public class ContinuousATK {
             b = 1;
         }
         if(CheckSurround(tmp,E,1) == 6){
-
+            
         }
 
 

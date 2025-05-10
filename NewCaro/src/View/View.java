@@ -1,13 +1,11 @@
 package View;
 import javax.swing.*;
-import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import Cal_Dis.Check;
 import MachineMoveChoice.SelectMove;
-import Test.*;
 
 import static MachineMoveChoice.SelectMove.*;
 

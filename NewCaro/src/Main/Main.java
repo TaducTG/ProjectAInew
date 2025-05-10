@@ -1,4 +1,5 @@
 package Main;
+import static MachineMoveChoice.SelectMove.*;
 
 import View.View;
 public class Main {
