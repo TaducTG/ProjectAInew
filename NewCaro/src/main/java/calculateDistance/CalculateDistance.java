@@ -49,12 +49,6 @@ public class CalculateDistance {
         // Đường chéo 2
         score += checkDuongcheo2(tmp, E, b);
 
-        if(beta == 6 && a == 2){
-            if (!CanATK.contains(tmp)) {
-                CanATK.add(tmp);
-            }
-        }
-
         if (necessaryATK(tmp, E) == 0 && score < 5000) {
             score = score / 4;
         }
@@ -87,7 +81,7 @@ public class CalculateDistance {
                     // beta = 1 : nước 4 bị chặn 1 đầu
                     // beta = 2 : nuớc 3 chưa bị chặn 2 đầu
                     // beta = 3 : nước kết hợp 3 + 4
-                    score += 20000;
+                    score += 40000;
                     return score; // Dừng hàm ngay khi có chiến thắng tuyệt đối
                 }
 

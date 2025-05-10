@@ -5,7 +5,7 @@ import static calculateDistance.CalculateDistance.*;
 
 import moveSet.*;
 import view.View;
-public class Main {
+public class SelectMove {
     public static int turn = 0;
     public static int startMove = 0;
     public static int locx; //Vị trí máy đánh
