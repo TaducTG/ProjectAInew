@@ -1,8 +1,10 @@
-package Test;
+package application;
 import java.util.*;
-import MoveSet.*;
-import static Cal_Dis.calculateDistance.*;
-import View.View;
+
+import static calculateDistance.CalculateDistance.*;
+
+import moveSet.*;
+import view.View;
 public class Main {
     public static int turn = 0;
     public static int startMove = 0;

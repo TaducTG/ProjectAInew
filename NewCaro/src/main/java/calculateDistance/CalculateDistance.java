@@ -1,21 +1,19 @@
-package Cal_Dis;
-import MoveSet.Point;
+package calculateDistance;
+
+import static moveSet.ATKMove.*;
+import static moveSet.Advance.checkSurround;
+import static moveSet.Advance.findBestloc;
+import static moveSet.Move.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import static MoveSet.ATKMove.*;
-import static MoveSet.Advance.CheckSurround;
-import static MoveSet.Advance.FindBestloc;
-import static MoveSet.DEFMove.checkSurround;
-import static MoveSet.DEFMove.preventATK;
-import static MoveSet.Move.*;
-public class calculateDistance {
-    public static List<Point> CanATK = new ArrayList();
+
+import moveSet.Point;
+public class CalculateDistance {
+    public static List<Point> CanATK = new ArrayList<>();
     public static List<Point> A = new ArrayList<>();
     public static int mark = 0;
     public static int cal(Point tmp, int[][] E, int a) {
-        int x = tmp.getX();
-        int y = tmp.getY();
         int score = 0;
         int b = 0;
         if(a == 1){
@@ -24,13 +22,13 @@ public class calculateDistance {
         if(a == 2){
             b = 1;
         }
-        int alpha = CheckSurround(tmp, E, 1); // dùng để check với X
+        int alpha = checkSurround(tmp, E, 1); // dùng để check với X
 
-        int beta = CheckSurround(tmp, E,2);  // dùng để check với O
+        int beta = checkSurround(tmp, E, 2);  // dùng để check với O
 
-        int gamma = CheckSurround(tmp, E, 3); // dùng để check với X trong lượt của O (xét khả năng tấn công)
+        int gamma = checkSurround(tmp, E, 3); // dùng để check với X trong lượt của O (xét khả năng tấn công)
 
-        int epsilon = FindBestloc(tmp,E,2);
+        int epsilon = findBestloc(tmp, E, 2);
         // ATK
         // Hàng ngang
         score += checkHangNgang(tmp, E, a);

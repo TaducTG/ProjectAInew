@@ -31,6 +31,9 @@
                 <configuration>
                     <source>23</source>
                     <target>23</target>
+                    <compileSourceRoots>
+                        <compileSourceRoot>src/main/java</compileSourceRoot>
+                    </compileSourceRoots>
                 </configuration>
             </plugin>
             <plugin>
@@ -43,7 +46,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>Test.Main</mainClass>
+                            <mainClass>Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

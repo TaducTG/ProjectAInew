@@ -1,9 +1,8 @@
-package MoveSet;
+package moveSet;
 
-import Test.Main;
-
+import application.Main;
 public class Advance {
-    public static int CheckSurround(Point tmp, int[][] E, int a){
+    public static int checkSurround(Point tmp, int[][] E, int a){
         int b = 0;
         int c = 0;
         if(a == 1){
@@ -547,7 +546,7 @@ public class Advance {
         return 0;
     }
 
-    public static int FindBestloc(Point tmp, int[][] E,int a){
+    public static int findBestloc(Point tmp, int[][] E,int a){
         int x = tmp.x;
         int y = tmp.y;
         int range = 3;

@@ -1,4 +1,4 @@
-package MoveSet;
+package moveSet;
 
 public class P2Move {
     public static int Prep_ATKp2(Point tmp, int[][] E){

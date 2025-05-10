@@ -1,4 +1,4 @@
-package MoveSet;
+package moveSet;
 
 public class Point {
     int x;
