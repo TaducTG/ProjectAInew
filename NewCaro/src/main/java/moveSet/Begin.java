@@ -1,6 +1,6 @@
 package moveSet;
 
-import application.SelectMove;
+import machineMoveChoice.SelectMove;
 
 public class Begin {
     public static int firstLoc_x = 0;

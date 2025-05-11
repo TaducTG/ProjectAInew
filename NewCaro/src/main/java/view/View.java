@@ -1,13 +1,14 @@
 package view;
 import javax.swing.*;
 
-import application.SelectMove;
+import calculateDistance.Check;
+import machineMoveChoice.SelectMove;
+
+import static machineMoveChoice.SelectMove.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import static application.SelectMove.*;
 
 public class View extends JFrame implements ActionListener {
     Color background_cl = Color.white;
@@ -21,6 +22,7 @@ public class View extends JFrame implements ActionListener {
     JPanel pn, pn2;
     JLabel lb;
     JButton newGame_bt, undo_bt,show_bt;
+    JFrame frame;
     private JButton b[][] = new JButton[column + 2][row + 2];
 
     public View(String gameDemo) {
@@ -63,7 +65,7 @@ public class View extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         undo_bt.setEnabled(true);
 
-        if(SelectMove.turn %1 == 0){
+        if(SelectMove.turn % 2 == 1){
             b[7][7].setText("O");
             b[7][7].setForeground(y_cl);
             b[7][7].setFont(new Font("Arial", Font.BOLD, 24));
@@ -84,6 +86,34 @@ public class View extends JFrame implements ActionListener {
         b[i][j].setForeground(x_cl);
         b[i][j].setFont(new Font("Arial", Font.BOLD, 24));
         tick[i][j] = false;
+        if(Check.CheckWin(i,j,E,1)){
+            System.out.println("check");
+            JFrame frame = new JFrame();
+            frame.setSize(300, 150);
+            frame.setLayout(new BorderLayout());
+            frame.setLocationRelativeTo(null); // Hiển thị giữa màn hình
+            frame.setVisible(true);
+            // Thêm nhãn thông báo
+            JLabel label = new JLabel("You Have Win!", SwingConstants.CENTER);
+            label.setFont(new Font("Arial", Font.BOLD, 24));
+            frame.add(label, BorderLayout.CENTER);
+
+            // Tạo panel chứa 2 nút
+            JPanel buttonPanel = new JPanel();
+            JButton restartButton = new JButton("Restart");
+            JButton quitButton = new JButton("Quit");
+            restartButton.addActionListener(this);
+            quitButton.addActionListener(this);
+            buttonPanel.add(restartButton);
+            buttonPanel.add(quitButton);
+            frame.add(buttonPanel, BorderLayout.SOUTH);
+            for (int k = 0; k < 20; k++) {
+                for (int l = 0; l < 20; l++) {
+                    SelectMove.E[k][l] = 1;
+                }
+            }
+        }
+        
         lb.setText("Lượt Của O");
         lb.setFont(new Font("Arial", Font.BOLD, 24));
         SelectMove.machineTurn();
@@ -95,19 +125,51 @@ public class View extends JFrame implements ActionListener {
         b[locx][locy].setBackground(null);
         tick[locx][locy] = false;
         lb.setText("Lượt Của X");
+        if(Check.CheckWin(locx,locy,E,2)){
+            System.out.println("check");
+            frame = new JFrame();
+            frame.setSize(300, 150);
+            frame.setLayout(new BorderLayout());
+            frame.setLocationRelativeTo(null); // Hiển thị giữa màn hình
+            frame.setVisible(true);
+            // Thêm nhãn thông báo
+            JLabel label = new JLabel("You Have Lose!", SwingConstants.CENTER);
+            label.setFont(new Font("Arial", Font.BOLD, 24));
+            frame.add(label, BorderLayout.CENTER);
+
+            // Tạo panel chứa 2 nút
+            JPanel buttonPanel = new JPanel();
+            JButton restartButton = new JButton("Restart");
+            restartButton.addActionListener(this);
+            JButton quitButton = new JButton("Quit");
+            quitButton.addActionListener(this);
+            buttonPanel.add(restartButton);
+
+            buttonPanel.add(quitButton);
+            frame.add(buttonPanel, BorderLayout.SOUTH);
+            for (int k = 0; k < 20; k++) {
+                for (int l = 0; l < 20; l++) {
+                    SelectMove.E[k][l] = 1;
+                }
+            }
+        }
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand() == "New Game") {
+        if (e.getActionCommand() == "New Game" || e.getActionCommand() == "Restart") {
             for (int i = 0; i < 20; i++) {
                 for (int j = 0; j < 20; j++) {
                     SelectMove.E[i][j] = 0;
                 }
             }
-            SelectMove.startMove = 0;
+            turn +=1;
+            startMove = 0;
+            if(frame != null){
+                frame.setVisible(false);
+            }
             new View("GAME DEMO");
             this.dispose();
-        } else if (e.getActionCommand() == "Exit") {
+        } else if (e.getActionCommand() == "Exit" || e.getActionCommand() == "Quit") {
             System.exit(0);
         }
         else if(e.getActionCommand() == "Undo") {

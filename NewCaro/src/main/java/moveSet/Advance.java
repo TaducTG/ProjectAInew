@@ -1,6 +1,6 @@
 package moveSet;
 
-import application.SelectMove;
+import machineMoveChoice.SelectMove;
 public class Advance {
     public static int checkSurround(Point tmp, int[][] E, int a){
         int b = 0;
