@@ -1,10 +1,10 @@
-package application;
+package machineMoveChoice;
 import java.util.*;
 
 import static calculateDistance.CalculateDistance.*;
 
 import moveSet.*;
-import view.View;
+
 public class SelectMove {
     public static int turn = 0;
     public static int startMove = 0;
@@ -16,17 +16,6 @@ public class SelectMove {
     public static int choosemove2;
     public static int choosemove3;
 
-    public static void main(String[] args) {
-        turn +=1;
-        new View("GAME CARO"); // gọi chương trình
-        // Khởi tạo mảng E
-        for (int i = 0; i < 20; i++) {
-            for (int j = 0; j < 20; j++) {
-                E[i][j] = 0;
-                map[i][j] = 0;
-            }
-        }
-    }
     public static void machineTurn(){
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
@@ -86,7 +75,6 @@ public class SelectMove {
             double C_min = 99999;
             for (int k = 0; k < B.size(); k++) {
                 A.clear();
-                CanATK.clear();
                 B.get(k).setRank(k + 1);
                 E[B.get(k).getX()][B.get(k).getY()] = 2; // Giả định 1 điểm trong mảng B được đánh
                 secondLayer(B.get(k).getX(), B.get(k).getY(), E); // Thêm các điểm vào mảng A
@@ -106,24 +94,6 @@ public class SelectMove {
                     if (point.getScore() < C_min) {
                         C_min = point.getScore();
                         location = k; // Lưu vị trí của điểm trong mảng B mà dẫn tới C_min
-                    }
-                }
-//                if (!CanATK.isEmpty()) {
-//                    for (Point point : CanATK) {
-//                        point.setScore(cal(point, E, 1));
-//                        if (point.getScore() > 4000) {
-//                            point.setRank(-1);
-//                        }
-//                    }
-//                }
-                if(!CanATK.isEmpty() && mark == 0){
-                    C.clear();
-                    for (Point point : CanATK) {
-                        //point.setScore(cal(point, E, 1));
-                        System.out.println(point.getX() + " " + point.getY());
-                        if(point.getScore() < 4000){
-                            C.add(point);
-                        }
                     }
                 }
 //                System.out.println(C_min);
