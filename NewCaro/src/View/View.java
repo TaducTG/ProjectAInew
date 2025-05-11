@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import Cal_Dis.Check;
+import MachineMoveChoice.ContinuousATK;
 import MachineMoveChoice.SelectMove;
 
 import static MachineMoveChoice.SelectMove.*;
@@ -13,7 +14,7 @@ public class View extends JFrame implements ActionListener {
     Color background_cl = Color.white;
     Color x_cl = Color.red;
     Color y_cl = Color.blue;
-    int column = 15, row = 15, count = 0;
+    int column = 18, row = 18, count = 0;
     int  Undo[][] = new int[column+2][row+2];
     boolean tick[][] = new boolean[column + 2][row + 2];
     int Size = 0;
@@ -64,12 +65,91 @@ public class View extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         undo_bt.setEnabled(true);
 
-        if(SelectMove.turn %2 == 1){
-            b[7][7].setText("O");
-            b[7][7].setForeground(y_cl);
-            b[7][7].setFont(new Font("Arial", Font.BOLD, 24));
-            tick[7][7] = false;
-            SelectMove.E[7][7] = 2;
+        if(SelectMove.turn %1 == 0){
+//            b[7][7].setText("O");
+//            b[7][7].setForeground(y_cl);
+//            b[7][7].setFont(new Font("Arial", Font.BOLD, 24));
+//            tick[7][7] = false;
+//            SelectMove.E[7][7] = 2;
+            // Đánh dấu các vị trí (7,4), (8,4), (9,4) là O và đánh số 2
+            b[7][4].setText("O");
+            b[7][4].setForeground(y_cl);  // y_cl là màu sắc cho O
+            b[7][4].setFont(new Font("Arial", Font.BOLD, 24));
+            tick[7][4] = false;
+            SelectMove.E[7][4] = 2;
+            b[11][1].setText("O");
+            b[11][1].setForeground(y_cl);  // y_cl là màu sắc cho O
+            b[11][1].setFont(new Font("Arial", Font.BOLD, 24));
+            tick[11][1] = false;
+            SelectMove.E[11][1] = 2;
+
+            b[9][2].setText("O");
+            b[9][2].setForeground(y_cl);
+            b[9][2].setFont(new Font("Arial", Font.BOLD, 24));
+            tick[9][2] = false;
+            SelectMove.E[9][2] = 2;
+
+            b[10][3].setText("O");
+            b[10][3].setForeground(y_cl);
+            b[10][3].setFont(new Font("Arial", Font.BOLD, 24));
+            tick[10][3] = false;
+            SelectMove.E[10][3] = 2;
+            b[8][4].setText("O");
+            b[8][4].setForeground(y_cl);  // y_cl là màu sắc cho O
+            b[8][4].setFont(new Font("Arial", Font.BOLD, 24));
+            tick[8][4] = false;
+            SelectMove.E[8][4] = 2;
+
+            b[9][4].setText("O");
+            b[9][4].setForeground(y_cl);  // y_cl là màu sắc cho O
+            b[9][4].setFont(new Font("Arial", Font.BOLD, 24));
+            tick[9][4] = false;
+            SelectMove.E[9][4] = 2;
+//            b[11][5].setText("O");
+//            b[11][5].setForeground(y_cl);  // y_cl là màu sắc cho O
+//            b[11][5].setFont(new Font("Arial", Font.BOLD, 24));
+//            tick[11][5] = false;
+//            SelectMove.E[11][5] = 2;
+// Đánh dấu các vị trí (6,4), (8,7), (9,7) là X và đánh số 1
+            b[6][4].setText("X");
+            b[6][4].setForeground(x_cl);  // x_cl là màu sắc cho X (có thể là màu khác với y_cl)
+            b[6][4].setFont(new Font("Arial", Font.BOLD, 24));
+            tick[6][4] = false;
+            SelectMove.E[6][4] = 1;
+
+            b[8][7].setText("X");
+            b[8][7].setForeground(x_cl);  // x_cl là màu sắc cho X
+            b[8][7].setFont(new Font("Arial", Font.BOLD, 24));
+            tick[8][7] = false;
+            SelectMove.E[8][7] = 1;
+
+            b[9][7].setText("X");
+            b[9][7].setForeground(x_cl);  // x_cl là màu sắc cho X
+            b[9][7].setFont(new Font("Arial", Font.BOLD, 24));
+            tick[9][7] = false;
+            SelectMove.E[9][7] = 1;
+            b[11][2].setText("X");
+            b[11][2].setForeground(x_cl);  // x_cl là màu sắc cho X
+            b[11][2].setFont(new Font("Arial", Font.BOLD, 24));
+            tick[11][2] = false;
+            SelectMove.E[11][2] = 1;
+            b[8][1].setText("X");
+            b[8][1].setForeground(x_cl);  // x_cl là màu sắc cho X
+            b[8][1].setFont(new Font("Arial", Font.BOLD, 24));
+            tick[8][1] = false;
+            SelectMove.E[8][1] = 1;
+
+            b[11][5].setText("X");
+            b[11][5].setForeground(x_cl);
+            b[11][5].setFont(new Font("Arial", Font.BOLD, 24));
+            tick[11][5] = false;
+            SelectMove.E[11][5] = 1;
+            b[11][3].setText("X");
+            b[11][3].setForeground(x_cl);  // x_cl là màu sắc cho X
+            b[11][3].setFont(new Font("Arial", Font.BOLD, 24));
+            tick[11][3] = false;
+            SelectMove.E[11][3] = 1;
+
         }
     }
     public void addPoint(int i, int j) {
@@ -157,11 +237,12 @@ public class View extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand() == "New Game"||   e.getActionCommand() == "Restart") {
-            for (int i = 0; i < 20; i++) {
-                for (int j = 0; j < 20; j++) {
+            for (int i = 0; i < 23; i++) {
+                for (int j = 0; j < 23; j++) {
                     SelectMove.E[i][j] = 0;
                 }
             }
+            ContinuousATK.ContinuousATK.clear();
             turn +=1;
             startMove = 0;
             if(frame != null){

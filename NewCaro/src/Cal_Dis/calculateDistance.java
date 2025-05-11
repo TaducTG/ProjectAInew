@@ -56,10 +56,7 @@ public class calculateDistance {
         }
         if (a == 1) {
             if (score < 50000) {
-                if(alpha != 0){
-                    if(alpha == 1 || alpha == 3){
-                        mark = 1;
-                    }
+                if(alpha == 1 || alpha == 2 || alpha == 3 || alpha == 4){
                     score += 20000;
                     return score;
                 }
@@ -101,7 +98,7 @@ public class calculateDistance {
                     }
                     return score;
                 }
-                if(gamma == 5 && beta == 5){
+                if(gamma == 5 && (beta == 5 || beta == 6)){
                     // gamma = 5: nước 3 chưa bị chặn dạng _EX_XXE_ và X đánh vào 1 trong 2 vị trí E
                     // beta = 5: tạo được nước 3 hoặc 4 sau khi O đánh
                     score += 10000;

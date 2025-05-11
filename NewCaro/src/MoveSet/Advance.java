@@ -502,7 +502,6 @@ public class Advance {
             }
         }
 
-
         // xét các TH
         if(c == 3){
             if(nearWin == 1){
@@ -535,12 +534,12 @@ public class Advance {
             if (pushATK_4 == 0 && pushATK_3 >= 2) {
                 return 4;
             }
-            if(a == 2){
-                if (pushATK_4 == 1 || pushATK_3 == 1) {
-                    if(pushATK_3 == 0){
-                        return 6;
-                    }
+            if(a == 1 || a == 2){
+                if(pushATK_4 == 1){
                     return 5;
+                }
+                if(pushATK_3 == 1){
+                    return 6;
                 }
             }
         }
