@@ -4,84 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ea9d61e-4bbe-41b0-a6cb-11af85372833" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewCaro/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewCaro/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewCaro/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewCaro/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewCaro/NewCaro.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewCaro/src/Cal_Dis/Check.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewCaro/src/Cal_Dis/calculateDistance.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewCaro/src/Cal_Dis/calculateDistance.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewCaro/src/MachineMoveChoice/ContinuousATK.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewCaro/src/MachineMoveChoice/SelectMove.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewCaro/src/Main/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewCaro/src/Main/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewCaro/src/MoveSet/ATKMove.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewCaro/src/MoveSet/ATKMove.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewCaro/src/MoveSet/Advance.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewCaro/src/MoveSet/Begin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewCaro/src/MoveSet/DEFMove.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewCaro/src/MoveSet/DEFMove.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewCaro/src/MoveSet/Move.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewCaro/src/MoveSet/Move.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewCaro/src/MoveSet/P2Move.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewCaro/src/MoveSet/P2Move.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewCaro/src/MoveSet/Point.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewCaro/src/MoveSet/Point.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewCaro/src/View/View.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewCaro/src/View/View.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewCaro_pj.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAInew/NewCaro/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAInew/NewCaro/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAInew/NewCaro/src/main/java/calculateDistance/CalculateDistance.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAInew/NewCaro/src/main/java/calculateDistance/CalculateDistance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAInew/NewCaro/src/main/java/machineMoveChoice/ContinuousATK.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAInew/NewCaro/src/main/java/machineMoveChoice/ContinuousATK.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAInew/NewCaro/src/main/java/machineMoveChoice/SelectMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAInew/NewCaro/src/main/java/machineMoveChoice/SelectMove.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAInew/NewCaro/src/main/java/moveSet/Advance.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAInew/NewCaro/src/main/java/moveSet/Advance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAInew/NewCaro/src/main/java/view/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAInew/NewCaro/src/main/java/view/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAInew/NewCaro/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAInew/NewCaro/target/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAInew/NewCaro/target/classes/calculateDistance/CalculateDistance.class" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAInew/NewCaro/target/classes/calculateDistance/CalculateDistance.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAInew/NewCaro/target/classes/calculateDistance/Check.class" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAInew/NewCaro/target/classes/calculateDistance/Check.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAInew/NewCaro/target/classes/machineMoveChoice/ContinuousATK.class" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAInew/NewCaro/target/classes/machineMoveChoice/ContinuousATK.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAInew/NewCaro/target/classes/machineMoveChoice/SelectMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAInew/NewCaro/target/classes/machineMoveChoice/SelectMove.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAInew/NewCaro/target/classes/moveSet/ATKMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAInew/NewCaro/target/classes/moveSet/ATKMove.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAInew/NewCaro/target/classes/moveSet/Advance.class" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAInew/NewCaro/target/classes/moveSet/Advance.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAInew/NewCaro/target/classes/moveSet/Begin.class" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAInew/NewCaro/target/classes/moveSet/Begin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAInew/NewCaro/target/classes/moveSet/DEFMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAInew/NewCaro/target/classes/moveSet/DEFMove.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAInew/NewCaro/target/classes/moveSet/Move.class" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAInew/NewCaro/target/classes/moveSet/Move.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAInew/NewCaro/target/classes/moveSet/P2Move.class" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAInew/NewCaro/target/classes/moveSet/P2Move.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAInew/NewCaro/target/classes/moveSet/Point.class" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAInew/NewCaro/target/classes/moveSet/Point.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAInew/NewCaro/target/classes/view/View.class" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAInew/NewCaro/target/classes/view/View.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/NewCaro_pj/Cal_Dis/Check.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/NewCaro_pj/Cal_Dis/calculateDistance.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/NewCaro_pj/MachineMoveChoice/ContinuousATK.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/NewCaro_pj/MachineMoveChoice/SelectMove.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/NewCaro_pj/Main/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/NewCaro_pj/MoveSet/ATKMove.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/NewCaro_pj/MoveSet/Advance.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/NewCaro_pj/MoveSet/Begin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/NewCaro_pj/MoveSet/DEFMove.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/NewCaro_pj/MoveSet/Move.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/NewCaro_pj/MoveSet/P2Move.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/NewCaro_pj/MoveSet/Point.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/NewCaro_pj/View/View.class" beforeDir="false" />
+    <list default="true" id="44329636-e3d1-4e4d-918f-888db0a1e4e6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/NewCaro_pj.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/ProjectAInew" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 8
-}]]></component>
-  <component name="ProjectId" id="2wzQ8q9FJ9pCHrqY5AOYImFfAP4" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2v7Pl5nBtPgjdXUHSCMkHNxhYEm" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -90,8 +41,10 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "MinhDuc",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/code/NewCaro_pj",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -111,49 +64,146 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="2ea9d61e-4bbe-41b0-a6cb-11af85372833" name="Changes" comment="" />
-      <created>1747041768455</created>
+      <changelist id="44329636-e3d1-4e4d-918f-888db0a1e4e6" name="Changes" comment="" />
+      <created>1743493287343</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1747041768455</updated>
-      <workItem from="1747041770040" duration="2902000" />
+      <updated>1743493287343</updated>
+      <workItem from="1743493288536" duration="244000" />
+      <workItem from="1743664599453" duration="16000" />
+      <workItem from="1743686753356" duration="8453000" />
+      <workItem from="1743725921326" duration="5409000" />
+      <workItem from="1743732091029" duration="478000" />
+      <workItem from="1743757016751" duration="2098000" />
+      <workItem from="1743763477282" duration="3207000" />
+      <workItem from="1743775706193" duration="2063000" />
+      <workItem from="1743819521667" duration="6748000" />
+      <workItem from="1744112190456" duration="34000" />
+      <workItem from="1744676816903" duration="2683000" />
+      <workItem from="1744692802910" duration="2670000" />
+      <workItem from="1744702156832" duration="423000" />
+      <workItem from="1744876214675" duration="17000" />
+      <workItem from="1745031918177" duration="204000" />
+      <workItem from="1745297697462" duration="5548000" />
+      <workItem from="1745312242209" duration="35000" />
+      <workItem from="1746065575274" duration="5264000" />
+      <workItem from="1746693841000" duration="329000" />
+      <workItem from="1746696926497" duration="3286000" />
+      <workItem from="1746848167883" duration="3615000" />
+      <workItem from="1746873779155" duration="602000" />
+      <workItem from="1746880081673" duration="4827000" />
+      <workItem from="1746924602241" duration="2695000" />
+      <workItem from="1746934127184" duration="50000" />
+      <workItem from="1746934293106" duration="101000" />
+      <workItem from="1746934546837" duration="5283000" />
+      <workItem from="1747041565279" duration="71000" />
+      <workItem from="1747046738214" duration="12000" />
+      <workItem from="1747119933195" duration="103000" />
+      <workItem from="1747120192374" duration="437000" />
     </task>
+    <task id="LOCAL-00001" summary="update">
+      <option name="closed" value="true" />
+      <created>1743758640423</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1743758640423</updated>
+    </task>
+    <task id="LOCAL-00002" summary="update">
+      <option name="closed" value="true" />
+      <created>1743758651400</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1743758651400</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/NewCaro/src/MoveSet/Advance.java</url>
+          <line>565</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/NewCaro/src/MoveSet/Advance.java</url>
+          <line>564</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/NewCaro/src/Cal_Dis/Check.java</url>
+          <line>52</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/NewCaro/src/Cal_Dis/Check.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/NewCaro/src/Cal_Dis/Check.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/NewCaro/src/Cal_Dis/Check.java</url>
+          <line>3</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/NewCaro/src/MoveSet/Advance.java</url>
+          <line>551</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/NewCaro/src/View/View.java</url>
+          <line>67</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/NewCaro/src/MachineMoveChoice/ContinuousATK.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/NewCaro/src/MachineMoveChoice/ContinuousATK.java</url>
+          <line>100</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/NewCaro/src/MachineMoveChoice/ContinuousATK.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/ProjectAInew/NewCaro/src/main/java/machineMoveChoice/ContinuousATK.java</url>
-          <line>299</line>
-          <properties class="machineMoveChoice.ContinuousATK" method="FinalATK">
+          <url>file://$PROJECT_DIR$/NewCaro/src/MoveSet/Advance.java</url>
+          <line>563</line>
+          <properties class="MoveSet.Advance">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ProjectAInew/NewCaro/src/main/java/machineMoveChoice/ContinuousATK.java</url>
-          <line>159</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ProjectAInew/NewCaro/src/main/java/machineMoveChoice/ContinuousATK.java</url>
-          <line>224</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ProjectAInew/NewCaro/src/main/java/machineMoveChoice/ContinuousATK.java</url>
-          <line>102</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ProjectAInew/NewCaro/src/main/java/machineMoveChoice/ContinuousATK.java</url>
-          <line>54</line>
-          <option name="timeStamp" value="5" />
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
