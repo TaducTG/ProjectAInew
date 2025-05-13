@@ -1,6 +1,6 @@
 package calculateDistance;
 
-import static moveSet.ATKMove.*;
+
 import static moveSet.Advance.checkSurround;
 import static moveSet.Advance.findBestloc;
 import static moveSet.Move.*;
@@ -49,9 +49,7 @@ public class CalculateDistance {
         // Đường chéo 2
         score += checkDuongcheo2(tmp, E, b);
 
-        if (necessaryATK(tmp, E) == 0 && score < 5000) {
-            score = score / 4;
-        }
+
         if (a == 1) {
             if (score < 50000) {
                 if(alpha != 0){
