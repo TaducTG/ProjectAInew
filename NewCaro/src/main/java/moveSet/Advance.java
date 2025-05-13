@@ -1,6 +1,7 @@
 package moveSet;
 
 import machineMoveChoice.SelectMove;
+
 public class Advance {
     public static int checkSurround(Point tmp, int[][] E, int a){
         int b = 0;
@@ -27,6 +28,7 @@ public class Advance {
         int spaceright = 0;
         int blleft = 0;
         int blright = 0;
+        int spacecount = 0;
 
         int absoluteWin = 0;
         int nearWin = 0;
@@ -52,6 +54,7 @@ public class Advance {
                     spaceleft += 1;
                 }
                 if (i-1 >=0 && E[i][y] == 0 && E[i - 1][y] == 0) {
+                    spacecount +=1;
                     break;
                 }
             }
@@ -73,6 +76,7 @@ public class Advance {
                     spaceright += 1;
                 }
                 if (E[i][y] == 0 && E[i + 1][y] == 0) {
+                    spacecount +=1;
                     break;
                 }
             }
@@ -87,10 +91,15 @@ public class Advance {
                 close++;
                 //9999*
             }
-            if(row == 3 && blockleft == 0 && blockright == 0 && spaceleft + spaceright <= 2){
+            if(row == 3 && blockleft == 0 && blockright == 0 && spaceleft + spaceright <= 1){
                 nearWin++;
                 //9999*
             }
+            if(row == 3 && blockleft == 0 && blockright == 0 && spacecount == 2 && spaceleft + spaceright == 2){
+                nearWin++;
+                //9999*
+            }
+
             if(row == 3 && blleft + blright == 2 && spaceleft + spaceright == 0){
                 nearWin++;
                 //9999*
@@ -168,6 +177,7 @@ public class Advance {
                     spaceleft += 1;
                 }
                 if (i-1 >=0 && E[x][i] == 0 && E[x][i - 1] == 0) {
+                    spacecount+=1;
                     break;
                 }
             }
@@ -189,6 +199,7 @@ public class Advance {
                     spaceright += 1;
                 }
                 if (E[x][i] == 0 && E[x][i + 1] == 0) {
+                    spacecount+=1;
                     break;
                 }
             }
@@ -199,7 +210,11 @@ public class Advance {
                 absoluteWin++;
                 //9999
             }
-            if(row == 3 && blockleft == 0 && blockright == 0 && spaceleft + spaceright <= 2){
+            if(row == 3 && blockleft == 0 && blockright == 0 && spaceleft + spaceright <= 1){
+                nearWin++;
+                //9999*
+            }
+            if(row == 3 && blockleft == 0 && blockright == 0 && spacecount == 2 && spaceleft + spaceright == 2){
                 nearWin++;
                 //9999*
             }
@@ -233,10 +248,7 @@ public class Advance {
                 pushATK_4++;
                 //Prep (nuoc 4 chan 1 dau)
             }
-            if(row == 3 && blleft + blright == 1 && spaceleft + spaceright == 0){
-                pushATK_4++;
-                //Prep (nuoc 4 chan 1 dau)
-            }
+
             if(row == 2 && spaceleft + spaceright <= 3 && (blockleft + blockright == 0 || blleft + blright == 1)){
                 pushATK_3++;
                 //(nuoc 3 lien tiep)
@@ -288,6 +300,7 @@ public class Advance {
                     spaceleft += 1;
                 }
                 if (x - i - 1 >= 0 && y - i - 1 >= 0 && E[x - i][y - i] == 0 && E[x - i - 1][y - i - 1] == 0) {
+                    spacecount+=1;
                     break;
                 }
             }
@@ -308,6 +321,7 @@ public class Advance {
                 spaceright += 1;
             }
             if (E[x + i][y + i] == 0 && E[x + i + 1][y + i + 1] == 0) {
+                spacecount+=1;
                 break;
             }
         }
@@ -321,6 +335,10 @@ public class Advance {
                 nearWin++;
                 //9999*
             }
+//            if(row == 3 && blockleft == 0 && blockright == 0 && spacecount == 2 && spaceleft + spaceright == 2){
+//                nearWin++;
+//                //9999*
+//            }
             if(row == 3 && blockleft == 0 && blockright == 0 && spaceleft + spaceright == 3){
                 close++;
                 //9999*
@@ -351,10 +369,7 @@ public class Advance {
                 pushATK_4++;
                 //Prep (nuoc 4 chan 1 dau)
             }
-            if(row == 3 && blleft + blright == 1 && spaceleft + spaceright == 0){
-                pushATK_4++;
-                //Prep (nuoc 4 chan 1 dau)
-            }
+
             if(row == 2 && spaceleft + spaceright <= 3 && (blockleft + blockright == 0 || blleft + blright == 1)){
                 pushATK_3++;
                 //(nuoc 3 lien tiep)
@@ -388,6 +403,8 @@ public class Advance {
         spaceright = 0;
         blleft = 0;
         blright = 0;
+
+        spacecount = 0;
         //cheo phu
         for (int i = 1; i < 6; i++) {
             if (x - i >= 0) {
@@ -406,6 +423,7 @@ public class Advance {
                     spaceleft += 1;
                 }
                 if (x - i - 1 >= 0 && E[x - i][y + i] == 0 && E[x - i - 1][y + i + 1] == 0) {
+                    spacecount+=1;
                     break;
                 }
             }
@@ -427,6 +445,7 @@ public class Advance {
                     spaceright += 1;
                 }
                 if (y - i - 1 >= 0 && E[x + i][y - i] == 0 && E[x + i + 1][y - i - 1] == 0) {
+                    spacecount+=1;
                     break;
                 }
             }
@@ -437,7 +456,11 @@ public class Advance {
                 absoluteWin++;
                 //9999
             }
-            if(row == 3 && blockleft == 0 && blockright == 0 && spaceleft + spaceright <= 2){
+            if(row == 3 && blockleft == 0 && blockright == 0 && spaceleft + spaceright <= 1){
+                nearWin++;
+                //9999*
+            }
+            if(row == 3 && blockleft == 0 && blockright == 0 && spacecount == 2 && spaceleft + spaceright == 2){
                 nearWin++;
                 //9999*
             }
@@ -471,10 +494,6 @@ public class Advance {
                 pushATK_4++;
                 //Prep (nuoc 4 chan 1 dau)
             }
-            if(row == 3 && blleft + blright == 1 && spaceleft + spaceright == 0){
-                pushATK_4++;
-                //Prep (nuoc 4 chan 1 dau)
-            }
             if(row == 2 && spaceleft + spaceright <= 3 && (blockleft + blockright == 0 || blleft + blright == 1)){
                 pushATK_3++;
                 //(nuoc 3 lien tiep)
@@ -500,7 +519,6 @@ public class Advance {
                 }
             }
         }
-
 
         // xét các TH
         if(c == 3){
@@ -528,18 +546,19 @@ public class Advance {
             if (nearWin >= 1) {
                 return 2;
             }
-            if (pushATK_4 >= 1 && pushATK_3 >= 1) {
+            if ((pushATK_4 >= 1 && pushATK_3 >= 1) || pushATK_4 >= 2) {
+                //System.out.println(pushATK_4 + "*");
                 return 3;
             }
             if (pushATK_4 == 0 && pushATK_3 >= 2) {
                 return 4;
             }
-            if(a == 2){
-                if (pushATK_4 == 1 || pushATK_3 == 1) {
-                    if(pushATK_3 == 0){
-                        return 6;
-                    }
+            if(a == 1 || a == 2){
+                if(pushATK_4 == 1){
                     return 5;
+                }
+                if(pushATK_3 == 1){
+                    return 6;
                 }
             }
         }
