@@ -8,7 +8,7 @@ import static machineMoveChoice.ContinuousATK.FinalATK;
 import moveSet.*;
 
 public  class SelectMove {
-    public static Point test;
+    static int check = 0;
     public static int turn = 0;
     public static int startMove = 0;
     public static int locx; //Vị trí máy đánh
@@ -45,8 +45,11 @@ public  class SelectMove {
             double max = 0;
             for (Point point : A) {
 
-                if(ContinuousATK.isEmpty()) {
+                if(ContinuousATK.isEmpty() && check == 0) {
                     FinalATK(point, E, 2);
+                }
+                if(!ContinuousATK.isEmpty()){
+                    check = 1;
                 }
                 point.setScore(cal(point, E, 2));
                 if(point.getScore() > map[point.getX()][point.getY()]){

@@ -2,6 +2,7 @@ package view;
 import javax.swing.*;
 
 import calculateDistance.Check;
+import machineMoveChoice.ContinuousATK;
 import machineMoveChoice.SelectMove;
 
 import static machineMoveChoice.SelectMove.*;
@@ -71,164 +72,38 @@ public class View extends JFrame implements ActionListener {
 //            b[7][7].setFont(new Font("Arial", Font.BOLD, 24));
 //            tick[7][7] = false;
 //            SelectMove.E[7][7] = 2;
-            b[5][2].setText("O");
-            b[5][2].setForeground(y_cl);  // y_cl là màu sắc cho O
-            b[5][2].setFont(new Font("Arial", Font.BOLD, 24));
-            tick[5][2] = false;
-            SelectMove.E[5][2] = 2;
+            // Các vị trí với "O" (số 2)
+            int[][] oPositions = {
+                    {4, 2}, {5, 2}, {9, 3}, {6, 4}, {8, 4}, {5, 5}, {7, 5}, {10, 5},
+                    {7, 6}, {8, 6}, {10, 7}, {9, 8}
+            };
 
-            b[5][3].setText("O");
-            b[5][3].setForeground(y_cl);
-            b[5][3].setFont(new Font("Arial", Font.BOLD, 24));
-            tick[5][3] = false;
-            SelectMove.E[5][3] = 2;
+// Các vị trí với "X" (số 1)
+            int[][] xPositions = {
+                    {7, 2}, {5, 3}, {6, 3}, {10, 2}, {9, 4}, {8, 5}, {9, 6}, {3, 7},
+                    {8, 7}, {9, 7}, {7, 12}, {7, 13}, {8, 11}, {9, 11}
+            };
 
-            b[5][4].setText("O");
-            b[5][4].setForeground(y_cl);
-            b[5][4].setFont(new Font("Arial", Font.BOLD, 24));
-            tick[5][4] = false;
-            SelectMove.E[5][4] = 2;
+// Cập nhật bảng với giá trị "O" và "X"
+            for (int i = 0; i < oPositions.length; i++) {
+                int row = oPositions[i][0];
+                int col = oPositions[i][1];
+                b[row][col].setText("O");
+                b[row][col].setForeground(y_cl);
+                b[row][col].setFont(new Font("Arial", Font.BOLD, 24));
+                tick[row][col] = false;
+                SelectMove.E[row][col] = 2; // O là số 2
+            }
 
-            b[6][6].setText("O");
-            b[6][6].setForeground(y_cl);
-            b[6][6].setFont(new Font("Arial", Font.BOLD, 24));
-            tick[6][6] = false;
-            SelectMove.E[6][6] = 2;
-
-            b[7][6].setText("O");
-            b[7][6].setForeground(y_cl);
-            b[7][6].setFont(new Font("Arial", Font.BOLD, 24));
-            tick[7][6] = false;
-            SelectMove.E[7][6] = 2;
-
-            b[4][7].setText("O");
-            b[4][7].setForeground(y_cl);
-            b[4][7].setFont(new Font("Arial", Font.BOLD, 24));
-            tick[4][7] = false;
-            SelectMove.E[4][7] = 2;
-
-            b[2][8].setText("O");
-            b[2][8].setForeground(y_cl);
-            b[2][8].setFont(new Font("Arial", Font.BOLD, 24));
-            tick[2][8] = false;
-            SelectMove.E[2][8] = 2;
-
-            b[5][8].setText("O");
-            b[5][8].setForeground(y_cl);
-            b[5][8].setFont(new Font("Arial", Font.BOLD, 24));
-            tick[5][8] = false;
-            SelectMove.E[5][8] = 2;
-
-            b[2][9].setText("O");
-            b[2][9].setForeground(y_cl);
-            b[2][9].setFont(new Font("Arial", Font.BOLD, 24));
-            tick[2][9] = false;
-            SelectMove.E[2][9] = 2;
-
-            b[2][10].setText("O");
-            b[2][10].setForeground(y_cl);
-            b[2][10].setFont(new Font("Arial", Font.BOLD, 24));
-            tick[2][10] = false;
-            SelectMove.E[2][10] = 2;
-
-            b[6][9].setText("O");
-            b[6][9].setForeground(y_cl);
-            b[6][9].setFont(new Font("Arial", Font.BOLD, 24));
-            tick[6][9] = false;
-            SelectMove.E[6][9] = 2;
-            b[4][5].setText("O");
-            b[4][5].setForeground(y_cl);  // y_cl là màu sắc cho O
-            b[4][5].setFont(new Font("Arial", Font.BOLD, 24));
-            tick[4][5] = false;
-            SelectMove.E[4][5] = 2;
-
-
-
-
-
-
-
-            b[2][5].setText("X");
-            b[2][5].setForeground(x_cl);  // x_cl là màu sắc cho X
-            b[2][5].setFont(new Font("Arial", Font.BOLD, 24));
-            tick[2][5] = false;
-            SelectMove.E[2][5] = 1;
-
-            b[2][11].setText("X");
-            b[2][11].setForeground(x_cl);
-            b[2][11].setFont(new Font("Arial", Font.BOLD, 24));
-            tick[2][11] = false;
-            SelectMove.E[2][11] = 1;
-
-            b[3][8].setText("X");
-            b[3][8].setForeground(x_cl);
-            b[3][8].setFont(new Font("Arial", Font.BOLD, 24));
-            tick[3][8] = false;
-            SelectMove.E[3][8] = 1;
-
-            b[4][4].setText("X");
-            b[4][4].setForeground(x_cl);
-            b[4][4].setFont(new Font("Arial", Font.BOLD, 24));
-            tick[4][4] = false;
-            SelectMove.E[4][4] = 1;
-
-            b[4][8].setText("X");
-            b[4][8].setForeground(x_cl);
-            b[4][8].setFont(new Font("Arial", Font.BOLD, 24));
-            tick[4][8] = false;
-            SelectMove.E[4][8] = 1;
-
-            b[6][3].setText("X");
-            b[6][3].setForeground(x_cl);
-            b[6][3].setFont(new Font("Arial", Font.BOLD, 24));
-            tick[6][3] = false;
-            SelectMove.E[6][3] = 1;
-
-            b[7][10].setText("X");
-            b[7][10].setForeground(x_cl);
-            b[7][10].setFont(new Font("Arial", Font.BOLD, 24));
-            tick[7][10] = false;
-            SelectMove.E[7][10] = 1;
-
-            b[8][6].setText("X");
-            b[8][6].setForeground(x_cl);
-            b[8][6].setFont(new Font("Arial", Font.BOLD, 24));
-            tick[8][6] = false;
-            SelectMove.E[8][6] = 1;
-
-//            b[6][14].setText("X");
-//            b[6][14].setForeground(x_cl);
-//            b[6][14].setFont(new Font("Arial", Font.BOLD, 24));
-//            tick[6][14] = false;
-//            SelectMove.E[6][14] = 1;
-
-            b[6][15].setText("X");
-            b[6][15].setForeground(x_cl);
-            b[6][15].setFont(new Font("Arial", Font.BOLD, 24));
-            tick[6][15] = false;
-            SelectMove.E[6][15] = 1;
-
-            b[6][16].setText("X");
-            b[6][16].setForeground(x_cl);
-            b[6][16].setFont(new Font("Arial", Font.BOLD, 24));
-            tick[6][16] = false;
-            SelectMove.E[6][16] = 1;
-
-            b[7][14].setText("X");
-            b[7][14].setForeground(x_cl);
-            b[7][14].setFont(new Font("Arial", Font.BOLD, 24));
-            tick[7][14] = false;
-            SelectMove.E[7][14] = 1;
-            b[5][1].setText("X");
-            b[5][1].setForeground(x_cl);  // x_cl là màu sắc cho X
-            b[5][1].setFont(new Font("Arial", Font.BOLD, 24));
-            tick[5][1] = false;
-            SelectMove.E[5][1] = 1;
-            b[8][14].setText("X");
-            b[8][14].setForeground(x_cl);
-            b[8][14].setFont(new Font("Arial", Font.BOLD, 24));
-            tick[8][14] = false;
-            SelectMove.E[8][14] = 1;
+            for (int i = 0; i < xPositions.length; i++) {
+                int row = xPositions[i][0];
+                int col = xPositions[i][1];
+                b[row][col].setText("X");
+                b[row][col].setForeground(x_cl); // Bạn có thể thay đổi màu nếu cần
+                b[row][col].setFont(new Font("Arial", Font.BOLD, 24));
+                tick[row][col] = false;
+                SelectMove.E[row][col] = 1; // X là số 1
+            }
 
 
 
@@ -329,6 +204,8 @@ public class View extends JFrame implements ActionListener {
             if(frame != null){
                 frame.setVisible(false);
             }
+            ContinuousATK.ContinuousATK2.clear();
+            ContinuousATK.ContinuousATK.clear();
             new View("GAME DEMO");
             this.dispose();
         } else if (e.getActionCommand() == "Exit" || e.getActionCommand() == "Quit") {
