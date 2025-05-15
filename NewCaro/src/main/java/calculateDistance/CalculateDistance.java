@@ -127,11 +127,11 @@ public class CalculateDistance {
         return score;
     }
     public static void firstLayer(int i, int j, int[][] E) {
-        int[][] D = new int[15][15];
+        int[][] D = new int[20][20];
 
         // Đặt giá trị cho mảng D dựa trên trạng thái của E
-        for (int a = 0; a < 15; a++) {
-            for (int b = 0; b < 15; b++) {
+        for (int a = 0; a < 20; a++) {
+            for (int b = 0; b < 20; b++) {
                 if (E[a][b] == 1 || E[a][b] == 2) {
                     D[a][b] = 1;
                 } else {
@@ -143,7 +143,7 @@ public class CalculateDistance {
         // Kiểm tra vùng xung quanh (các ô từ (i-1, j-1) đến (i+1, j+1))
         for (int a = i - 1; a < i + 2; a++) {
             for (int b = j - 1; b < j + 2; b++) {
-                if (a >= 0 && b >= 0 && a <= 14 && b <= 14 && E[a][b] == 0 && D[a][b] == 0) {
+                if (a >= 0 && b >= 0 && a <= 20 && b <= 20 && E[a][b] == 0 && D[a][b] == 0) {
                     Point tmp = new Point(a, b,0,0);
                     A.add(tmp);
                     D[a][b] = 1;  // Đánh dấu ô đã được xét
@@ -154,11 +154,11 @@ public class CalculateDistance {
 
     // Hàm secondLayer tương đương với C++ code
     public static void secondLayer(int i, int j, int[][] E) {
-        int[][] D = new int[15][15];
+        int[][] D = new int[20][20];
 
         // Đặt giá trị cho mảng D dựa trên trạng thái của E
-        for (int a = 0; a < 15; a++) {
-            for (int b = 0; b < 15; b++) {
+        for (int a = 0; a < 20; a++) {
+            for (int b = 0; b < 20; b++) {
                 if (E[a][b] == 1 || E[a][b] == 2) {
                     D[a][b] = 1;
                 } else {
@@ -170,7 +170,7 @@ public class CalculateDistance {
         // Kiểm tra vùng xung quanh mở rộng (các ô từ (i-6, j-6) đến (i+6, j+6))
         for (int a = i - 5; a < i + 5; a++) {
             for (int b = j - 5; b < j + 5; b++) {
-                if (a >= 0 && b >= 0 && a <= 14 && b <= 14 && E[a][b] == 0 && D[a][b] == 0) {
+                if (a >= 0 && b >= 0 && a <= 20 && b <= 20 && E[a][b] == 0 && D[a][b] == 0) {
                     Point tmp = new Point(a, b,0,0);
                     A.add(tmp);
                     D[a][b] = 1;  // Đánh dấu ô đã được xét

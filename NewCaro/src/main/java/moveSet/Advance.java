@@ -145,9 +145,11 @@ public class Advance {
                 }
                 if(rowleft == 3 && blockleft == 1 && spaceleft == 1){
                     pushATK_4++;
+
                 }
                 if(rowright == 3 && blockright == 1 && spaceright == 1){
                     pushATK_4++;
+
                 }
             }
         }
@@ -159,6 +161,7 @@ public class Advance {
         spaceright = 0;
         blleft = 0;
         blright = 0;
+        spacecount = 0;
         //hang doc
         for (int i = y - 1; i > y - 6; i--) {
             if (i >= 0) {
@@ -232,11 +235,11 @@ public class Advance {
             if(row == 3 && blockleft == 1 && blockright == 1 && spaceleft + spaceright == 0){
                 //0
             }
-            if(row == 3 && blockleft == 1 && blockright == 0 && spaceleft == 0){
+            if(row == 3 && blockleft == 1 && blockright == 0 && spaceleft <= 1){
                 pushATK_4++;
                 //Prep (nuoc 4 chan 1 dau)
             }
-            if(row == 3 && blockleft == 0 && blockright == 1 && spaceright == 0){
+            if(row == 3 && blockleft == 0 && blockright == 1 && spaceright <=1 ){
                 pushATK_4++;
                 //Prep (nuoc 4 chan 1 dau)
             }
@@ -282,6 +285,7 @@ public class Advance {
         spaceright = 0;
         blleft = 0;
         blright = 0;
+        spacecount = 0;
         //cheo chinh
         for (int i = 1; i < 6; i++) {
             if (x - i >= 0 && y - i >= 0) {
@@ -403,7 +407,6 @@ public class Advance {
         spaceright = 0;
         blleft = 0;
         blright = 0;
-
         spacecount = 0;
         //cheo phu
         for (int i = 1; i < 6; i++) {
