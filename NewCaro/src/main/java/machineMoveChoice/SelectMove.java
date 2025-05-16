@@ -2,13 +2,12 @@ package machineMoveChoice;
 import java.util.*;
 
 import static calculateDistance.CalculateDistance.*;
-import static machineMoveChoice.ContinuousATK.ContinuousATK;
-import static machineMoveChoice.ContinuousATK.FinalATK;
+import static machineMoveChoice.ContinuousATK.*;
 
 import moveSet.*;
 
 public  class SelectMove {
-    static int check = 0;
+    public static int check = 0;
     public static int turn = 0;
     public static int startMove = 0;
     public static int locx; //Vị trí máy đánh
@@ -51,7 +50,7 @@ public  class SelectMove {
                 if(!ContinuousATK.isEmpty()){
                     check = 1;
                 }
-                point.setScore(cal(point, E, 2));
+                point.setScore(cal(point, E, 2,1));
                 if(point.getScore() > map[point.getX()][point.getY()]){
                     map[point.getX()][point.getY()] = point.getScore();
                 }
@@ -91,7 +90,7 @@ public  class SelectMove {
                 secondLayer(B.get(k).getX(), B.get(k).getY(), E); // Thêm các điểm vào mảng A
                 double A_max = 0;
                 for (Point point : A) {
-                    point.setScore(cal(point, E, 1));
+                    point.setScore(cal(point, E, 1,0));
                     if (A_max < point.getScore()) {
                         A_max = point.getScore();
                     }
@@ -116,7 +115,7 @@ public  class SelectMove {
                         E[C.get(l).getX()][C.get(l).getY()] = 1;
                         secondLayer(C.get(l).getX(), C.get(l).getY(), E);
                         for (Point point : A) {
-                            point.setScore(cal(point, E, 2));
+                            point.setScore(cal(point, E, 2,0));
                             if (point.getScore() >= 4000) {
                                 D.add(point);
                                 choosemove = C.get(l).getRank();
@@ -128,7 +127,7 @@ public  class SelectMove {
                             secondLayer(D.get(m).getX(), D.get(m).getY(), E);
                             double maxF = 0;
                             for (Point point : A) {
-                                point.setScore(cal(point, E, 1));
+                                point.setScore(cal(point, E, 1,0));
                                 if (point.getScore() > maxF) {
                                     maxF = point.getScore();
                                 }
@@ -152,7 +151,7 @@ public  class SelectMove {
                                     E[F.get(n).getX()][F.get(n).getY()] = 1;
                                     firstLayer(F.get(n).getX(), F.get(n).getY(), E);
                                     for (Point point : A) {
-                                        point.setScore(cal(point, E, 2));
+                                        point.setScore(cal(point, E, 2,0));
                                         if (point.getScore() >= 6000) {
                                             G.add(point);
                                             choosemove3 = F.get(n).getRank();
@@ -171,12 +170,14 @@ public  class SelectMove {
 
 
             if(!ContinuousATK.isEmpty()){
+
                 for(Point tmp2 : ContinuousATK){
                     System.out.print("(" + tmp2.getX()+" " +tmp2.getY() + ")" + " ");
                 }
                 if(E[ContinuousATK.get(0).getX()][ContinuousATK.get(0).getY()] != 0){
                     ContinuousATK.removeFirst();
                 }
+
                 if (!ContinuousATK.isEmpty()) {
                     E[ContinuousATK.get(0).getX()][ContinuousATK.get(0).getY()] = 2;
                     locx = ContinuousATK.get(0).getX();

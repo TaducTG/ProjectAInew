@@ -74,6 +74,9 @@ public class Move {
                 }
             }
         }
+        if(x>=1 && E[x + 1][y] == 0 && E[x - 1][y] == 0){
+            line2 = 0;
+        }
         if(mark == 1 && line != 4){
             line -=1;
         }
@@ -157,6 +160,9 @@ public class Move {
                     }
                 }
             }
+        }
+        if(y>=1 && E[x][y + 1] == 0 && E[x][y - 1] == 0){
+            col2 = 0;
         }
         if(mark == 1 && col != 4){
             col -=1;

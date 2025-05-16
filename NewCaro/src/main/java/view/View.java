@@ -75,13 +75,13 @@ public class View extends JFrame implements ActionListener {
             // Các vị trí với "O" (số 2)
             int[][] oPositions = {
                     {4, 2}, {5, 2}, {9, 3}, {6, 4}, {8, 4}, {5, 5}, {7, 5}, {10, 5},
-                    {7, 6}, {8, 6}, {10, 7}, {9, 8}
+                    {7, 6}, {8, 6}, {10, 7}, {9, 8},{7,11}
             };
 
 // Các vị trí với "X" (số 1)
             int[][] xPositions = {
                     {7, 2}, {5, 3}, {6, 3}, {10, 2}, {9, 4}, {8, 5}, {9, 6}, {3, 7},
-                    {8, 7}, {9, 7}, {7, 12}, {7, 13}, {8, 11}, {9, 11}
+                    {8, 7}, {9, 7}, {10, 11}, {7, 13}, {8, 11}, {9, 11}
             };
 
 // Cập nhật bảng với giá trị "O" và "X"
@@ -206,6 +206,7 @@ public class View extends JFrame implements ActionListener {
             }
             ContinuousATK.ContinuousATK2.clear();
             ContinuousATK.ContinuousATK.clear();
+            SelectMove.check = 0;
             new View("GAME DEMO");
             this.dispose();
         } else if (e.getActionCommand() == "Exit" || e.getActionCommand() == "Quit") {
