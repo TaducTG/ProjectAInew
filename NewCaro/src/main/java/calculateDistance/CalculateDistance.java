@@ -8,12 +8,14 @@ import static moveSet.Move.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import machineMoveChoice.ContinuousATK;
+import machineMoveChoice.SelectMove;
 import moveSet.Point;
 public class CalculateDistance {
     public static List<Point> CanATK = new ArrayList<>();
     public static List<Point> A = new ArrayList<>();
     public static int mark = 0;
-    public static int cal(Point tmp, int[][] E, int a) {
+    public static int cal(Point tmp, int[][] E, int a,int turn) {
         int score = 0;
         int b = 0;
         if(a == 1){
@@ -29,6 +31,7 @@ public class CalculateDistance {
         int gamma = checkSurround(tmp, E, 3); // dùng để check với X trong lượt của O (xét khả năng tấn công)
 
         int epsilon = findBestloc(tmp, E, 2);
+
         // ATK
         // Hàng ngang
         score += checkHangNgang(tmp, E, a);
@@ -122,7 +125,11 @@ public class CalculateDistance {
                 score += epsilon;
             }
         }
-
+        if(turn == 1 && score >= 50000){
+            ContinuousATK.ContinuousATK.clear();
+            ContinuousATK.ContinuousATK2.clear();
+            SelectMove.check = 0;
+        }
         tmp.setScore(score);
         return score;
     }
