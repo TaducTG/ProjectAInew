@@ -12,10 +12,12 @@ import machineMoveChoice.ContinuousATK;
 import machineMoveChoice.SelectMove;
 import moveSet.Point;
 public class CalculateDistance {
+    public static int turz = 0;
     public static List<Point> CanATK = new ArrayList<>();
     public static List<Point> A = new ArrayList<>();
     public static int mark = 0;
     public static int cal(Point tmp, int[][] E, int a,int turn) {
+        turz = turn;
         int score = 0;
         int b = 0;
         if(a == 1){
@@ -79,6 +81,9 @@ public class CalculateDistance {
 
                 //      1) Đánh các nước kết hợp 3,4 hoặc nước 4 chưa bị chặn
                 if (beta == 1 || beta == 2 || beta == 3 ) {
+//                    System.out.println(tmp.getX() + " " + tmp.getY());
+//                    System.out.println(beta);
+
                     // beta = 1 : nước 4 bị chặn 1 đầu
                     // beta = 2 : nuớc 3 chưa bị chặn 2 đầu
                     // beta = 3 : nước kết hợp 3 + 4
