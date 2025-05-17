@@ -21,7 +21,7 @@ public class ContinuousATK {
     public static void FinalATK(Point tmp, int[][] E, int a) {
 
         a = 1;
-        int x,y,x1,y1,x2,y2;
+        int x,y;
         boolean end = false;
         int t1;
         Point pO1 = new Point(0, 0);
@@ -123,181 +123,33 @@ public class ContinuousATK {
             E[pX1.getX()][pX1.getY()] = 0;
             E[pO1.getX()][pO1.getY()] = 0;
         }
-        a = 1;
         if(l == ContinuousATK.size()){
             return;
         }
         l = ContinuousATK.size();
-        if(addPoint(E,1)==1){
+        if(addPoint(E,1) == 1){
             return;
         }
-//        for(int k = 0; k< ContinuousATK.size();k++){
-//            Point p = ContinuousATK.get(k);
-//            if(p.getRank() / 10 == 1){
-//                Mark(E,1,p.getRank());
-//
-//                for(int i = p.getX()-3; i <=p.getX() + 3;i++){
-//                    for (int j = p.getY()-3; j <=p.getY() + 3;j++){
-//                        Point tmp1 = new Point(i,j);
-//                        if(i >= 0 && j >= 0  && checkSurround(tmp1,E,2) == 5 && E[i][j] == 0){
-//                            pO2 = tmp1;
-//                            pO2.setRank(p.getRank()*10 + a);
-//                            a +=1;
-//                            ContinuousATK.add(pO2);
-//                        }
-//                        if(i >= 0 && j >= 0  && cal(tmp1,E,2,0) >= 30000 && E[i][j] == 0){
-//                            //System.out.println(i + " " + j + " " + cal(tmp1,E,2));
-//                            end = true;
-//                            pO2 = tmp1;
-//                            pO2.setRank(p.getRank()*10 + a);
-//                        }
-//                    }
-//                }
-//                //System.out.println(pO2.getX() + " " + pO2.getY());
-//                if(end){
-//                    Mark(E,0,p.getRank());
-//                    if(a == 2){
-//                        ContinuousATK.removeLast();
-//                    }
-//                    ContinuousATK.add(pO2);
-//                    Trim();
-//                    return;
-//                }
-//                if(pO2.getX() == 0 && pO2.getY() == 0){
-//                    ContinuousATK.clear();
-//                    Mark(E,0,p.getRank());
-//
-//                    return;
-//                }
-//                for(Point p2 : ContinuousATK) {
-//                    if (p2.getRank() / 100 == 1) {
-////                        System.out.println(p2.getX() + " " + p2.getY());
-//                        x2 = p2.getX();
-//                        y2 = p2.getY();
-//                        E[x2][y2] = 2;
-//                        for (int i = x2 - 3; i <= x2 + 3; i++) {
-//                            for (int j = y2 - 3; j <= y2 + 3; j++) {
-//                                if (i >= 0 && j >= 0 && checkWin(i, j, E, 2) && E[i][j] == 0) {
-//                                    pX2 = new Point(i, j);
-//                                }
-//                            }
-//                        }
-//
-//                        if (pX2.getX() != 0 && pX2.getY() != 0) {
-//                            pX2.setRank(p2.getRank());
-//
-//                            if(!ContinuousATK2.contains(pX2)){
-//                                ContinuousATK2.add(pX2);
-//                            }
-//                            t1 = checkSurround(pX2, E, 1);
-//                            if (!(t1 != 1 && t1 != 2 && t1 != 3 && t1 != 5)) {
-//                                ContinuousATK2.remove(pX2);
-//                                ContinuousATK.remove(p);
-//                            }
-//                        }
-//                        E[x2][y2] = 0;
-//                    }
-//                }
-//                Mark(E,0,p.getRank());
-//
-//            }
-//        }
-        //System.out.println(ContinuousATK.size());
         if(l == ContinuousATK.size()){
             ContinuousATK.clear();
             return;
         }
         l = ContinuousATK.size();
-        a = 1;
         if(addPoint(E,2) == 1) {
             return;
         }
-//        for(Point p : ContinuousATK){
-//            System.out.print("("+p.getX() + " " + p.getY() + " " + p.getRank() + ")");
-//        }
-//        System.out.println();
-//        for(Point p : ContinuousATK2){
-//            System.out.print("("+p.getX() + " " + p.getY() + " " + p.getRank() + ")");
-//        }
-//        System.out.println();
-//        for(int k = 0; k< ContinuousATK.size();k++){
-//            Point p = ContinuousATK.get(k);
-//            if(p.getRank() / 100 == 1){
-//                Mark(E,1,p.getRank());
-//                for(int i = p.getX()-4; i <=p.getX() + 4;i++){
-//                    for (int j = p.getY()-4; j <=p.getY() + 4;j++){
-//                        Point tmp1 = new Point(i,j);
-//                        if(i >= 0 && j >= 0  && checkSurround(tmp1,E,2) == 5 && E[i][j] == 0){
-//                            pO2 = tmp1;
-//                            pO2.setRank(p.getRank()*10 + a);
-//                            a += 1;
-//                            ContinuousATK.add(pO2);
-//                        }
-//                        if(i >= 0 && j >= 0  && cal(tmp1,E,2,0) >= 30000 && E[i][j] == 0){
-//                            System.out.println(i + " " + j + " " + cal(tmp1,E,2,0));
-//                            end = true;
-//                            pO2 = tmp1;
-//                            pO2.setRank(p.getRank()*10 + a);
-//                        }
-//                    }
-//                }
-//
-//                if(end){
-//                    //System.out.println("check");
-//                   Mark(E,0,p.getRank());
-//                    if(a == 2){
-//                        ContinuousATK.removeLast();
-//                    }
-//                    ContinuousATK.add(pO2);
-//                    Trim();
-//                    return;
-//                }
-//
-//
-//                if(pO2.getX() == 0 && pO2.getY() == 0){
-//                    ContinuousATK.clear();
-//                    Mark(E,0,p.getRank());
-//                    return;
-//                }
-//                for(Point p2 : ContinuousATK) {
-//                    if (p2.getRank() / 1000 == 1) {
-//                        //System.out.println(p2.getX() + " " + p2.getY());
-//                        x2 = p2.getX();
-//                        y2 = p2.getY();
-//                        E[x2][y2] = 2;
-//                        for (int i = x2 - 3; i <= x2 + 3; i++) {
-//                            for (int j = y2 - 3; j <= y2 + 3; j++) {
-//                                if (i >= 0 && j >= 0 && checkWin(i, j, E, 2) && E[i][j] == 0) {
-//                                    pX2 = new Point(i, j);
-//                                }
-//                            }
-//                        }
-//                        if (pX2.getX() != 0 && pX2.getY() != 0) {
-//                            pX2.setRank(p2.getRank());
-//                            if(!ContinuousATK2.contains(pX2)){
-//                                ContinuousATK2.add(pX2);
-//                            }
-//                            t1 = checkSurround(pX2, E, 1);
-//                            if (!(t1 != 1 && t1 != 2 && t1 != 3 && t1 != 5)) {
-//                                ContinuousATK2.remove(pX2);
-//                                ContinuousATK.remove(p);
-//                            }
-//                        }
-//                        E[x2][y2] = 0;
-//                    }
-//                }
-//                Mark(E,0,p.getRank());
-//            }
-//        }
-        //System.out.println(ContinuousATK.size());
         if(l == ContinuousATK.size()){
             ContinuousATK.clear();
             return;
         }
         l = ContinuousATK.size();
-
-
-
+        if(addPoint(E,3) == 1){
+            return;
+        }
+        if(l == ContinuousATK.size()){
+            ContinuousATK.clear();
+            return;
+        }
         ContinuousATK.clear();
         ContinuousATK2.clear();
         return;

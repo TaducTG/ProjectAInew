@@ -1,5 +1,6 @@
 package moveSet;
 
+import calculateDistance.CalculateDistance;
 import machineMoveChoice.SelectMove;
 
 public class Advance {
@@ -118,10 +119,10 @@ public class Advance {
                 pushATK_4++;
                 //Prep (nuoc 4 chan 1 dau)
             }
-            if(row == 3 && blockleft + blockright == 1 && spaceright + spaceleft == 2){
-                pushATK_4++;
-                //Prep (nuoc 4 chan 1 dau)
-            }
+//            if(row == 3 && blockleft + blockright == 1 && spaceright + spaceleft == 2){
+//                pushATK_4++;
+//                //Prep (nuoc 4 chan 1 dau)
+//            }
             if(row == 3 && blleft + blright == 2 && spaceleft + spaceright == 1){
                 pushATK_4++;
                 //Prep (nuoc 4 chan 1 dau)
@@ -131,7 +132,7 @@ public class Advance {
                 //(nuoc 3 lien tiep)
             }
         }
-        else{
+        else if(x-1>=0 &&y-1>=0 &&E[x-1][y-1] == 0 && E[x+1][y+1] == 0){
             if(rowright >= 2 || rowleft >= 2){
                 if(rowright == 2){
                     if((blockright == 0 || (blright == 1 && spaceright == 1)) && spaceright <= 2){
@@ -202,7 +203,7 @@ public class Advance {
                     spaceright += 1;
                 }
                 if (E[x][i] == 0 && E[x][i + 1] == 0) {
-                    spacecount+=1;
+                    spacecount += 1;
                     break;
                 }
             }
@@ -214,10 +215,12 @@ public class Advance {
                 //9999
             }
             if(row == 3 && blockleft == 0 && blockright == 0 && spaceleft + spaceright <= 1){
+                System.out.println(tmp.getX()+" " + tmp.getY());
                 nearWin++;
                 //9999*
             }
             if(row == 3 && blockleft == 0 && blockright == 0 && spacecount == 2 && spaceleft + spaceright == 2){
+                System.out.println(tmp.getX()+" " + tmp.getY());
                 nearWin++;
                 //9999*
             }
@@ -226,6 +229,7 @@ public class Advance {
                 //9999*
             }
             if(row == 3 && blleft + blright == 2 && spaceleft + spaceright == 0){
+
                 nearWin++;
                 //9999*
             }
@@ -239,14 +243,14 @@ public class Advance {
                 pushATK_4++;
                 //Prep (nuoc 4 chan 1 dau)
             }
-            if(row == 3 && blockleft == 0 && blockright == 1 && spaceright <=1 ){
+            if(row == 3 && blockleft == 0 && blockright == 1 && spaceright <= 1){
                 pushATK_4++;
                 //Prep (nuoc 4 chan 1 dau)
             }
-            if(row == 3 && blockleft + blockright == 1 && spaceright + spaceleft == 2){
-                pushATK_4++;
-                //Prep (nuoc 4 chan 1 dau)
-            }
+//            if(row == 3 && blockleft + blockright == 1 && spaceright + spaceleft == 2){
+//                pushATK_4++;
+//                //Prep (nuoc 4 chan 1 dau)
+//            }
             if(row == 3 && blleft + blright == 2 && spaceleft + spaceright == 1){
                 pushATK_4++;
                 //Prep (nuoc 4 chan 1 dau)
@@ -257,7 +261,7 @@ public class Advance {
                 //(nuoc 3 lien tiep)
             }
         }
-        else{
+        else if(x-1>=0 &&y-1>=0 &&E[x-1][y-1] == 0 && E[x+1][y+1] == 0){
             if(rowright >= 2 || rowleft >= 2){
                 if(rowright == 2){
                     if((blockright == 0 || (blright == 1 && spaceright == 1)) && spaceright <= 2){
@@ -365,10 +369,10 @@ public class Advance {
                 pushATK_4++;
                 //Prep (nuoc 4 chan 1 dau)
             }
-            if(row == 3 && blockleft + blockright == 1 && spaceright + spaceleft == 2){
-                pushATK_4++;
-                //Prep (nuoc 4 chan 1 dau)
-            }
+//            if(row == 3 && blockleft + blockright == 1 && spaceright + spaceleft == 2){
+//                pushATK_4++;
+//                //Prep (nuoc 4 chan 1 dau)
+//            }
             if(row == 3 && blleft + blright == 2 && spaceleft + spaceright == 1){
                 pushATK_4++;
                 //Prep (nuoc 4 chan 1 dau)
@@ -379,7 +383,7 @@ public class Advance {
                 //(nuoc 3 lien tiep)
             }
         }
-        else{
+        else if(x-1>=0 &&y-1>=0 &&E[x-1][y-1] == 0 && E[x+1][y+1] == 0){
             if(rowright >= 2 || rowleft >= 2){
                 if(rowright == 2){
                     if((blockright == 0 || (blright == 1 && spaceright == 1)) && spaceright <= 2){
@@ -489,10 +493,10 @@ public class Advance {
                 pushATK_4++;
                 //Prep (nuoc 4 chan 1 dau)
             }
-            if(row == 3 && blockleft + blockright == 1 && spaceright + spaceleft == 2){
-                pushATK_4++;
-                //Prep (nuoc 4 chan 1 dau)
-            }
+//            if(row == 3 && blockleft + blockright == 1 && spaceright + spaceleft == 2){
+//                pushATK_4++;
+//                //Prep (nuoc 4 chan 1 dau)
+//            }
             if(row == 3 && blleft + blright == 2 && spaceleft + spaceright == 1){
                 pushATK_4++;
                 //Prep (nuoc 4 chan 1 dau)
@@ -502,7 +506,7 @@ public class Advance {
                 //(nuoc 3 lien tiep)
             }
         }
-        else{
+        else if(x-1>=0 &&y-1>=0 &&E[x-1][y-1] == 0 && E[x+1][y+1] == 0){
             if(rowright >= 2 || rowleft >= 2){
                 if(rowright == 2){
                     if((blockright == 0 || (blright == 1 && spaceright == 1)) && spaceright <= 2){
