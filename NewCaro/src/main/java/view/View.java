@@ -127,7 +127,7 @@ public class View extends JFrame implements ActionListener {
         tick[i][j] = false;
         if(Check.checkWin(i,j,E,1)){
             System.out.println("check");
-            JFrame frame = new JFrame();
+            frame = new JFrame(); // Sửa: dùng biến instance, không tạo biến cục bộ
             frame.setSize(300, 150);
             frame.setLayout(new BorderLayout());
             frame.setLocationRelativeTo(null); // Hiển thị giữa màn hình
