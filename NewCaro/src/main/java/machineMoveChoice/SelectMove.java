@@ -71,6 +71,7 @@ public  class SelectMove {
 
             List<Point> F = new ArrayList<>();  // Lưu các vị trí tốt nhất ở thời điểm 2 của X
             List<Point> G = new ArrayList<>();
+
             for (Point item : A) {
                 if (item.getScore() >= max * 0.85) {
                     B.add(item);

@@ -1,6 +1,5 @@
 package moveSet;
 
-import calculateDistance.CalculateDistance;
 import machineMoveChoice.SelectMove;
 
 public class Advance {
