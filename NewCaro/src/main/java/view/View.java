@@ -67,23 +67,23 @@ public class View extends JFrame implements ActionListener {
         undo_bt.setEnabled(true);
 
         if(SelectMove.turn %1 == 0){
-//            b[7][7].setText("O");
-//            b[7][7].setForeground(y_cl);
-//            b[7][7].setFont(new Font("Arial", Font.BOLD, 24));
-//            tick[7][7] = false;
-//            SelectMove.E[7][7] = 2;
-            // Các vị trí với "O" (số 2)
+           b[7][7].setText("O");
+           b[7][7].setForeground(y_cl);
+           b[7][7].setFont(new Font("Arial", Font.BOLD, 24));
+           tick[7][7] = false;
+           SelectMove.E[7][7] = 2;
+ //           Các vị trí với "O" (số 2)
             int[][] oPositions = {
 //                    {4, 2}, {5, 2}, {9, 3}, {6, 4}, {8, 4}, {5, 5}, {7, 5}, {10, 5},
 //                    {7, 6}, {8, 6}, {10, 7}, {9, 8},{7,11}
-                    {7,7},{7,8},{7,9}
+//                    {7,7},{7,8},{7,9}
             };
 
 // Các vị trí với "X" (số 1)
             int[][] xPositions = {
 //                    {7, 2}, {5, 3}, {6, 3}, {10, 2}, {9, 4}, {8, 5}, {9, 6}, {3, 7},
 //                    {8, 7}, {9, 7}, {10, 11}, {7, 13}, {8, 11}, {9, 11}
-                    {7,4}
+//                 {7,4}
             };
 
 // Cập nhật bảng với giá trị "O" và "X"
@@ -127,7 +127,7 @@ public class View extends JFrame implements ActionListener {
         tick[i][j] = false;
         if(Check.checkWin(i,j,E,1)){
             System.out.println("check");
-            JFrame frame = new JFrame();
+            frame = new JFrame(); // Sửa: dùng biến instance, không tạo biến cục bộ
             frame.setSize(300, 150);
             frame.setLayout(new BorderLayout());
             frame.setLocationRelativeTo(null); // Hiển thị giữa màn hình
@@ -195,7 +195,7 @@ public class View extends JFrame implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand() == "New Game" || e.getActionCommand() == "Restart") {
+        if (e.getActionCommand().equals("New Game") || e.getActionCommand().equals("Restart")) {
             for (int i = 0; i < 20; i++) {
                 for (int j = 0; j < 20; j++) {
                     SelectMove.E[i][j] = 0;
@@ -211,10 +211,10 @@ public class View extends JFrame implements ActionListener {
             SelectMove.check = 0;
             new View("GAME DEMO");
             this.dispose();
-        } else if (e.getActionCommand() == "Exit" || e.getActionCommand() == "Quit") {
+        } else if (e.getActionCommand().equals("Exit") || e.getActionCommand().equals("Quit")) {
             System.exit(0);
         }
-        else if(e.getActionCommand() == "Undo") {
+        else if(e.getActionCommand().equals("Undo")) {
 
             if(SelectMove.startMove == 0){
                 return;

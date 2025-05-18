@@ -1,4 +1,5 @@
 package machineMoveChoice;
+
 import static calculateDistance.CalculateDistance.cal;
 import static calculateDistance.Check.checkWin;
 import static moveSet.Advance.checkSurround;

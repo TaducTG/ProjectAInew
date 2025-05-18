@@ -1,6 +1,7 @@
 package calculateDistance;
 
 public class Check {
+    //duonglt
     public static boolean checkWin(int x,int y,int[][] E,int a){
 
         if(x >= 4 && E[x-4][y] == a && E[x-3][y] == a && E[x-2][y] == a && E[x-1][y] == a){

@@ -44,9 +44,9 @@ public  class SelectMove {
             double max = 0;
             for (Point point : A) {
 
-                if(ContinuousATK.isEmpty() && check == 0) {
-                    FinalATK(point, E, 2);
-                }
+                // if(ContinuousATK.isEmpty() && check == 0) {
+                //     FinalATK(point, E, 2);
+                // }
                 if(!ContinuousATK.isEmpty()){
                     check = 1;
                 }

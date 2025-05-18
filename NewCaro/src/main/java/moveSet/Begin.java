@@ -3,12 +3,12 @@ package moveSet;
 import machineMoveChoice.SelectMove;
 
 public class Begin {
+    //duonglt
     public static int firstLoc_x = 0;
     public static int firstLoc_y = 0;
     private static double branch = 0.0;
 
     public static Point BeginMove() {
-
         Point tmp = new Point(0, 0);
         if (SelectMove.startMove == 1 && SelectMove.E[7][7] == 2) {
             firstLoc_x = 7;
