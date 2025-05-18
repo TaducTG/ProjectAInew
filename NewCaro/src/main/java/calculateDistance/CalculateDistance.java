@@ -1,6 +1,6 @@
 package calculateDistance;
 
-import static moveSet.ATKMove.*;
+
 import static moveSet.Advance.checkSurround;
 import static moveSet.Advance.findBestloc;
 import static moveSet.Move.*;
@@ -8,12 +8,16 @@ import static moveSet.Move.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import machineMoveChoice.ContinuousATK;
+import machineMoveChoice.SelectMove;
 import moveSet.Point;
 public class CalculateDistance {
+    public static int turz = 0;
     public static List<Point> CanATK = new ArrayList<>();
     public static List<Point> A = new ArrayList<>();
     public static int mark = 0;
-    public static int cal(Point tmp, int[][] E, int a) {
+    public static int cal(Point tmp, int[][] E, int a,int turn) {
+        turz = turn;
         int score = 0;
         int b = 0;
         if(a == 1){
@@ -29,6 +33,7 @@ public class CalculateDistance {
         int gamma = checkSurround(tmp, E, 3); // dùng để check với X trong lượt của O (xét khả năng tấn công)
 
         int epsilon = findBestloc(tmp, E, 2);
+
         // ATK
         // Hàng ngang
         score += checkHangNgang(tmp, E, a);
@@ -49,9 +54,7 @@ public class CalculateDistance {
         // Đường chéo 2
         score += checkDuongcheo2(tmp, E, b);
 
-        if (necessaryATK(tmp, E) == 0 && score < 5000) {
-            score = score / 4;
-        }
+
         if (a == 1) {
             if (score < 50000) {
                 if(alpha != 0){
@@ -78,6 +81,9 @@ public class CalculateDistance {
 
                 //      1) Đánh các nước kết hợp 3,4 hoặc nước 4 chưa bị chặn
                 if (beta == 1 || beta == 2 || beta == 3 ) {
+//                    System.out.println(tmp.getX() + " " + tmp.getY());
+//                    System.out.println(beta);
+
                     // beta = 1 : nước 4 bị chặn 1 đầu
                     // beta = 2 : nuớc 3 chưa bị chặn 2 đầu
                     // beta = 3 : nước kết hợp 3 + 4
@@ -124,16 +130,20 @@ public class CalculateDistance {
                 score += epsilon;
             }
         }
-
+        if(turn == 1 && score >= 50000){
+            ContinuousATK.ContinuousATK.clear();
+            ContinuousATK.ContinuousATK2.clear();
+            SelectMove.check = 0;
+        }
         tmp.setScore(score);
         return score;
     }
     public static void firstLayer(int i, int j, int[][] E) {
-        int[][] D = new int[15][15];
+        int[][] D = new int[20][20];
 
         // Đặt giá trị cho mảng D dựa trên trạng thái của E
-        for (int a = 0; a < 15; a++) {
-            for (int b = 0; b < 15; b++) {
+        for (int a = 0; a < 20; a++) {
+            for (int b = 0; b < 20; b++) {
                 if (E[a][b] == 1 || E[a][b] == 2) {
                     D[a][b] = 1;
                 } else {
@@ -145,7 +155,7 @@ public class CalculateDistance {
         // Kiểm tra vùng xung quanh (các ô từ (i-1, j-1) đến (i+1, j+1))
         for (int a = i - 1; a < i + 2; a++) {
             for (int b = j - 1; b < j + 2; b++) {
-                if (a >= 0 && b >= 0 && a <= 14 && b <= 14 && E[a][b] == 0 && D[a][b] == 0) {
+                if (a >= 0 && b >= 0 && a <= 20 && b <= 20 && E[a][b] == 0 && D[a][b] == 0) {
                     Point tmp = new Point(a, b,0,0);
                     A.add(tmp);
                     D[a][b] = 1;  // Đánh dấu ô đã được xét
@@ -156,11 +166,11 @@ public class CalculateDistance {
 
     // Hàm secondLayer tương đương với C++ code
     public static void secondLayer(int i, int j, int[][] E) {
-        int[][] D = new int[15][15];
+        int[][] D = new int[20][20];
 
         // Đặt giá trị cho mảng D dựa trên trạng thái của E
-        for (int a = 0; a < 15; a++) {
-            for (int b = 0; b < 15; b++) {
+        for (int a = 0; a < 20; a++) {
+            for (int b = 0; b < 20; b++) {
                 if (E[a][b] == 1 || E[a][b] == 2) {
                     D[a][b] = 1;
                 } else {
@@ -172,7 +182,7 @@ public class CalculateDistance {
         // Kiểm tra vùng xung quanh mở rộng (các ô từ (i-6, j-6) đến (i+6, j+6))
         for (int a = i - 5; a < i + 5; a++) {
             for (int b = j - 5; b < j + 5; b++) {
-                if (a >= 0 && b >= 0 && a <= 14 && b <= 14 && E[a][b] == 0 && D[a][b] == 0) {
+                if (a >= 0 && b >= 0 && a <= 20 && b <= 20 && E[a][b] == 0 && D[a][b] == 0) {
                     Point tmp = new Point(a, b,0,0);
                     A.add(tmp);
                     D[a][b] = 1;  // Đánh dấu ô đã được xét

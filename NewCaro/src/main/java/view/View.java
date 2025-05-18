@@ -2,6 +2,7 @@ package view;
 import javax.swing.*;
 
 import calculateDistance.Check;
+import machineMoveChoice.ContinuousATK;
 import machineMoveChoice.SelectMove;
 
 import static machineMoveChoice.SelectMove.*;
@@ -14,7 +15,7 @@ public class View extends JFrame implements ActionListener {
     Color background_cl = Color.white;
     Color x_cl = Color.red;
     Color y_cl = Color.blue;
-    int column = 15, row = 15, count = 0;
+    int column = 20, row = 20, count = 0;
     int  Undo[][] = new int[column+2][row+2];
     boolean tick[][] = new boolean[column + 2][row + 2];
     int Size = 0;
@@ -65,12 +66,50 @@ public class View extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         undo_bt.setEnabled(true);
 
-        if(SelectMove.turn % 2 == 1){
-            b[7][7].setText("O");
-            b[7][7].setForeground(y_cl);
-            b[7][7].setFont(new Font("Arial", Font.BOLD, 24));
-            tick[7][7] = false;
-            SelectMove.E[7][7] = 2;
+        if(SelectMove.turn %1 == 0){
+           b[7][7].setText("O");
+           b[7][7].setForeground(y_cl);
+           b[7][7].setFont(new Font("Arial", Font.BOLD, 24));
+           tick[7][7] = false;
+           SelectMove.E[7][7] = 2;
+ //           Các vị trí với "O" (số 2)
+            int[][] oPositions = {
+//                    {4, 2}, {5, 2}, {9, 3}, {6, 4}, {8, 4}, {5, 5}, {7, 5}, {10, 5},
+//                    {7, 6}, {8, 6}, {10, 7}, {9, 8},{7,11}
+//                    {7,7},{7,8},{7,9}
+            };
+
+// Các vị trí với "X" (số 1)
+            int[][] xPositions = {
+//                    {7, 2}, {5, 3}, {6, 3}, {10, 2}, {9, 4}, {8, 5}, {9, 6}, {3, 7},
+//                    {8, 7}, {9, 7}, {10, 11}, {7, 13}, {8, 11}, {9, 11}
+//                 {7,4}
+            };
+
+// Cập nhật bảng với giá trị "O" và "X"
+            for (int i = 0; i < oPositions.length; i++) {
+                int row = oPositions[i][0];
+                int col = oPositions[i][1];
+                b[row][col].setText("O");
+                b[row][col].setForeground(y_cl);
+                b[row][col].setFont(new Font("Arial", Font.BOLD, 24));
+                tick[row][col] = false;
+                SelectMove.E[row][col] = 2; // O là số 2
+            }
+
+            for (int i = 0; i < xPositions.length; i++) {
+                int row = xPositions[i][0];
+                int col = xPositions[i][1];
+                b[row][col].setText("X");
+                b[row][col].setForeground(x_cl); // Bạn có thể thay đổi màu nếu cần
+                b[row][col].setFont(new Font("Arial", Font.BOLD, 24));
+                tick[row][col] = false;
+                SelectMove.E[row][col] = 1; // X là số 1
+            }
+
+
+
+
         }
     }
     public void addPoint(int i, int j) {
@@ -86,7 +125,7 @@ public class View extends JFrame implements ActionListener {
         b[i][j].setForeground(x_cl);
         b[i][j].setFont(new Font("Arial", Font.BOLD, 24));
         tick[i][j] = false;
-        if(Check.CheckWin(i,j,E,1)){
+        if(Check.checkWin(i,j,E,1)){
             System.out.println("check");
             JFrame frame = new JFrame();
             frame.setSize(300, 150);
@@ -125,7 +164,7 @@ public class View extends JFrame implements ActionListener {
         b[locx][locy].setBackground(null);
         tick[locx][locy] = false;
         lb.setText("Lượt Của X");
-        if(Check.CheckWin(locx,locy,E,2)){
+        if(Check.checkWin(locx,locy,E,2)){
             System.out.println("check");
             frame = new JFrame();
             frame.setSize(300, 150);
@@ -156,7 +195,7 @@ public class View extends JFrame implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand() == "New Game" || e.getActionCommand() == "Restart") {
+        if (e.getActionCommand().equals("New Game") || e.getActionCommand().equals("Restart")) {
             for (int i = 0; i < 20; i++) {
                 for (int j = 0; j < 20; j++) {
                     SelectMove.E[i][j] = 0;
@@ -167,12 +206,15 @@ public class View extends JFrame implements ActionListener {
             if(frame != null){
                 frame.setVisible(false);
             }
+            ContinuousATK.ContinuousATK2.clear();
+            ContinuousATK.ContinuousATK.clear();
+            SelectMove.check = 0;
             new View("GAME DEMO");
             this.dispose();
-        } else if (e.getActionCommand() == "Exit" || e.getActionCommand() == "Quit") {
+        } else if (e.getActionCommand().equals("Exit") || e.getActionCommand().equals("Quit")) {
             System.exit(0);
         }
-        else if(e.getActionCommand() == "Undo") {
+        else if(e.getActionCommand().equals("Undo")) {
 
             if(SelectMove.startMove == 0){
                 return;
