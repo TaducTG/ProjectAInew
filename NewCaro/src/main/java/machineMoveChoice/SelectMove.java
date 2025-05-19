@@ -43,20 +43,14 @@ public  class SelectMove {
         if(tmp.getX() == 0 && tmp.getY() == 0){
             double max = 0;
             for (Point point : A) {
-                if(ContinuousATK.isEmpty() && check == 0) {
-                    FinalATK(point, E, 2);
-                }
-//                if(!ContinuousATK.isEmpty()){
-//                   for(Point tmp2 : ContinuousATK){
-//                       System.out.print(tmp2.getX() + " " + tmp2.getY()+" "+tmp2.getRank() + "__");
-//                    }
-//                }
 
+                // if(ContinuousATK.isEmpty() && check == 0) {
+                //     FinalATK(point, E, 2);
+                // }
                 if(!ContinuousATK.isEmpty()){
                     check = 1;
                 }
                 point.setScore(cal(point, E, 2,1));
-
                 if(point.getScore() > map[point.getX()][point.getY()]){
                     map[point.getX()][point.getY()] = point.getScore();
                 }
@@ -171,23 +165,17 @@ public  class SelectMove {
                 }
                 E[B.get(k).getX()][B.get(k).getY()] = 0; // Xóa giả định
             }
-            if(!ContinuousATK.isEmpty()){
-                System.out.println("check");
-            }
+
 
             if(!ContinuousATK.isEmpty()){
-//                for(int i =0;i<20;i++){
-//                    for (int j =0;j<20;j++){
-//                        System.out.print(E[i][j] + " ");
-//                    }
-//                    System.out.println();
-//                }
+
                 for(Point tmp2 : ContinuousATK){
-                    System.out.print("(" + tmp2.getX()+" " +tmp2.getY()+" " +tmp2.getRank()+ ")" + " ");
+                    System.out.print("(" + tmp2.getX()+" " +tmp2.getY() + ")" + " ");
                 }
                 if(E[ContinuousATK.get(0).getX()][ContinuousATK.get(0).getY()] != 0){
                     ContinuousATK.removeFirst();
                 }
+
                 if (!ContinuousATK.isEmpty()) {
                     E[ContinuousATK.get(0).getX()][ContinuousATK.get(0).getY()] = 2;
                     locx = ContinuousATK.get(0).getX();
