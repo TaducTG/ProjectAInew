@@ -74,16 +74,21 @@ public class View extends JFrame implements ActionListener {
 //            SelectMove.E[7][7] = 2;
             // Các vị trí với "O" (số 2)
             int[][] oPositions = {
-//                    {4, 2}, {5, 2}, {9, 3}, {6, 4}, {8, 4}, {5, 5}, {7, 5}, {10, 5},
-//                    {7, 6}, {8, 6}, {10, 7}, {9, 8},{7,11}
-                    {7,7},{7,8},{7,9}
+                    {4, 2}, {5, 2}, {9, 3}, {6, 4}, {8, 4}, {5, 5}, {7, 5}, {10, 5},
+                    {7, 6}, {8, 6}, {10, 7}, {9, 8},{7,11},
+                    {7,4},{6,5}
+                    //{7,7}
+                    //{6,6},{7,6},{8,6},{6,4}
             };
 
 // Các vị trí với "X" (số 1)
             int[][] xPositions = {
-//                    {7, 2}, {5, 3}, {6, 3}, {10, 2}, {9, 4}, {8, 5}, {9, 6}, {3, 7},
-//                    {8, 7}, {9, 7}, {10, 11}, {7, 13}, {8, 11}, {9, 11}
-                    {7,4}
+                    {7, 2}, {5, 3}, {6, 3}, {10, 2}, {9, 4}, {8, 5}, {9, 6}, {3, 7},
+                    {8, 7}, {9, 7}, {10, 11}, {7, 13}, {8, 11}, {9, 11},
+                    {6,6},{7,7}
+
+                    //{7,4}
+                    //{6,10},{7,8},{7,9},{7,10},{8,7},{8,9},{9,8},{9,9}
             };
 
 // Cập nhật bảng với giá trị "O" và "X"
@@ -208,6 +213,7 @@ public class View extends JFrame implements ActionListener {
             }
             ContinuousATK.ContinuousATK2.clear();
             ContinuousATK.ContinuousATK.clear();
+            moveSet.Begin.branch = 0.0;
             SelectMove.check = 0;
             new View("GAME DEMO");
             this.dispose();

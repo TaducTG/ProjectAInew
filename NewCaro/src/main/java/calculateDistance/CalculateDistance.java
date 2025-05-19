@@ -17,7 +17,7 @@ public class CalculateDistance {
     public static List<Point> A = new ArrayList<>();
     public static int mark = 0;
     public static int cal(Point tmp, int[][] E, int a,int turn) {
-        turz = turn;
+        //turz = turn;
         int score = 0;
         int b = 0;
         if(a == 1){
@@ -88,11 +88,13 @@ public class CalculateDistance {
                     // beta = 2 : nuớc 3 chưa bị chặn 2 đầu
                     // beta = 3 : nước kết hợp 3 + 4
                     score += 40000;
+
                     return score; // Dừng hàm ngay khi có chiến thắng tuyệt đối
                 }
 
                 //      2) Chặn các nước kết hợp 3,4 hoặc nước 3 chưa bị chặn của địch
                 if(gamma == 1 || gamma == 2 || gamma == 3){
+                    //System.out.println(gamma);
                     // gamma được xét sau khi giả sử X đánh vào vị trí xét
                         // gamma = 1 : nước 4 bị chặn 1 đầu
                         // gamma = 2 : nuớc 3 chưa bị chặn 2 đầu

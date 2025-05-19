@@ -5,7 +5,7 @@ import machineMoveChoice.SelectMove;
 public class Begin {
     public static int firstLoc_x = 0;
     public static int firstLoc_y = 0;
-    private static double branch = 0.0;
+    public static double branch = 0.0;
 
     public static Point BeginMove() {
 

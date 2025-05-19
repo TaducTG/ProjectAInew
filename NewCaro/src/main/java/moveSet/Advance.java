@@ -17,6 +17,11 @@ public class Advance {
             b = 2;
             c = 3;
         }
+        else if(a == 6){
+            a = 2;
+            b = 1;
+            c = 6;
+        }
         int x = tmp.x;
         int y = tmp.y;
         int row;
@@ -81,6 +86,12 @@ public class Advance {
                 }
             }
         }
+//        if(c == 6 && x == 4 && y == 6){
+//            System.out.println(rowright);
+//            System.out.println(blockright);
+//            System.out.println(spaceright);
+//            System.out.println("****");
+//        }
         if(x-1>=0 && E[x-1][y] != 0 || E[x+1][y] != 0) {
             row = rowleft + rowright;
             if(row == 4){
@@ -110,15 +121,17 @@ public class Advance {
             if(row == 3 && blockleft == 1 && blockright == 1 && spaceleft + spaceright == 0){
                 //0
             }
-            if(row == 3 && blockleft == 1 && blockright == 0 && spaceleft == 0){
+            if(row == 3 && blockleft == 1 && blockright == 0 && spaceleft <= 1){
                 pushATK_4++;
                 //Prep (nuoc 4 chan 1 dau)
             }
-            if(row == 3 && blockleft == 0 && blockright == 1 && spaceright == 0){
+            if(row == 3 && blockleft == 0 && blockright == 1 && spaceright <= 1){
+//                System.out.println(tmp.getX() + "," + tmp.getY());
                 pushATK_4++;
                 //Prep (nuoc 4 chan 1 dau)
             }
 //            if(row == 3 && blockleft + blockright == 1 && spaceright + spaceleft == 2){
+//                //System.out.println(tmp.getX() + "," + tmp.getY());
 //                pushATK_4++;
 //                //Prep (nuoc 4 chan 1 dau)
 //            }
@@ -131,7 +144,7 @@ public class Advance {
                 //(nuoc 3 lien tiep)
             }
         }
-        else if(x-1>=0 &&y-1>=0 &&E[x-1][y-1] == 0 && E[x+1][y+1] == 0){
+        else if(x-1>=0 && E[x-1][y] == 0 && E[x+1][y] == 0){
             if(rowright >= 2 || rowleft >= 2){
                 if(rowright == 2){
                     if((blockright == 0 || (blright == 1 && spaceright == 1)) && spaceright <= 2){
@@ -149,7 +162,7 @@ public class Advance {
                 }
                 if(rowright == 3 && blockright == 1 && spaceright == 1){
                     pushATK_4++;
-
+                    //if(a==2) System.out.println(tmp.getX() + "," + tmp.getY());
                 }
             }
         }
@@ -214,12 +227,12 @@ public class Advance {
                 //9999
             }
             if(row == 3 && blockleft == 0 && blockright == 0 && spaceleft + spaceright <= 1){
-                System.out.println(tmp.getX()+" " + tmp.getY());
+                //System.out.println(tmp.getX()+" " + tmp.getY());
                 nearWin++;
                 //9999*
             }
             if(row == 3 && blockleft == 0 && blockright == 0 && spacecount == 2 && spaceleft + spaceright == 2){
-                System.out.println(tmp.getX()+" " + tmp.getY());
+                //System.out.println(tmp.getX()+" " + tmp.getY());
                 nearWin++;
                 //9999*
             }
@@ -260,7 +273,7 @@ public class Advance {
                 //(nuoc 3 lien tiep)
             }
         }
-        else if(x-1>=0 &&y-1>=0 &&E[x-1][y-1] == 0 && E[x+1][y+1] == 0){
+        else if(y-1>=0 &&E[x][y-1] == 0 && E[x][y+1] == 0){
             if(rowright >= 2 || rowleft >= 2){
                 if(rowright == 2){
                     if((blockright == 0 || (blright == 1 && spaceright == 1)) && spaceright <= 2){
@@ -505,7 +518,7 @@ public class Advance {
                 //(nuoc 3 lien tiep)
             }
         }
-        else if(x-1>=0 &&y-1>=0 &&E[x-1][y-1] == 0 && E[x+1][y+1] == 0){
+        else if(x-1>=0 &&y-1>=0 &&E[x+1][y-1] == 0 && E[x-1][y+1] == 0){
             if(rowright >= 2 || rowleft >= 2){
                 if(rowright == 2){
                     if((blockright == 0 || (blright == 1 && spaceright == 1)) && spaceright <= 2){
@@ -525,7 +538,6 @@ public class Advance {
                 }
             }
         }
-
         // xét các TH
         if(c == 3){
             if(nearWin == 1){
