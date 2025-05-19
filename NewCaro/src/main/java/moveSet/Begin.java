@@ -6,7 +6,7 @@ public class Begin {
     //duonglt
     public static int firstLoc_x = 0;
     public static int firstLoc_y = 0;
-    private static double branch = 0.0;
+    public static double branch = 0.0;
 
     public static Point BeginMove() {
         Point tmp = new Point(0, 0);
