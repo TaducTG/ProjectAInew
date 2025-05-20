@@ -40,13 +40,14 @@ public  class SelectMove {
             }
         }
         Point tmp = Begin.BeginMove();
+        tmp = new Point(0,0);
         if(tmp.getX() == 0 && tmp.getY() == 0){
             double max = 0;
             for (Point point : A) {
 
-                // if(ContinuousATK.isEmpty() && check == 0) {
-                //     FinalATK(point, E, 2);
-                // }
+                 if(ContinuousATK.isEmpty() && check == 0) {
+                     FinalATK(point, E, 2);
+                 }
                 if(!ContinuousATK.isEmpty()){
                     check = 1;
                 }
@@ -168,9 +169,10 @@ public  class SelectMove {
 
 
             if(!ContinuousATK.isEmpty()){
-
-                for(Point tmp2 : ContinuousATK){
-                    System.out.print("(" + tmp2.getX()+" " +tmp2.getY() + ")" + " ");
+                if (ContinuousATK.size() <= 2) {
+                    for(Point tmp2 : ContinuousATK){
+                        System.out.print("(" + tmp2.getX()+ " " +tmp2.getY()+ " " +tmp2.getRank() + ") ");
+                    }
                 }
                 if(E[ContinuousATK.get(0).getX()][ContinuousATK.get(0).getY()] != 0){
                     ContinuousATK.removeFirst();
@@ -182,6 +184,9 @@ public  class SelectMove {
                     locy = ContinuousATK.get(0).getY();
                     System.out.println(ContinuousATK.get(0).getX() + " " + ContinuousATK.get(0).getY()  + "****");
                     ContinuousATK.removeFirst();
+                }
+                for(Point tmp2 : ContinuousATK){
+                    System.out.print("(" + tmp2.getX()+ " " +tmp2.getY()+ " " +tmp2.getRank() + ") ");
                 }
             }
             else if(!G.isEmpty()){
