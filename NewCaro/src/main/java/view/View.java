@@ -12,6 +12,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class View extends JFrame implements ActionListener {
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
     Color background_cl = Color.white;
     Color x_cl = Color.red;
     Color y_cl = Color.blue;
@@ -67,24 +71,36 @@ public class View extends JFrame implements ActionListener {
         undo_bt.setEnabled(true);
 
         if(SelectMove.turn %1 == 0){
-           b[7][7].setText("O");
-           b[7][7].setForeground(y_cl);
-           b[7][7].setFont(new Font("Arial", Font.BOLD, 24));
-           tick[7][7] = false;
-           SelectMove.E[7][7] = 2;
+//           b[7][7].setText("O");
+//           b[7][7].setForeground(y_cl);
+//           b[7][7].setFont(new Font("Arial", Font.BOLD, 24));
+//           tick[7][7] = false;
+//           SelectMove.E[7][7] = 2;
  //           Các vị trí với "O" (số 2)
             int[][] oPositions = {
+                    //Test 1
 //                    {4, 2}, {5, 2}, {9, 3}, {6, 4}, {8, 4}, {5, 5}, {7, 5}, {10, 5},
-//                    {7, 6}, {8, 6}, {10, 7}, {9, 8},{7,11}
-//                    {7,7},{7,8},{7,9}
+//                    {7, 6}, {8, 6}, {10, 7}, {9, 8},{7,11},
+//                    {7,4},{6,5}
+                    //Test 2
+//                    {7,7},{7,8},{6,8},{8,8},{7,9},{6,9},{5,9}
+                    //Test 3
+                    {7,10},{8,10},{8,11},{9,9},{9,10},{9,11},{10,8}
+
             };
 
 // Các vị trí với "X" (số 1)
             int[][] xPositions = {
+                    //Test 1
 //                    {7, 2}, {5, 3}, {6, 3}, {10, 2}, {9, 4}, {8, 5}, {9, 6}, {3, 7},
-//                    {8, 7}, {9, 7}, {10, 11}, {7, 13}, {8, 11}, {9, 11}
-//                 {7,4}
+//                    {8, 7}, {9, 7}, {10, 11}, {7, 13}, {8, 11}, {9, 11},
+//                    {6,6},{7,7}
+                    //Test 2
+//                    {5,6},{4,7},{8,7},{8,9},{7,10},{4,10}
+                    //Test 3
+                    {7,7},{7,8},{7,9},{6,11},{10,10},{9,12}
             };
+
 
 // Cập nhật bảng với giá trị "O" và "X"
             for (int i = 0; i < oPositions.length; i++) {
@@ -175,7 +191,6 @@ public class View extends JFrame implements ActionListener {
             JLabel label = new JLabel("You Have Lose!", SwingConstants.CENTER);
             label.setFont(new Font("Arial", Font.BOLD, 24));
             frame.add(label, BorderLayout.CENTER);
-
             // Tạo panel chứa 2 nút
             JPanel buttonPanel = new JPanel();
             JButton restartButton = new JButton("Restart");
@@ -183,7 +198,6 @@ public class View extends JFrame implements ActionListener {
             JButton quitButton = new JButton("Quit");
             quitButton.addActionListener(this);
             buttonPanel.add(restartButton);
-
             buttonPanel.add(quitButton);
             frame.add(buttonPanel, BorderLayout.SOUTH);
             for (int k = 0; k < 20; k++) {
@@ -229,17 +243,26 @@ public class View extends JFrame implements ActionListener {
                         b[i][j].setForeground(Color.lightGray);
                         b[i][j].setFont(new Font("Arial", Font.BOLD, 18));
                         tick[i][j] = true;
-
                     }
                 }
             }
             SelectMove.startMove -= 1;
-
         }
         else if(e.getActionCommand() == "Show") {
             for (int i = 0; i < column+2; i++) {
                 for (int j = 0; j < row +2; j++) {
-                    System.out.printf("%6.0f ",SelectMove.map[i][j]);
+                    if (E[i][j] == 0) {
+                        System.out.printf("%6.0f ",SelectMove.map[i][j]);
+                    }
+                    else if(E[i][j] == 1){
+                        System.out.printf(ANSI_RED + "%6.0f " + ANSI_RESET, SelectMove.map[i][j]);
+                    }
+                    else{
+                        System.out.printf(ANSI_BLUE + "%6.0f " + ANSI_RESET, SelectMove.map[i][j]);
+//                        if(SelectMove.map[i][j] != 0){
+//                            System.out.printf(ANSI_YELLOW + "%6.0f " + ANSI_RESET, SelectMove.map[i][j]);
+//                        }
+                    }
                 }
                 System.out.println();
             }

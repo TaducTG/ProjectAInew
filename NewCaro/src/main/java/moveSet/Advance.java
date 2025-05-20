@@ -12,33 +12,32 @@ public class Advance {
         else if(a == 2){
             b = 1;
         }
-        else if(a == 3){
+        else if(a == 3){ //a == 3 là xét cho X trong lượt của O
             a = 1;
             b = 2;
             c = 3;
         }
-        else if(a == 6){
-            a = 2;
-            b = 1;
-            c = 6;
-        }
+        // a == 1 là X <=> b là O
+        // a == 2 là O <=> b là X
+
         int x = tmp.x;
         int y = tmp.y;
-        int row;
-        int rowleft = 0;
-        int rowright = 0;
-        int blockleft = 0;
-        int blockright = 0;
-        int spaceleft = 0;
-        int spaceright = 0;
-        int blleft = 0;
-        int blright = 0;
-        int spacecount = 0;
+        int rowleft = 0; //đếm các giống với a ở bên trái
+        int rowright = 0; //đếm các giống với a ở bên phải
+        int row; // bằng rowleft + rowright trong trường hợp trái và phải của tmp không là ô trống
+        int blockleft = 0; // đếm ô bị chặn ngay cạnh bên trái
+        int blockright = 0; // đếm ô bị chặn ngay cạnh bên phải
+        int spaceleft = 0;  // đếm ô trống bên trái thỏa mãn ngay sau đó là a
+        int spaceright = 0; // đếm ô trống bên phải thỏa mãn ngay sau đó là a
+        int blleft = 0; // đếm ô bị chặn bên trái nhưng có ô trống bên cạnh
+        int blright = 0; // đếm ô bị chặn bên phải nhưng có ô trống bên cạnh
+        int spacecount = 0; // đếm ô trống thỏa mãn sau đó là ô trống
+                            // nếu spacecount + 1 thì spaceleft hoặc spaceright cũng sẽ + 1
 
-        int absoluteWin = 0;
-        int nearWin = 0;
-        int pushATK_3 = 0;
-        int pushATK_4 = 0;
+        int absoluteWin = 0; // đếm trường hợp sau khi đánh tại tmp sẽ thắng luôn
+        int nearWin = 0; // đếm trường hợp sau khi đánh tại tmp sẽ có nước 4 chưa bị chặn
+        int pushATK_3 = 0; // đếm trường hợp sau khi đánh tại tmp sẽ có nước 3 chưa bị chặn
+        int pushATK_4 = 0; // đếm trường hợp sau khi đánh tại tmp sẽ có nước 4 bị chặn 1 đầu
         int close = 0;
         //hang ngang
 
@@ -86,33 +85,28 @@ public class Advance {
                 }
             }
         }
-//        if(c == 6 && x == 4 && y == 6){
-//            System.out.println(rowright);
-//            System.out.println(blockright);
-//            System.out.println(spaceright);
-//            System.out.println("****");
-//        }
-        if(x-1>=0 && E[x-1][y] != 0 || E[x+1][y] != 0) {
+        //E là vị trí xét đánh (tmp)
+        //? là vị trí bât kỳ ( _ ; O ; X )
+        if(x-1>=0 && E[x-1][y] != 0 || E[x+1][y] != 0) { // xét TH cả 1 trong 2 bên của tmp khác ô trống
             row = rowleft + rowright;
             if(row == 4){
+                // Dạng ?EOOOO?
                 absoluteWin++;
                 //9999
             }
             if(row == 3 && blockleft == 0 && blockright == 0 && spaceleft + spaceright == 3){
                 close++;
-                //9999*
+                // Dạng _EO_OOE_
             }
             if(row == 3 && blockleft == 0 && blockright == 0 && spaceleft + spaceright <= 1){
                 nearWin++;
+                // Dạng _EOOO_X
+                //      X_EOOO_X
                 //9999*
             }
             if(row == 3 && blockleft == 0 && blockright == 0 && spacecount == 2 && spaceleft + spaceright == 2){
                 nearWin++;
-                //9999*
-            }
-
-            if(row == 3 && blleft + blright == 2 && spaceleft + spaceright == 0){
-                nearWin++;
+                // Dạng _EOOO_
                 //9999*
             }
             if(row <= 1 || (row == 2 && blockleft + blockright == 2)){
@@ -122,11 +116,14 @@ public class Advance {
                 //0
             }
             if(row == 3 && blockleft == 1 && blockright == 0 && spaceleft <= 1){
+                //Dạng XOOOE_? hoặc XOOOE__
+                //Dạng XOOO_E_
                 pushATK_4++;
                 //Prep (nuoc 4 chan 1 dau)
             }
             if(row == 3 && blockleft == 0 && blockright == 1 && spaceright <= 1){
-//                System.out.println(tmp.getX() + "," + tmp.getY());
+                //Dạng __EOOOX  hoặc ?_EOOOX
+                //Dạng ?E_OOOX
                 pushATK_4++;
                 //Prep (nuoc 4 chan 1 dau)
             }
@@ -136,10 +133,14 @@ public class Advance {
 //                //Prep (nuoc 4 chan 1 dau)
 //            }
             if(row == 3 && blleft + blright == 2 && spaceleft + spaceright == 1){
+                // Dạng X_OOO_E_X
                 pushATK_4++;
                 //Prep (nuoc 4 chan 1 dau)
             }
             if(row == 2 && spaceleft + spaceright <= 3 && (blockleft + blockright == 0 || blleft + blright == 1)){
+                // Dang _OO_E_
+                // Dang _OOE__
+                // Dang _OO_E_X ; X_OO_E_
                 pushATK_3++;
                 //(nuoc 3 lien tiep)
             }
@@ -238,11 +239,6 @@ public class Advance {
             }
             if(row == 3 && blockleft == 0 && blockright == 0 && spaceleft + spaceright == 3){
                 close++;
-                //9999*
-            }
-            if(row == 3 && blleft + blright == 2 && spaceleft + spaceright == 0){
-
-                nearWin++;
                 //9999*
             }
             if(row <= 1 || (row == 2 && blockleft + blockright == 2)){
@@ -363,10 +359,6 @@ public class Advance {
                 close++;
                 //9999*
             }
-            if(row == 3 && blleft + blright == 2 && spaceleft + spaceright == 0){
-                nearWin++;
-                //9999*
-            }
             if(row <= 1 || (row == 2 && blockleft + blockright == 2)){
                 //0
             }
@@ -485,10 +477,6 @@ public class Advance {
             }
             if(row == 3 && blockleft == 0 && blockright == 0 && spaceleft + spaceright == 3){
                 close++;
-                //9999*
-            }
-            if(row == 3 && blleft + blright == 2 && spaceleft + spaceright == 0){
-                nearWin++;
                 //9999*
             }
             if(row <= 1 || (row == 2 && blockleft + blockright == 2)){
