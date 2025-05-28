@@ -15,7 +15,7 @@ import java.util.List;
 
 public class ContinuousATK {
     public static int close = 0;
-    static int[][] E1 = new int[20][20];
+    static int[][] E1 = new int[28][28];
     public static List<Point> ContinuousATK = new ArrayList<>();
     public static List<Point> ContinuousATK2 = new ArrayList<>();
     public static void FinalATK(Point tmp, int[][] E, int a) {

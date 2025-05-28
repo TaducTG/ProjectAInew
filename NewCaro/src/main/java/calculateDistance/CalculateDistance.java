@@ -1,8 +1,7 @@
 package calculateDistance;
 
 
-import static moveSet.Advance.checkSurround;
-import static moveSet.Advance.findBestloc;
+import static moveSet.Advance.*;
 import static moveSet.Move.*;
 
 import java.util.ArrayList;
@@ -32,7 +31,7 @@ public class CalculateDistance {
 
         int gamma = checkSurround(tmp, E, 3); // dùng để check với X trong lượt của O (xét khả năng tấn công)
 
-        int epsilon = findBestloc(tmp, E, 2);
+        int epsilon = findBestloc2(tmp, E, 2);
 
         // ATK
         // Hàng ngang
@@ -53,7 +52,9 @@ public class CalculateDistance {
         score += checkDuongcheo1(tmp, E, b);
         // Đường chéo 2
         score += checkDuongcheo2(tmp, E, b);
-
+        if(a == 2 && beta ==7){
+            score = 0;
+        }
 
         if (a == 1) {
             if (score < 50000) {
@@ -141,11 +142,12 @@ public class CalculateDistance {
         return score;
     }
     public static void firstLayer(int i, int j, int[][] E) {
-        int[][] D = new int[20][20];
+        //System.out.println("firstLayer: " + i + " " + j);
+        int[][] D = new int[21][21];
 
         // Đặt giá trị cho mảng D dựa trên trạng thái của E
-        for (int a = 0; a < 20; a++) {
-            for (int b = 0; b < 20; b++) {
+        for (int a = 0; a <= 20; a++) {
+            for (int b = 0; b <= 20; b++) {
                 if (E[a][b] == 1 || E[a][b] == 2) {
                     D[a][b] = 1;
                 } else {
@@ -168,11 +170,11 @@ public class CalculateDistance {
 
     // Hàm secondLayer tương đương với C++ code
     public static void secondLayer(int i, int j, int[][] E) {
-        int[][] D = new int[20][20];
+        int[][] D = new int[21][21];
 
         // Đặt giá trị cho mảng D dựa trên trạng thái của E
-        for (int a = 0; a < 20; a++) {
-            for (int b = 0; b < 20; b++) {
+        for (int a = 0; a <= 20; a++) {
+            for (int b = 0; b <= 20; b++) {
                 if (E[a][b] == 1 || E[a][b] == 2) {
                     D[a][b] = 1;
                 } else {

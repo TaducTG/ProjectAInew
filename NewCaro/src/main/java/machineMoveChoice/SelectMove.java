@@ -18,16 +18,16 @@ public  class SelectMove {
     public static int choosemove2;
     public static int choosemove3;
     public static void machineTurn(){
-        for (int i = 0; i < 20; i++) {
-            for (int j = 0; j < 20; j++) {
+        for (int i = 0; i < 25; i++) {
+            for (int j = 0; j < 25; j++) {
                 map[i][j] = 0;
             }
         }
         long startTime = System.nanoTime();
         startMove += 1;
         A.clear();
-        for (int i = 0; i < 15; i++) {
-            for (int j = 0; j < 15; j++) {
+        for (int i = 0; i <= 20; i++) {
+            for (int j = 0; j <= 20; j++) {
                 if (E[i][j] == 1 || E[i][j] == 2) {
                     if (startMove < 2) {
                         firstLayer(i, j, E);
@@ -44,7 +44,6 @@ public  class SelectMove {
         if(tmp.getX() == 0 && tmp.getY() == 0){
             double max = 0;
             for (Point point : A) {
-
                  if(ContinuousATK.isEmpty() && check == 0) {
                      FinalATK(point, E, 2);
                  }
@@ -78,6 +77,8 @@ public  class SelectMove {
                     B.add(item);
                 }
             }
+            //System.out.println(A.size());
+            //System.out.println(B.size());
             // Tiến hành lọc theo alpha-beta pruning
 
             int location = 0;
@@ -208,6 +209,7 @@ public  class SelectMove {
                 System.out.println(B.get(choosemove).getX() + " " + B.get(choosemove).getY() + " " + B.get(choosemove).getScore() +"*");
             }
             else {
+                //System.out.println(B.size());
                 E[B.get(location).getX()][B.get(location).getY()] = 2; // Chọn điểm có điểm số tốt nhất
                 locx = B.get(location).getX();
                 locy = B.get(location).getY();
