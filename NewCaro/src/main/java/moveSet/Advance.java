@@ -39,6 +39,7 @@ public class Advance {
         int pushATK_3 = 0; // đếm trường hợp sau khi đánh tại tmp sẽ có nước 3 chưa bị chặn
         int pushATK_4 = 0; // đếm trường hợp sau khi đánh tại tmp sẽ có nước 4 bị chặn 1 đầu
         int close = 0;
+        int notValid = 0; // đếm trường hợp không nên đánh tại tmp
         //hang ngang
 
         for (int i = x - 1; i > x - 6; i--) {
@@ -109,11 +110,14 @@ public class Advance {
                 // Dạng _EOOO_
                 //9999*
             }
-            if(row <= 1 || (row == 2 && blockleft + blockright == 2)){
-                //0
-            }
             if(row == 3 && blockleft == 1 && blockright == 1 && spaceleft + spaceright == 0){
-                //0
+                notValid ++;
+            }
+            if(row <= 2 && blockleft == 1 && blockright == 1 && spaceleft + spaceright <= 1){
+                notValid ++;
+            }
+            if(row <=2 && (blockleft + blockright == 1 || blleft + blright == 1) && spaceleft+ spaceright ==0){
+                notValid ++;
             }
             if(row == 3 && blockleft == 1 && blockright == 0 && spaceleft <= 1){
                 //Dạng XOOOE_? hoặc XOOOE__
@@ -241,11 +245,14 @@ public class Advance {
                 close++;
                 //9999*
             }
-            if(row <= 1 || (row == 2 && blockleft + blockright == 2)){
-                //0
-            }
             if(row == 3 && blockleft == 1 && blockright == 1 && spaceleft + spaceright == 0){
-                //0
+                notValid ++;
+            }
+            if(row <= 2 && blockleft == 1 && blockright == 1 && spaceleft + spaceright <= 1){
+                notValid ++;
+            }
+            if(row <=2 && (blockleft + blockright == 1 || blleft + blright == 1) && spaceleft+ spaceright ==0){
+                notValid ++;
             }
             if(row == 3 && blockleft == 1 && blockright == 0 && spaceleft <= 1){
                 pushATK_4++;
@@ -359,11 +366,14 @@ public class Advance {
                 close++;
                 //9999*
             }
-            if(row <= 1 || (row == 2 && blockleft + blockright == 2)){
-                //0
-            }
             if(row == 3 && blockleft == 1 && blockright == 1 && spaceleft + spaceright == 0){
-                //0
+                notValid ++;
+            }
+            if(row <= 2 && blockleft == 1 && blockright == 1 && spaceleft + spaceright <= 1){
+                notValid ++;
+            }
+            if(row <=2 && (blockleft + blockright == 1 || blleft + blright == 1) && spaceleft+ spaceright ==0){
+                notValid ++;
             }
             if(row == 3 && blockleft == 1 && blockright == 0 && spaceleft == 0){
                 pushATK_4++;
@@ -479,11 +489,14 @@ public class Advance {
                 close++;
                 //9999*
             }
-            if(row <= 1 || (row == 2 && blockleft + blockright == 2)){
-                //0
-            }
             if(row == 3 && blockleft == 1 && blockright == 1 && spaceleft + spaceright == 0){
-                //0
+                notValid ++;
+            }
+            if(row <= 2 && blockleft == 1 && blockright == 1 && spaceleft + spaceright <= 1){
+                notValid ++;
+            }
+            if(row <=2 && (blockleft + blockright == 1 || blleft + blright == 1) && spaceleft+ spaceright ==0){
+                notValid ++;
             }
             if(row == 3 && blockleft == 1 && blockright == 0 && spaceleft == 0){
                 pushATK_4++;
@@ -559,18 +572,21 @@ public class Advance {
             if (pushATK_4 == 0 && pushATK_3 >= 2) {
                 return 4;
             }
-            if(a == 1 || a == 2){
-                if(pushATK_4 == 1){
-                    return 5;
-                }
-                if(pushATK_3 == 1){
-                    return 6;
-                }
+            if (pushATK_4 == 1) {
+                return 5;
             }
+            if (pushATK_3 == 1) {
+                return 6;
+            }
+            if(a == 2 && notValid >= 2){
+                return 7;
+            }
+
         }
         return 0;
     }
-
+    static int Def = 0;
+    static int Atk = 0;
     public static int findBestloc(Point tmp, int[][] E,int a){
         int x = tmp.x;
         int y = tmp.y;
@@ -955,4 +971,217 @@ public class Advance {
 
         return 0;
     }
+    public static int findBestloc2(Point tmp, int[][] E,int a){
+        int x = tmp.x;
+        int y = tmp.y;
+
+        int block = 0;
+        int row = 0;
+        int check = 0;
+        int check2 = 0;
+        for(int i = 1; i<= 4;i++){
+            if(x>=1 && E[x-1][y] == 0){
+                if(E[x+i][y] == 1){
+                    block+=1;
+                    if(i == 4){
+                        check2 = 1;
+                    }
+                }
+                if(E[x+i][y] == 2){
+                    row +=1;
+                    if(i == 4){
+                        check = 1;
+                    }
+                }
+            }
+        }
+        Count(row, block, check, check2);
+        block = 0;
+        row = 0;
+        check = 0;
+        check2 = 0;
+        for(int i = 1; i<= 4;i++){
+            if(E[x+1][y] == 0 && x-i>=0){
+                if(E[x-i][y] == 1){
+                    block+=1;
+                    if(i == 4){
+                        check2 = 1;
+                    }
+                }
+                if(E[x-i][y] == 2){
+                    row +=1;
+                    if(i == 4){
+                        check = 1;
+                    }
+                }
+            }
+        }
+        Count(row, block, check, check2);
+        block = 0;
+        row = 0;
+        check = 0;
+        check2 = 0;
+        for(int i = 1; i<= 4;i++){
+            if(y>=1 && E[x][y-1] == 0){
+                if(E[x][y+i] == 1){
+                    block+=1;
+                    if(i == 4){
+                        check2 = 1;
+                    }
+                }
+                if(E[x][y+i] == 2){
+                    row +=1;
+                    if(i == 4){
+                        check = 1;
+                    }
+                }
+            }
+        }
+        Count(row, block, check, check2);
+        block = 0;
+        row = 0;
+        check = 0;
+        check2 = 0;
+        for(int i = 1; i <= 4;i++){
+            if(y >= i && E[x][y+1] == 0){
+                if(E[x][y-i] == 1){
+                    block+=1;
+                    if(i == 4){
+                        check2 = 1;
+                    }
+                }
+                if(E[x][y-i] == 2){
+                    row +=1;
+                    if(i == 4){
+                        check = 1;
+                    }
+                }
+            }
+        }
+        Count(row, block, check, check2);
+        block = 0;
+        row = 0;
+        check = 0;
+        check2 = 0;
+        for(int i = 1; i<= 4;i++){
+            if(x >=1 && y >= 1 && E[x-1][y-1] == 0){
+                if(E[x+i][y+i] == 1){
+                    block+=1;
+                    if(i == 4){
+                        check2 = 1;
+                    }
+                }
+                if(E[x+i][y+i] == 2){
+                    row +=1;
+                    if(i == 4){
+                        check = 1;
+                    }
+                }
+            }
+        }
+        Count(row, block, check, check2);
+        block = 0;
+        row = 0;
+        check = 0;
+        check2 = 0;
+        for(int i = 1; i<= 4;i++){
+            if(x >=i && y >= i && E[x+1][y+1] == 0){
+                if(E[x-i][y-i] == 1){
+                    block+=1;
+                    if(i == 4){
+                        check2 = 1;
+                    }
+                }
+                if(E[x-i][y-i] == 2){
+                    row +=1;
+                    if(i == 4){
+                        check = 1;
+                    }
+                }
+            }
+        }
+        Count(row, block, check, check2);
+        block = 0;
+        row = 0;
+        check = 0;
+        check2 = 0;
+
+        for(int i = 1; i<= 4;i++){
+            if(x >=1 && y >= i && E[x-1][y+1] == 0){
+                if(E[x+i][y-i] == 1){
+                    block+=1;
+                    if(i == 4){
+                        check2 = 1;
+                    }
+                }
+                if(E[x+i][y-i] == 2){
+                    row +=1;
+                    if(i == 4){
+                        check = 1;
+                    }
+                }
+            }
+        }
+        Count(row, block, check, check2);
+        block = 0;
+        row = 0;
+        check = 0;
+        check2 = 0;
+        for(int i = 1; i<= 4;i++){
+            if(x >= i && y >= 1 && E[x+1][y-1] == 0){
+                if(E[x-i][y+i] == 1){
+                    block+=1;
+                    if(i == 4){
+                        check2 = 1;
+                    }
+                }
+                if(E[x-i][y+i] == 2){
+                    row +=1;
+                    if(i == 4){
+                        check = 1;
+                    }
+                }
+            }
+        }
+        Count(row, block, check, check2);
+        block = 0;
+        row = 0;
+        check = 0;
+        check2 = 0;
+
+        int c = 30*Atk + 20*Def;
+        Atk = 0;
+        Def = 0;
+        return c;
+    }
+    public static void Count(int row,int block,int check,int check2){
+        if(row == 0){
+            if(block == 1){
+                Def+=1;
+            }
+            if(block == 2){
+                Def+=2;
+            }
+        }
+        if(row == 1 && check == 1){
+            if(block >= 1){
+                Def+=1;
+            }
+        }
+
+        if(block == 0){
+            if(row == 1){
+                Atk+=1;
+            }
+            if(row == 2){
+                Atk+=2;
+            }
+        }
+        if(block == 1 && check2 == 1){
+            if(row >= 1){
+                Atk+=1;
+            }
+        }
+    }
 }
+

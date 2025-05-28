@@ -85,7 +85,7 @@ public class View extends JFrame implements ActionListener {
                     //Test 2
 //                    {7,7},{7,8},{6,8},{8,8},{7,9},{6,9},{5,9}
                     //Test 3
-                    {7,10},{8,10},{8,11},{9,9},{9,10},{9,11},{10,8}
+                    //{7,10},{8,10},{8,11},{9,9},{9,10},{9,11},{10,8}
 
             };
 
@@ -98,7 +98,7 @@ public class View extends JFrame implements ActionListener {
                     //Test 2
 //                    {5,6},{4,7},{8,7},{8,9},{7,10},{4,10}
                     //Test 3
-                    {7,7},{7,8},{7,9},{6,11},{10,10},{9,12}
+                    //{7,7},{7,8},{7,9},{6,11},{10,10},{9,12}
             };
 
 
@@ -210,8 +210,8 @@ public class View extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("New Game") || e.getActionCommand().equals("Restart")) {
-            for (int i = 0; i < 20; i++) {
-                for (int j = 0; j < 20; j++) {
+            for (int i = 0; i <= 20; i++) {
+                for (int j = 0; j <= 20; j++) {
                     SelectMove.E[i][j] = 0;
                 }
             }
