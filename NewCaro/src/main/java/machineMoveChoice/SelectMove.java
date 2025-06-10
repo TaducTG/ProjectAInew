@@ -107,7 +107,7 @@ public  class SelectMove {
                     }
                 }
 //                System.out.println(C_min);
-                if(C_min <= 4000 && k == B.size() - 1){
+                if(C_min <= 4000 && k == B.size() - 1){ // bo qua dc
                     // depth = 3
                     for(int l = 0;l<C.size();l++){
                         A.clear();
@@ -133,7 +133,7 @@ public  class SelectMove {
                                 }
                             }
                             for (Point value : A) {
-                                if (value.getScore() > maxF*0.9) {
+                                if (value.getScore() > maxF*0.9 && F.size() <= 7) {
                                     F.add(value);
                                 }
                             }
@@ -144,7 +144,8 @@ public  class SelectMove {
                                     choosemove2 = D.get(m).getRank();
                                 }
                             }
-                            if(minF <= 2000 && m == D.size() - 1){ // depth = 5
+                            if(minF <= 2000 && m == D.size() - 1){// depth = 5
+                                //secondLayer(D.get(m).getX(), D.get(m).getY(), E);
                                 for(int n = 0;n<F.size();n++){
                                     A.clear();
 

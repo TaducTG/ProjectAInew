@@ -52,7 +52,8 @@ public class CalculateDistance {
         score += checkDuongcheo1(tmp, E, b);
         // Đường chéo 2
         score += checkDuongcheo2(tmp, E, b);
-        if(a == 2 && beta ==7){
+
+        if(a == 2 && beta == 7){
             score = 0;
         }
 
@@ -137,6 +138,9 @@ public class CalculateDistance {
             ContinuousATK.ContinuousATK.clear();
             ContinuousATK.ContinuousATK2.clear();
             SelectMove.check = 0;
+            if(score >= 99999){
+                SelectMove.check = 1;
+            }
         }
         tmp.setScore(score);
         return score;
@@ -194,6 +198,5 @@ public class CalculateDistance {
             }
         }
     }
-
 }
 
