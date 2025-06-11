@@ -12,6 +12,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class View extends JFrame implements ActionListener {
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
     Color background_cl = Color.white;
     Color x_cl = Color.red;
     Color y_cl = Color.blue;
@@ -131,9 +135,28 @@ public class View extends JFrame implements ActionListener {
         lb.setText("Lượt Của X");
         if(Check.checkWin(locx,locy,E,2)){
             System.out.println("check");
-            showResultDialog(false); // Thua
-            for (int k = 0; k < 17; k++) {
-                for (int l = 0; l < 17; l++) {
+            frame = new JFrame();
+            frame.setSize(300, 150);
+            frame.setLayout(new BorderLayout());
+            frame.setLocationRelativeTo(null); // Hiển thị giữa màn hình
+            frame.setVisible(true);
+            // Thêm nhãn thông báo
+            JLabel label = new JLabel("You Have Lose!", SwingConstants.CENTER);
+            label.setFont(new Font("Arial", Font.BOLD, 24));
+            frame.add(label, BorderLayout.CENTER);
+
+            // Tạo panel chứa 2 nút
+            JPanel buttonPanel = new JPanel();
+            JButton restartButton = new JButton("Restart");
+            restartButton.addActionListener(this);
+            JButton quitButton = new JButton("Quit");
+            quitButton.addActionListener(this);
+            buttonPanel.add(restartButton);
+
+            buttonPanel.add(quitButton);
+            frame.add(buttonPanel, BorderLayout.SOUTH);
+            for (int k = 0; k < 20; k++) {
+                for (int l = 0; l < 20; l++) {
                     SelectMove.E[k][l] = 1;
                 }
             }
@@ -143,8 +166,8 @@ public class View extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("New Game") || e.getActionCommand().equals("Restart")) {
-            for (int i = 0; i < 17; i++) {
-                for (int j = 0; j < 17; j++) {
+            for (int i = 0; i < 20; i++) {
+                for (int j = 0; j < 20; j++) {
                     SelectMove.E[i][j] = 0;
                 }
             }
@@ -190,17 +213,26 @@ public class View extends JFrame implements ActionListener {
                         b[i][j].setForeground(Color.lightGray);
                         b[i][j].setFont(new Font("Arial", Font.BOLD, 18));
                         tick[i][j] = true;
-
                     }
                 }
             }
             SelectMove.startMove -= 1;
-
         }
         else if(e.getActionCommand() == "Show") {
             for (int i = 0; i < column+2; i++) {
                 for (int j = 0; j < row +2; j++) {
-                    System.out.printf("%6.0f ",SelectMove.map[i][j]);
+                    if (E[i][j] == 0) {
+                        System.out.printf("%6.0f ",SelectMove.map[i][j]);
+                    }
+                    else if(E[i][j] == 1){
+                        System.out.printf(ANSI_RED + "%6.0f " + ANSI_RESET, SelectMove.map[i][j]);
+                    }
+                    else{
+                        System.out.printf(ANSI_BLUE + "%6.0f " + ANSI_RESET, SelectMove.map[i][j]);
+//                        if(SelectMove.map[i][j] != 0){
+//                            System.out.printf(ANSI_YELLOW + "%6.0f " + ANSI_RESET, SelectMove.map[i][j]);
+//                        }
+                    }
                 }
                 System.out.println();
             }

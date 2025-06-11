@@ -1,8 +1,7 @@
 package calculateDistance;
 
 
-import static moveSet.Advance.checkSurround;
-import static moveSet.Advance.findBestloc;
+import static moveSet.Advance.*;
 import static moveSet.Move.*;
 
 import java.util.ArrayList;
@@ -32,7 +31,7 @@ public class CalculateDistance {
 
         int gamma = checkSurround(tmp, E, 3); // dùng để check với X trong lượt của O (xét khả năng tấn công)
 
-        int epsilon = findBestloc(tmp, E, 2);
+        int epsilon = findBestloc2(tmp, E, 2);
 
         // ATK
         // Hàng ngang
@@ -54,6 +53,9 @@ public class CalculateDistance {
         // Đường chéo 2
         score += checkDuongcheo2(tmp, E, b);
 
+        if(a == 2 && beta == 7){
+            score = 0;
+        }
 
         if (a == 1) {
             if (score < 50000) {
@@ -76,8 +78,6 @@ public class CalculateDistance {
                 //      4) Chặn các nước kết hợp 3,3 của địch
                 //      5) Đánh các nước tạo thế cờ
                 //      6) Chặn các nước tạo thế cờ của địch
-
-
 
                 //      1) Đánh các nước kết hợp 3,4 hoặc nước 4 chưa bị chặn
                 if (beta == 1 || beta == 2 || beta == 3 ) {
@@ -136,16 +136,20 @@ public class CalculateDistance {
             ContinuousATK.ContinuousATK.clear();
             ContinuousATK.ContinuousATK2.clear();
             SelectMove.check = 0;
+            if(score >= 99999){
+                SelectMove.check = 1;
+            }
         }
         tmp.setScore(score);
         return score;
     }
     public static void firstLayer(int i, int j, int[][] E) {
-        int[][] D = new int[20][20];
+        //System.out.println("firstLayer: " + i + " " + j);
+        int[][] D = new int[21][21];
 
         // Đặt giá trị cho mảng D dựa trên trạng thái của E
-        for (int a = 0; a < 20; a++) {
-            for (int b = 0; b < 20; b++) {
+        for (int a = 0; a <= 20; a++) {
+            for (int b = 0; b <= 20; b++) {
                 if (E[a][b] == 1 || E[a][b] == 2) {
                     D[a][b] = 1;
                 } else {
@@ -168,11 +172,11 @@ public class CalculateDistance {
 
     // Hàm secondLayer tương đương với C++ code
     public static void secondLayer(int i, int j, int[][] E) {
-        int[][] D = new int[20][20];
+        int[][] D = new int[21][21];
 
         // Đặt giá trị cho mảng D dựa trên trạng thái của E
-        for (int a = 0; a < 20; a++) {
-            for (int b = 0; b < 20; b++) {
+        for (int a = 0; a <= 20; a++) {
+            for (int b = 0; b <= 20; b++) {
                 if (E[a][b] == 1 || E[a][b] == 2) {
                     D[a][b] = 1;
                 } else {
@@ -192,6 +196,5 @@ public class CalculateDistance {
             }
         }
     }
-
 }
 

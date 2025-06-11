@@ -12,22 +12,22 @@ public  class SelectMove {
     public static int startMove = 0;
     public static int locx; //Vị trí máy đánh
     public static int locy; //VỊ trí máy đánh
-    public static int[][] E = new int[25][25];
+    public static int[][] E = new int[28][28];
     public static double[][] map = new double[25][25];
     public static int choosemove;
     public static int choosemove2;
     public static int choosemove3;
     public static void machineTurn(){
-        for (int i = 0; i < 20; i++) {
-            for (int j = 0; j < 20; j++) {
+        for (int i = 0; i < 25; i++) {
+            for (int j = 0; j < 25; j++) {
                 map[i][j] = 0;
             }
         }
         long startTime = System.nanoTime();
         startMove += 1;
         A.clear();
-        for (int i = 0; i < 15; i++) {
-            for (int j = 0; j < 15; j++) {
+        for (int i = 0; i <= 20; i++) {
+            for (int j = 0; j <= 20; j++) {
                 if (E[i][j] == 1 || E[i][j] == 2) {
                     if (startMove < 2) {
                         firstLayer(i, j, E);
@@ -40,13 +40,13 @@ public  class SelectMove {
             }
         }
         Point tmp = Begin.BeginMove();
+        tmp = new Point(0,0);
         if(tmp.getX() == 0 && tmp.getY() == 0){
             double max = 0;
             for (Point point : A) {
-
-                // if(ContinuousATK.isEmpty() && check == 0) {
-                //     FinalATK(point, E, 2);
-                // }
+                 if(ContinuousATK.isEmpty() && check == 0) {
+                     FinalATK(point, E, 2);
+                 }
                 if(!ContinuousATK.isEmpty()){
                     check = 1;
                 }
@@ -77,6 +77,8 @@ public  class SelectMove {
                     B.add(item);
                 }
             }
+            //System.out.println(A.size());
+            //System.out.println(B.size());
             // Tiến hành lọc theo alpha-beta pruning
 
             int location = 0;
@@ -105,7 +107,7 @@ public  class SelectMove {
                     }
                 }
 //                System.out.println(C_min);
-                if(C_min <= 4000 && k == B.size() - 1){
+                if(C_min <= 4000 && k == B.size() - 1){ // bo qua dc
                     // depth = 3
                     for(int l = 0;l<C.size();l++){
                         A.clear();
@@ -131,7 +133,7 @@ public  class SelectMove {
                                 }
                             }
                             for (Point value : A) {
-                                if (value.getScore() > maxF*0.9) {
+                                if (value.getScore() > maxF*0.9 && F.size() <= 7) {
                                     F.add(value);
                                 }
                             }
@@ -142,7 +144,8 @@ public  class SelectMove {
                                     choosemove2 = D.get(m).getRank();
                                 }
                             }
-                            if(minF <= 2000 && m == D.size() - 1){ // depth = 5
+                            if(minF <= 2000 && m == D.size() - 1){// depth = 5
+                                //secondLayer(D.get(m).getX(), D.get(m).getY(), E);
                                 for(int n = 0;n<F.size();n++){
                                     A.clear();
 
@@ -168,9 +171,10 @@ public  class SelectMove {
 
 
             if(!ContinuousATK.isEmpty()){
-
-                for(Point tmp2 : ContinuousATK){
-                    System.out.print("(" + tmp2.getX()+" " +tmp2.getY() + ")" + " ");
+                if (ContinuousATK.size() <= 2) {
+                    for(Point tmp2 : ContinuousATK){
+                        System.out.print("(" + tmp2.getX()+ " " +tmp2.getY()+ " " +tmp2.getRank() + ") ");
+                    }
                 }
                 if(E[ContinuousATK.get(0).getX()][ContinuousATK.get(0).getY()] != 0){
                     ContinuousATK.removeFirst();
@@ -182,6 +186,9 @@ public  class SelectMove {
                     locy = ContinuousATK.get(0).getY();
                     System.out.println(ContinuousATK.get(0).getX() + " " + ContinuousATK.get(0).getY()  + "****");
                     ContinuousATK.removeFirst();
+                }
+                for(Point tmp2 : ContinuousATK){
+                    System.out.print("(" + tmp2.getX()+ " " +tmp2.getY()+ " " +tmp2.getRank() + ") ");
                 }
             }
             else if(!G.isEmpty()){
@@ -203,6 +210,7 @@ public  class SelectMove {
                 System.out.println(B.get(choosemove).getX() + " " + B.get(choosemove).getY() + " " + B.get(choosemove).getScore() +"*");
             }
             else {
+                //System.out.println(B.size());
                 E[B.get(location).getX()][B.get(location).getY()] = 2; // Chọn điểm có điểm số tốt nhất
                 locx = B.get(location).getX();
                 locy = B.get(location).getY();

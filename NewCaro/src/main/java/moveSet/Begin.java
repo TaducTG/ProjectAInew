@@ -8,7 +8,7 @@ public class Begin {
     public static int firstLoc_y = 0;
     public static double branch = 0.0;
 
-    public static Point BeginMove() {
+    public static moveSet.Point BeginMove() {
         Point tmp = new Point(0, 0);
         if (SelectMove.startMove == 1 && SelectMove.E[7][7] == 2) {
             firstLoc_x = 7;

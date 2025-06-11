@@ -28,7 +28,7 @@ public class Move {
                     if (x >= 4 && E[x - 4][y] == a) {
                         line += 1;
                     }
-                    if(E[x - 4][y] == b){
+                    if(x >=4 && E[x - 4][y] == b){
                         mark = 1;
                     }
                 }
