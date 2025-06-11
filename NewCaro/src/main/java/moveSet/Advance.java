@@ -5,7 +5,7 @@ import machineMoveChoice.SelectMove;
 public class Advance {
     public static int checkSurround(Point tmp, int[][] E, int a){
         int b = 0;
-        int c = 0;
+        int c = 0; // trường hợp xét cho X trong lượt của O
         if(a == 1){
             b = 2;
         }
@@ -22,15 +22,15 @@ public class Advance {
 
         int x = tmp.x;
         int y = tmp.y;
-        int rowleft = 0; //đếm các giống với a ở bên trái
-        int rowright = 0; //đếm các giống với a ở bên phải
-        int row; // bằng rowleft + rowright trong trường hợp trái và phải của tmp không là ô trống
+        int rowleft = 0; //đếm các điểm giống với a ở bên trái
+        int rowright = 0; //đếm các điểm giống với a ở bên phải
+        int row; // bằng rowleft + rowright trong trường hợp kề trái và kề phải không đồng thời trống
         int blockleft = 0; // đếm ô bị chặn ngay cạnh bên trái
         int blockright = 0; // đếm ô bị chặn ngay cạnh bên phải
         int spaceleft = 0;  // đếm ô trống bên trái thỏa mãn ngay sau đó là a
         int spaceright = 0; // đếm ô trống bên phải thỏa mãn ngay sau đó là a
-        int blleft = 0; // đếm ô bị chặn bên trái nhưng có ô trống bên cạnh
-        int blright = 0; // đếm ô bị chặn bên phải nhưng có ô trống bên cạnh
+        int blleft = 0; // đếm số ô bị chặn bên trái nhưng có ô trống bên cạnh
+        int blright = 0; // đếm số ô bị chặn bên phải nhưng có ô trống bên cạnh
         int spacecount = 0; // đếm ô trống thỏa mãn sau đó là ô trống
                             // nếu spacecount + 1 thì spaceleft hoặc spaceright cũng sẽ + 1
 
@@ -40,8 +40,8 @@ public class Advance {
         int pushATK_4 = 0; // đếm trường hợp sau khi đánh tại tmp sẽ có nước 4 bị chặn 1 đầu
         int close = 0;
         int notValid = 0; // đếm trường hợp không nên đánh tại tmp
-        //hang ngang
-
+        
+        //xét hàng dọc bên trái
         for (int i = x - 1; i > x - 6; i--) {
             if (i >= 0) {
                 if (E[i][y] == a) {
@@ -64,6 +64,7 @@ public class Advance {
                 }
             }
         }
+        //xét hàng dọc bên phải
         for (int i = x + 1; i < x + 6; i++) {
             if (i <= 20) {
                 if (E[i][y] == a) {
@@ -88,7 +89,7 @@ public class Advance {
         }
         //E là vị trí xét đánh (tmp)
         //? là vị trí bât kỳ ( _ ; O ; X )
-        if(x-1>=0 && E[x-1][y] != 0 || E[x+1][y] != 0) { // xét TH cả 1 trong 2 bên của tmp khác ô trống
+        if(x-1>=0 && E[x-1][y] != 0 || E[x+1][y] != 0) { // xét TH 1 trong 2 bên của tmp khác ô trống
             row = rowleft + rowright;
             if(row == 4){
                 // Dạng ?EOOOO?
@@ -96,12 +97,12 @@ public class Advance {
                 //9999
             }
             if(row == 3 && blockleft == 0 && blockright == 0 && spaceleft + spaceright == 3){
-                close++;
+                // close++;
                 // Dạng _EO_OOE_
             }
             if(row == 3 && blockleft == 0 && blockright == 0 && spaceleft + spaceright <= 1){
-                nearWin++;
-                // Dạng _EOOO_X
+                nearWin++; // đếm số nước 4 chưa bị chặn
+                // Dạng  _EOOO_X
                 //      X_EOOO_X
                 //9999*
             }
@@ -110,13 +111,19 @@ public class Advance {
                 // Dạng _EOOO_
                 //9999*
             }
+            
             if(row == 3 && blockleft == 1 && blockright == 1 && spaceleft + spaceright == 0){
-                notValid ++;
+                // Dạng XOOOEX
+                // Dạng XOOEOX
+                notValid ++; // đếm số TH không nên đánh tại tmp
             }
             if(row <= 2 && blockleft == 1 && blockright == 1 && spaceleft + spaceright <= 1){
+                // Dạng XOO_EX
+                // Dạng XOOEX
                 notValid ++;
             }
             if(row <=2 && (blockleft + blockright == 1 || blleft + blright == 1) && spaceleft+ spaceright ==0){
+                    // Dạng XOOE_X
                 notValid ++;
             }
             if(row == 3 && blockleft == 1 && blockright == 0 && spaceleft <= 1){
@@ -149,8 +156,10 @@ public class Advance {
                 //(nuoc 3 lien tiep)
             }
         }
+        // xét TH 2 bên của tmp đều là ô trống
         else if(x-1>=0 && E[x-1][y] == 0 && E[x+1][y] == 0){
             if(rowright >= 2 || rowleft >= 2){
+                //đếm số nước 3,4 có thể đánh được
                 if(rowright == 2){
                     if((blockright == 0 || (blright == 1 && spaceright == 1)) && spaceright <= 2){
                         pushATK_3++;
@@ -171,6 +180,7 @@ public class Advance {
                 }
             }
         }
+        // tương tự với các hàng còn lại
         rowright = 0;
         rowleft = 0;
         blockleft = 0;
@@ -180,7 +190,7 @@ public class Advance {
         blleft = 0;
         blright = 0;
         spacecount = 0;
-        //hang doc
+        //hang ngang
         for (int i = y - 1; i > y - 6; i--) {
             if (i >= 0) {
                 if (E[x][i] == a) {
@@ -225,6 +235,7 @@ public class Advance {
                 }
             }
         }
+        //tương tự
         if (y-1>=0 &&E[x][y-1] != 0 || E[x][y+1] != 0) {
             row = rowleft + rowright;
             if(row == 4){
