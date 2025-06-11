@@ -19,7 +19,7 @@ public class View extends JFrame implements ActionListener {
     Color background_cl = Color.white;
     Color x_cl = Color.red;
     Color y_cl = Color.blue;
-    int column = 17, row = 17, count = 0;
+    int column = 20, row = 20, count = 0;
     int  Undo[][] = new int[column+2][row+2];
     boolean tick[][] = new boolean[column + 2][row + 2];
     int Size = 0;
@@ -37,8 +37,8 @@ public class View extends JFrame implements ActionListener {
         pn.setLayout(new GridLayout(column+1, row+1));
         for (int i = 0; i <= column + 1; i++)
             for (int j = 0; j <= row + 1; j++) {
-                b[i][j] = new JButton(i +" " + j);
-                b[i][j].setActionCommand(i + " " + j);
+                b[i][j] = new JButton();
+                b[i][j].setActionCommand(i + " " + j); // Lưu tọa độ nút
                 b[i][j].setBackground(background_cl);
                 b[i][j].setFont(new Font("Arial", Font.BOLD, 18));
                 b[i][j].setForeground(Color.lightGray);
@@ -116,8 +116,8 @@ public class View extends JFrame implements ActionListener {
         if(Check.checkWin(i,j,E,1)){
             System.out.println("check");
             showResultDialog(true); // Thắng
-            for (int k = 0; k < 17; k++) {
-                for (int l = 0; l < 17; l++) {
+            for (int k = 0; k < 20; k++) {
+                for (int l = 0; l < 20; l++) {
                     SelectMove.E[k][l] = 1;
                 }
             }
